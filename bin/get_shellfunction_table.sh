@@ -43,9 +43,9 @@ for file in ${files[@]}; do
             ;;
         esac
 
-        # 関数のいる行を取得する
+        # 関数のいる行を取得する(Lつける処理が雑だけどいいや…)
         func_line_range=$(awk "/${func_name}/,/^}/{print NR}" ${file} | tee >(head -n1) >(tail -n1) >/dev/null)
-        func_line_tag=$(echo "${func_line_range}" | sort | tr \\n - | sed "s/-$//")
+        func_line_tag=$(echo "${func_line_range}" | sort | tr \\n - | sed "s/-$//;s/-/-L/")
 
         # テーブルデータの出力
         echo "| ${file} | [${func_name}](${file}#L${func_line_tag}) | ${func_note} |"
