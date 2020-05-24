@@ -21,7 +21,7 @@ for file in ${files[@]}; do
 
     for tac_line_num in ${tac_func_num[@]}; do
         # functionの宣言より↑にあるコメント行を取得する(`TODO`を含む行は削除)
-        func_data=$(awk "NR==$tac_line_num,/^$/" <<<"${tac_file}" | tac | grep -v "TODO")
+        func_data=$(awk "NR==$tac_line_num,/^\$/" <<<"${tac_file}" | tac | grep -v "TODO")
 
         # function名だけを取得
         func_name=$(tail -n1 <<<"${func_data}" | sed 's/() *{/()/')
@@ -48,7 +48,7 @@ for file in ${files[@]}; do
         func_line_tag=$(echo "${func_line_range}" | sort | tr \\n - | sed "s/-$//;s/-/-L/")
 
         # テーブルデータの出力
-        echo "| ${file} | [${func_name}](${file}#L${func_line_tag}) | ${func_note} |"
+        echo "| [${file}](${file}) | [${func_name}](${file}#L${func_line_tag}) | ${func_note} |"
     done
 
 done
