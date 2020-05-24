@@ -11,8 +11,8 @@ cd ~/dotfiles
 # sh_functionファイルの一覧を取得する
 files=$(ls -1 ./{sh,bash,zsh}/*sh_function* 2>/dev/null)
 
-echo "| File | 概要 |"
-echo "| ---- | --- |"
+echo "| File | 関数名 |  概要 |"
+echo "| ---- | ----- | --- |"
 
 for file in ${files[@]}; do
     # ファイルをtacで逆順にして、その状態でのfuctionの行を取得する
@@ -43,7 +43,7 @@ for file in ${files[@]}; do
             ;;
         esac
 
-        echo "|${func_name} | ${func_note}|"
+        echo "| ${file} |${func_name} | ${func_note}|"
     done
 
 done
