@@ -44,10 +44,11 @@ for file in ${files[@]}; do
         esac
 
         # 関数のいる行を取得する
-        func_linenum=$(grep -n "^${func_name} " ${file} | cut -d: -f1)
+        func_line_range=$(awk "/${func_name}/,/^}/{print NR}" ${file} | tee >(head -n1) >(tail -n1) >/dev/null)
+        func_line_tag=$(echo "${func_line_range}" | sort | tr \\n - | sed "s/-$//")
 
         # テーブルデータの出力
-        echo "| ${file} | [${func_name}](${file}#L${func_linenum}) | ${func_note} |"
+        echo "| ${file} | [${func_name}](${file}#L${func_line_tag}) | ${func_note} |"
     done
 
 done
