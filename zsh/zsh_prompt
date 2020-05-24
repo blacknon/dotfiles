@@ -111,7 +111,7 @@ precmd_prompt() {
 		    [153]=SIGVTALRM [154]=SIGPROF [155]=SIGWINCH [156]=SIGINFO [157]=SIGUSR1
 		    [158]=SIGUSR2
 	    )
-        TOP_LPROMPT="${TOP_LPROMPT}[${COLOR_RED}${err_code[${EXIT}]}${COLOR_NONE}]"
+        TOP_LPROMPT="${TOP_LPROMPT}[%F{red}${err_code[${EXIT}]}%F{white}]"
     fi
 
     # 1行目右プロンプト
