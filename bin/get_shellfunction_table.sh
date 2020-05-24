@@ -43,7 +43,9 @@ for file in ${files[@]}; do
             ;;
         esac
 
-        echo "| ${file} | ${func_name} | ${func_note}|"
+        func_linenum=$(grep -n "^${func_name} " ${file} | cut -d: -f1)
+
+        echo "| ${file} | [${func_name}](${file}#L${fune_linenum}) | ${func_note}|"
     done
 
 done
