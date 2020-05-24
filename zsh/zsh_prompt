@@ -31,8 +31,8 @@ TRAPALRM() {
        [ "$WIDGET" != "__cd_selection" ] && \
        [ "$WIDGET" != "__substitute_line" ] && \
        [ "$WIDGET" != "__pet_set" ] && \
-       ; then
-        zle .reset-prompt
+       ;then
+            zle .reset-prompt
     fi
 }
 
@@ -68,9 +68,9 @@ re-prompt() {
 }
 zle -N accept-line re-prompt
 
-
 # 左右のプロンプトを2行にするため、プロンプト表示前にコマンドを実行するように定義する
 precmd_prompt() {
+    local EXIT="$?"
     local BATTERY
     local SED
     local GREP
@@ -94,18 +94,32 @@ precmd_prompt() {
             ;;
     esac
 
-
     # 1行目左プロンプト
     HOST_INFO="%F{white}%n%f@%F{cyan}%m%f"
     PATH_INFO="%{%F{yellow}%}%~%{%f%}%(?.%{%F{green}%}.%{%F{magenta}%})"
     TOP_LPROMPT="%F{white}[%f$HOST_INFO%F{white}]%f%F{white}[%f$PATH_INFO%F{white}]%f"
+
+    # エラーコードの追記
+    if [ "${EXIT}" -ne "0" ]; then
+        local err_code=(
+		    [1]=error [2]='builtin error' [126]='not executable'[127]='command not found'
+		    [128]=SIGHUP [129]=SIGINT [130]=SIGQUIT [131]=SIGILL [132]=SIGTRAP
+		    [133]=SIGABRT [134]=SIGEMT [135]=SIGFPE [136]=SIGKILL [137]=SIGBUS
+		    [138]=SIGSEGV [139]=SIGSYS [140]=SIGPIPE [141]=SIGALRM [142]=SIGTERM
+		    [143]=SIGURG [144]=SIGSTOP [145]=SIGTSTP [146]=SIGCONT [147]=SIGCHLD
+		    [148]=SIGTTIN [149]=SIGTTOU [150]=SIGIO [151]=SIGXCPU [152]=SIGXFSZ
+		    [153]=SIGVTALRM [154]=SIGPROF [155]=SIGWINCH [156]=SIGINFO [157]=SIGUSR1
+		    [158]=SIGUSR2
+	    )
+        TOP_LPROMPT="${TOP_LPROMPT}[${COLOR_RED}${err_code[${EXIT}]}${COLOR_NONE}]"
+    fi
 
     # 1行目右プロンプト
     vcs_info
 
     # battery functionがあれば実行する
     if typeset -f battery > /dev/null ;then
-        BATTERY=$(battery|sed 's/%/&&/g')
+        BATTERY="$(battery|sed 's/%/&&/g')"
         if [[ ${#BATTERY} -eq 0 ]];then
             BATTERY="NONE"
         fi
@@ -122,9 +136,9 @@ precmd_prompt() {
 
     # テキストを装飾する場合、エスケープシーケンスをカウントしないようにします
     local INVISIBLE='%([BSUbfksu]|([FK]|){*})'
-    local L_WIDTH=${#${(S%%)TOP_LPROMPT//$~INVISIBLE/}}
-    local R_WIDTH=${#${(S%%)TOP_RPROMPT//$~INVISIBLE/}}
-    local PAD_WIDTH=$(($COLUMNS - ($L_WIDTH + $R_WIDTH) % $COLUMNS))
+    local L_WIDTH="${#${(S%%)TOP_LPROMPT//$~INVISIBLE/}}"
+    local R_WIDTH="${#${(S%%)TOP_RPROMPT//$~INVISIBLE/}}"
+    local PAD_WIDTH="$(($COLUMNS - ($L_WIDTH + $R_WIDTH) % $COLUMNS))"
 
     # PATHかコマンドに全角文字が含まれている場合、その文字数分PADからマイナスする
     local ZENKAKU=$(echo $PWD|$GREP -o -P '[^\x00-\x7F]'| wc -l)
@@ -134,15 +148,15 @@ precmd_prompt() {
 
     # ターミナルのタイトルを変更
     local TITLE="\e]0;$(whoami)@$(hostname -s)\007"
-    printf $TITLE
 
     print -P $TOP_LPROMPT${(r:$PAD_WIDTH:: :)}$TOP_RPROMPT
 
-  # Ctrl + Cで表示がおかしくなった場合への対策
-  # (sttyの設定をもとの状態に戻しておく)
-  stty sane
-  stty -ixon
+    # Ctrl + Cで表示がおかしくなった場合への対策
+    # (sttyの設定をもとの状態に戻しておく)
+    stty sane
+    stty -ixon
 }
+
 precmd_functions=""
 precmd_functions+=(precmd_prompt)
 
