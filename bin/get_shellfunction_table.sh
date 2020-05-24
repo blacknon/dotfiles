@@ -17,7 +17,7 @@ echo "| ---- | ----- | --- |"
 for file in ${files[@]}; do
     # ファイルをtacで逆順にして、その状態でのfuctionの行を取得する
     tac_file=$(tac ${file})
-    tac_func_num=$(grep -En '^[a-zA-Z_]+ *\(\) {' <<<"${tac_file}" | cut -d: -f1)
+    tac_func_num=$(grep -En '^[a-zA-Z_1-9]+ *\(\) {' <<<"${tac_file}" | cut -d: -f1)
 
     for tac_line_num in ${tac_func_num[@]}; do
         # functionの宣言より↑にあるコメント行を取得する(`TODO`を含む行は削除)
@@ -33,17 +33,17 @@ for file in ${files[@]}; do
             func_note=$(ghead -n -1 <<<"${func_data}")
 
             # functionの説明(func_note)から、改行を消すなどの整形処理
-            func_note=$(echo ${func_note} | gsed -r "s/^# +//g" | tr -d \\n)
+            func_note=$(echo "${func_note}" | gsed -r "s/^# +//g" | tr -d \\n)
             ;;
         linux*)
             func_note=$(head -n -1 <<<"${func_data}")
 
             # functionの説明(func_note)から、改行を消すなどの整形処理
-            func_note=$(echo ${func_note} | sed -r "s/^# +//g" | tr -d \\n)
+            func_note=$(echo "${func_note}" | sed -r "s/^# +//g" | tr -d \\n)
             ;;
         esac
 
-        echo "| ${file} |${func_name} | ${func_note}|"
+        echo "| ${file} | ${func_name} | ${func_note}|"
     done
 
 done
