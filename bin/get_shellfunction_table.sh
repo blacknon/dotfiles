@@ -33,13 +33,13 @@ for file in ${files[@]}; do
             func_note=$(ghead -n -1 <<<"${func_data}")
 
             # functionの説明(func_note)から、改行を消すなどの整形処理
-            func_note=$(echo "${func_note}" | gsed -r "s/^# +//g" | tr -d \\n)
+            func_note=$(echo "${func_note}" | gsed -r "s/^# //g" | gsed -z 's,\n,<br/>,g' | gsed 's,^<br/>,,g;s,<br/>$,,g')
             ;;
         linux*)
             func_note=$(head -n -1 <<<"${func_data}")
 
             # functionの説明(func_note)から、改行を消すなどの整形処理
-            func_note=$(echo "${func_note}" | sed -r "s/^# +//g" | tr -d \\n)
+            func_note=$(echo "${func_note}" | sed -r "s/^# //g" | sed -z 's,\n,<br/>,g' | sed 's,^<br/>|<br/>$,,')
             ;;
         esac
 
