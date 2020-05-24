@@ -1,0 +1,371 @@
+#!/bin/bash
+# Copyright(c) 2019 Blacknon. All rights reserved.
+# Use of this source code is governed by an MIT license
+# that can be found in the LICENSE file.
+
+# ABOUT:
+#     コマンド代わりに使用するためのfunctionを記載しているファイル。
+#     tmuxやssh接続先では利用しないような、基本的にローカルでしか利用しないものを定義
+### -------------------------------------------------------------
+
+# TODO(blacknon): 指定した区切り文字を使って、その方向にdiffをするfunction(or script)
+#                 => hwatchのログをdiffするためのscriptとして。応用を考えたらjqにかましたあとのほうが良いのかも？という理由。
+#                    とはいえ、もしかしたら最初からpythonでjsonのdiffをするscriptを作ったほうがいいのかも…
+
+## ==========
+# エンコード/デコード関係
+## ==========
+
+# パイプから受け付けたjsonをurlencodeして出力するfunction(要php)
+json2url() {
+  # optionをパース
+  local opt
+  while getopts ":e" opt; do
+    case "$opt" in
+    e) local is_enc=1 ;;
+    esac
+  done
+
+  # 変換対象を変数に代入
+  local data
+  data="$(cat)"
+
+  if [ "${is_enc}" -eq 1 ]; then
+    echo "${data}" | php -r 'echo http_build_query(json_decode(trim(fgets(STDIN)),true));'
+  else
+    echo "${data}" | php -r 'echo urldecode(http_build_query(json_decode(trim(fgets(STDIN)),true)));'
+  fi
+}
+
+# パイプから受け付けたurl encodeされたパラメータをjsonにして出力するfunction(要php)
+url2json() {
+  # optionをパース
+  local opt
+  while getopts ":e" opt; do
+    case "$opt" in
+    e) local is_enc=1 ;;
+    esac
+  done
+
+  # 変換対象を変数に代入
+  local data
+  data="$(cat)"
+
+  echo "${data}" | php -r 'parse_str(fgets(STDIN),$parsed);echo json_encode($parsed);'
+}
+
+## ==========
+# ファイル操作関係
+## ==========
+
+# TODO(blacknon): moreutilsの有無のチェックを追加
+# TODO(blacknon): moreutilsなしでできるようにする？
+# TODO(blacknon): sortのオプションを付与できるようにする
+# sortしてその内容をそのまま保存する
+# ※ moreutils必須
+sortsave() {
+  local file=$1
+  sort -u $file | sponge $file
+}
+
+# 上のディレクトリに移動するfunction.
+# cd(Change Directory) → ud(Up Directory)
+# ...という命名方式
+ud() {
+  local num
+  if [ $# -ne 1 ]; then
+    num=1
+  else
+    num=$1
+  fi
+
+  eval cd $(perl -le 'print "../" x '$num)
+}
+
+## ==========
+# Docker関係
+## ==========
+
+# TODO(blacknon): 操作ログを取得させる(scriptコマンド？)
+# dockerコンテナを起動してログインするためのfunction。
+# usage:
+#     docker_runin コンテナ名
+#     docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン
+#     docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン
+#     docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可)
+docker_runin() {
+  # container
+  local cnt
+
+  # flag
+  local is_rc
+  local is_env
+
+  # arg
+  local volarg
+  local volume
+
+  # optionをパース
+  local opt
+  while getopts ":rev:" opt; do
+    case "$opt" in
+    r) is_rc=1 ;;
+    e) is_env=1 ;;
+    v) volume=${OPTARG} ;;
+    esac
+  done
+
+  # セレクトするコマンドの有無によって切り替えをする
+  # (peco>bocoの順に確認)
+  if type "peco" >/dev/null 2>&1; then
+    local selecter="peco"
+  elif type "boco" >/dev/null 2>&1; then
+    # printfで制御コードを出力させないオプションを付与する
+    local selecter="boco"
+  fi
+
+  # セレクトに使うコマンドがbocoの場合、長い行を表示させるために以下のコマンドを実行する
+  if [[ ${selecter} =~ ^boco ]]; then
+    printf '\033[?7l'
+  fi
+
+  # 入るコンテナを選択する
+  cnt=$(docker image ls | awk 'NR>1{print $1}' | sort | uniq | eval $selecter | tr -d $'\n')
+
+  # contaner check
+  if [ "${cnt}" = "" ]; then
+    echo "not set container"
+    return
+  fi
+
+  # volume mount option
+  if [ ! "${volume}" = "" ]; then
+    volarg="-v ${volume}"
+  fi
+
+  # dockerへの接続前に実行するコマンド
+  eval "${EXEC_BEFORE_DOCKER_IN}"
+
+  # ~/.docker_historyをtouchしておく
+  touch ~/.docker_history
+
+  # docker runをして接続する
+  if [[ ${is_rc} -eq 1 ]]; then
+    local cmd="'bash --rcfile <(echo $(____get_rcdata)|base64 -d)'"
+    eval docker run -v ~/.docker_history:/root/.bash_history --rm "${volarg}" -it "${cnt}" bash -c "${cmd}"
+  elif [[ ${is_env} -eq 1 ]]; then
+    local cmd="'bash --rcfile <(echo $(____get_envdata)|base64 -d)'"
+    eval docker run -v ~/.docker_history:/root/.bash_history "${volarg}" --rm -it "${cnt}" bash -c "${cmd}"
+  else
+    eval docker run -v ~/.docker_history:/root/.bash_history "${volarg}" --rm -it "${cnt}" bash
+  fi
+
+  # dockerへの接続後に実行するコマンド
+  eval "${EXEC_AFTER_DOCKER_IN}"
+}
+
+# TODO(blacknon): 操作ログを取得させる(scriptコマンド？)
+# TODO(blacknon): -vは対応しない(できない)が、historyの同期をどうやるべきか考えておく。
+# dockerコンテナを起動してログインするためのfunction。
+# usage:
+#     docker_login コンテナ名
+#     docker_login -e コンテナ名 # 現在のfunctionを利用してログイン
+#     docker_login -r コンテナ名 # rcファイルを利用してログイン
+docker_login() {
+  # container
+  local cnt
+
+  # flag
+  local is_rc
+  local is_env
+
+  # optionをパース
+  local opt
+  while getopts ":re:" opt; do
+    case "$opt" in
+    r) is_rc=1 ;;
+    e) is_env=1 ;;
+    esac
+  done
+
+  # セレクトするコマンドの有無によって切り替えをする
+  # (peco>bocoの順に確認)
+  if type "peco" >/dev/null 2>&1; then
+    local selecter="peco"
+  elif type "boco" >/dev/null 2>&1; then
+    # printfで制御コードを出力させないオプションを付与する
+    local selecter="boco -p -q"
+  fi
+
+  # セレクトに使うコマンドがbocoの場合、長い行を表示させるために以下のコマンドを実行する
+  if [[ ${selecter} =~ ^boco ]]; then
+    printf '\033[?7l'
+  fi
+
+  # 入るコンテナを選択する
+  cnt=$(docker ps | awk 'NR>1{print $2"("$1")"}' | sort | uniq | eval $selecter)
+
+  # contaner check
+  if [ "${cnt}" = "" ]; then
+    echo "not set container"
+    return
+  fi
+
+  # `()`で囲まれた内容(コンテナID)を抽出
+  cnt=$(awk -F'[)(]' '{print $2}' <<<"${cnt}")
+
+  # dockerへの接続前に実行するコマンド
+  eval "${EXEC_BEFORE_DOCKER_IN}"
+
+  # docker runをして接続する
+  if [[ ${is_rc} -eq 1 ]]; then
+    local cmd="bash --rcfile <(echo $(____get_rcdata)|base64 -d)"
+    docker exec -it "${cnt}" bash -c "${cmd}"
+  elif [[ ${is_env} -eq 1 ]]; then
+    local cmd="bash --rcfile <(echo $(____get_envdata)|base64 -d)"
+    docker exec -it "${cnt}" bash -c "${cmd}"
+  else
+    docker exec -it "${cnt}" bash
+  fi
+
+  # dockerへの接続後に実行するコマンド
+  eval "${EXEC_AFTER_DOCKER_IN}"
+}
+
+## ==========
+# snippet用function(petコマンド関係)
+## ==========
+
+# 直前に実行したコマンドをpetに登録する
+prev() {
+  local prev=$(fc -lrn | head -n 1)
+  sh -c "pet new $(printf %q "$prev")"
+}
+
+# petからsnippetを実行する(実行後はhistoryに登録)
+pe() {
+  local cmd=$(pet search)
+  eval $cmd
+  print -s "${cmd//\\n/\\\\n}"
+}
+
+## ==========
+# 環境依存系
+## ==========
+
+# バッテリー残量を取得
+battery() {
+  case ${OSTYPE} in
+  darwin*)
+    pmset -g ps | awk '/InternalBattery/{gsub(";","",$3);print $3}'
+    ;;
+  linux*)
+    cat /sys/class/power_supply/BAT*/capacity | awk '{a=a+$0}END{printf("%3d%\n", a/NR)}'
+    ;;
+  esac
+}
+
+## ==========
+# ターミナルログ関係
+## ==========
+
+# TODO(blacknon): コマンドの実行をするオプションを追加する(引数にする)
+# TODO(blacknon): 引数で出力先を指定させる(-fオプション)
+# TODO(blacknon): オプションでタイムスタンプの付与を指定する(-tオプション)
+# scriptコマンドで/Work配下にターミナルログを記録する
+sc() {
+  : ----------
+  : usage:
+  : "  sc \"[-f logpath,-t]\" \"[command...]\""
+  : ----------
+
+  # local変数を宣言
+  local is_timestamp
+  local term_log
+  local cmd
+
+  # optionをパース
+  local opt
+  while getopts "f:t" opt; do
+    case "${opt}" in
+    f)
+      term_log="${OPTARG}"
+      ;;
+    t)
+      is_timestamp=1
+      ;;
+    esac
+  done
+
+  shift $((OPTIND - 1))
+
+  # commandを変数に格納する
+  cmd="${@}"
+
+  # -fオプションでterm_logの指定がない場合、デフォルトPATHにする
+  # Default: ${HOME}/Work/%Y%m/%Y%m%d/log/%Y%m%d_%H%M%S_script.log
+  if [ -z "${term_log}" ]; then
+    # workdir を作成
+    local workdir=$(date "+$HOME/Work/%Y%m/%Y%m%d/log")
+    mkdir -p "${workdir}"
+
+    # term_logを指定
+    local term_log="${workdir}/$(date +%Y%m%d_%H%M%S.log)"
+  fi
+
+  # scriptコマンドはOSによって挙動が異なるので、処理を分ける
+  case "${OSTYPE}" in
+  darwin*)
+    if [ -z "${cmd}" ]; then
+      script -aq "${term_log}"
+    else
+      script -aq "${term_log}" ${@}
+    fi
+    ;;
+  linux*)
+    if [ -z "${cmd}" ]; then
+      script -aq -f "${term_log}"
+    else
+      script -aq -f "${term_log}" -c "${@}"
+    fi
+    ;;
+  esac
+}
+
+# 完全にlocalで実行する用のscのラッパーfunction。
+# bashrcをsourceした状態で引数のコマンドを実行させるので、functionも実行できるようにする。
+scx() {
+  eval sc bash -c "'source ~/.bashrc 2>/dev/null;${@}'"
+}
+
+## ==========
+# 開発補助用function
+## ==========
+
+# make install を一気に行うためのfunction
+mkinst() {
+  make && sudo make install && make clean
+}
+
+# 受け付けたリストのurlに対し、curlでアクセスして諸々のデータをまとめるコード
+# httpステータスやレスポンスサイズ、バナーヘッダなどが考えられる？
+
+# XSSのテストを行うfunction
+# TODO:どっかで作成する
+
+# SQLインジェクションのテストを行うfunction
+# TODO:どっかで作成する
+
+# ブラインドSQLインジェクションのテストを行うfunction
+# TODO:どっかで作成する
+# 【参考】
+# https://orebibou.com/2018/08/%EF%BD%9Eksnctf%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%BF%E3%82%8B%EF%BD%9E-6-login/
+
+# 指定したPIDのプロセスをサスペンドする
+# TODO: 作る
+# p_suspend() {}
+
+# 指定したサスペンドされているプロセスを再開する
+# TODO: 作る。なお、対象のプロセスを補完で処理できるように考慮する
+# 参考: https://unix.stackexchange.com/questions/2107/how-to-suspend-and-resume-processes
+# p_resume() {}

@@ -1,0 +1,300 @@
+#!/usr/local/bin/python3
+# -*- encoding: UTF-8 -*-
+# Copyright(c) 2020 Blacknon. All rights reserved.
+# Use of this source code is governed by an MIT license
+# that can be found in the LICENSE file.
+# Description: 期間の決まっているプロジェクト用のディレクトリ生成スクリプト(~/Workとセット)
+
+import argparse
+import datetime
+from dateutil import parser
+from dateutil.relativedelta import relativedelta
+import re
+import inquirer
+import os
+import errno
+import sys
+import shutil
+import json
+from pathlib import Path
+
+# TODO(blacknon): 指定したテンプレート変数の置換処理について追加する(とりあえず3個くらい？)
+# ※ ファイル名についても対応する
+#   - {{ProjectName}}  ... プロジェクト名
+#   - {{ProjectStart}} ... プロジェクト開始日
+#   - {{ProjectEnd}}   ... プロジェクト終了日
+# TODO(blacknon): 作成したディレクトリ内で、指定したコマンドを(テンプレート変数を考慮して)実行する
+# TODO(blacknon): list --jsonの出力を配列にしないと、jqに食わせたりするときに扱いにくい
+
+
+# 変数
+# TODO(blacknon): config_file以外の変数をconfigに移動する
+config_file = "~/_env/my-pj.json"
+work_dir = "~/Work"
+project_dir = "~/Work/Project"
+
+
+# プロジェクトを作成する
+def command_create(args):
+    conf_file = open(os.path.expanduser(config_file), 'r')
+    conf_json = json.load(conf_file)
+
+    # 本日の日付を取得する
+    today = datetime.date.today()
+
+    # プロジェクトディレクトリの作成処理
+    while True:
+        # プロジェクトの開始日入力
+        #   - 日付が空の場合、当日の日付を入れる
+        while True:
+            try:
+                pj_start = input("プロジェクト開始日: ")
+            except KeyboardInterrupt:
+                sys.exit()
+
+            if pj_start == "":
+                pj_start = today.strftime("%Y-%m-%d")
+
+            # プロジェクト開始日の変換処理
+            try:
+                start_date = parser.parse(pj_start).date()
+                break
+            except parser.ParserError:
+                print('Error: 正常にパースできませんでした。入力し直してください。')
+                continue
+
+        # プロジェクトの終了日入力
+        #   - 日付が空の場合、プロジェクト開始日の日付を入れる
+        #   - 数字(3桁まで)が入力された場合、プロジェクト開始日に加算する
+        while True:
+            try:
+                pj_end = input("プロジェクト終了日: ")
+            except KeyboardInterrupt:
+                sys.exit()
+
+            if pj_end == "":
+                pj_end = pj_start
+            elif re.search('^[0-9]{1,3}$', pj_end):
+                pj_end = (
+                    start_date + relativedelta(days=+int(pj_end))
+                ).strftime("%Y-%m-%d")
+
+            try:
+                end_date = parser.parse(pj_end).date()
+                break
+            except parser.ParserError:
+                print('Error: 正常にパースできませんでした。入力し直してください。')
+                continue
+            except KeyboardInterrupt:
+                sys.exit()
+
+        # プロジェクトのテンプレートを選択
+        questions = [
+            inquirer.List(
+                'pj_type',
+                message="プロジェクトディレクトリのテンプレートを選択してください",
+                choices=conf_json['Templete'].keys(),
+            ),
+        ]
+        answers = inquirer.prompt(questions)
+        pj_type = answers['pj_type']
+
+        pj_dir = pj_type + '_' + \
+            start_date.strftime('%Y%m%d') + '-' + \
+            end_date.strftime('%Y%m%d') + '_' + args.project_name
+
+        # 開始日・終了日・プロジェクトタイプがこれで問題ないかを確認
+        print("これでプロジェクトフォルダを作成しますか？")
+        print("開始日:", start_date.strftime('%Y-%m-%d'))
+        print("終了日:", end_date.strftime('%Y-%m-%d'))
+        print("プロジェクトタイプ:", pj_type)
+        print("プロジェクトタイプ説明:", conf_json['Templete'][pj_type]['description'])
+        print("ディレクトリPATH:", project_dir + "/" + pj_dir)
+
+        try:
+            ok = input("[Y/n]")
+        except KeyboardInterrupt:
+            sys.exit()
+
+        if ok not in ('y', 'Y', ''):
+            continue
+
+        # ディレクトリのfull pathを取得する
+        templete_dir_path = os.path.expanduser(
+            conf_json['Templete'][pj_type]['path']
+        )
+        project_dir_path = os.path.expanduser(
+            project_dir + "/" + pj_dir
+        )
+
+        # ディレクトリを作成する
+        try:
+            shutil.copytree(templete_dir_path, project_dir_path)
+        except FileExistsError:
+            print("フォルダが存在しています")
+
+        # システム日付が期間内だった場合、`~/Work/YYYYMM/YYYYMMDD`にシンボリックリンクを作成する
+        if start_date <= today and today <= end_date:
+            today_dir = os.path.expanduser(
+                work_dir + '/' + today.strftime('%Y%m/%Y%m%d'))
+            os.symlink(project_dir_path, today_dir + '/' + args.project_name)
+
+        # projectの情報を保持するmetaファイルを生成する
+        pj_meta = {
+            "Name": args.project_name,
+            "Description": '',
+            "Start": start_date.strftime('%Y-%m-%d'),
+            "End": end_date.strftime('%Y-%m-%d')
+        }
+
+        # metaファイルへの書き込みをする
+        with open(project_dir_path + '/.pj.json', 'w') as pj_json:
+            json.dump(pj_meta, pj_json)
+
+        break
+
+
+# プロジェクトのSymbolic linkを指定されたディレクトリに作成する
+def command_symlink(args):
+    # symbolic linkを作成するディレクトリ
+    work_dir = args.dir_path
+
+    # 本日の日付を取得する
+    today = datetime.date.today()
+
+    # Projectディレクトリ配下を走査
+    # TODO(blacknon): .DS_storeを無視させる
+    project_dir_p = Path(os.path.expanduser(project_dir))
+    for p in list(project_dir_p.glob('*')):
+        pj_path = p / '.pj.json'
+        if os.path.isfile(p):
+            continue
+        if not os.path.isfile(pj_path):
+            continue
+
+        pj_file = open(str(pj_path))
+        pj_json = json.load(pj_file)
+
+        pj_start = parser.parse(pj_json['Start']).date()
+        pj_end = parser.parse(pj_json['End']).date()
+
+        # システム日付が期間内だった場合、`~/Work/YYYYMM/YYYYMMDD`にシンボリックリンクを作成する
+        if pj_start <= today and today <= pj_end:
+            try:
+                os.symlink(p, work_dir + '/' + pj_json['Name'])
+            except OSError as e:
+                if e.errno == errno.EEXIST:
+                    os.remove(work_dir + '/' + pj_json['Name'])
+                    os.symlink(p, work_dir + '/' + pj_json['Name'])
+
+
+# プロジェクトの一覧を取得する
+# TODO(blacknon): archiveのファイルについても調査対象とする処理を追加する
+def command_list(args):
+    i = 0
+    output_json = {}
+
+    if args.d is not None:
+        # プロジェクト開始日の変換処理
+        try:
+            date = parser.parse(args.d).date()
+        except parser.ParserError:
+            print('Error: -dで指定された日付を正常にパースできませんでした。入力し直してください。')
+            sys.exit()
+
+    # Projectディレクトリ配下を走査
+    project_dir_p = Path(os.path.expanduser(project_dir))
+    for p in list(project_dir_p.glob('*/')):
+        pj_path = p / '.pj.json'
+        if os.path.isfile(p):
+            continue
+        if not os.path.isfile(pj_path):
+            continue
+
+        pj_file = open(str(pj_path))
+        pj_json = json.load(pj_file)
+
+        pj_name = pj_json['Name']
+        pj_start = parser.parse(pj_json['Start']).date()
+        pj_end = parser.parse(pj_json['End']).date()
+        pj_desc = pj_json['Description']
+
+        if args.d is not None:
+            if not (pj_start <= date and date <= pj_end):
+                continue
+
+        if args.json:
+            output_json[i] = pj_json
+        else:
+            output_data = pj_start.strftime('%Y-%m-%d') + "〜" + \
+                pj_end.strftime('%Y-%m-%d') + ':' + ' ' + \
+                '[' + pj_name + ']' + ' ' + pj_desc + ' ' + str(p)
+
+            print(output_data)
+
+        i = i + 1
+
+    if args.json:
+        json.dump(output_json, sys.stdout)
+
+
+# main
+def main():
+    cmd_parser = argparse.ArgumentParser(
+        description='~/Work/Projectの管理プログラム.'
+    )
+    subparsers = cmd_parser.add_subparsers()
+
+    # create:
+    #   project directory create.
+    parser_create = subparsers.add_parser(
+        'create', help='create mode. see `create -h`'
+    )
+    parser_create.add_argument(
+        'project_name', action='store',
+        type=str, help='プロジェクト名',
+    )
+    parser_create.set_defaults(handler=command_create)
+
+    # symlink:
+    #   project symlink create.
+    parser_symlink = subparsers.add_parser(
+        'symlink', help='list mode. see `list -h`'
+    )
+    parser_symlink.add_argument(
+        'dir_path', action='store',
+        type=str, help='symbolic linkを作成する先のディレクトリ',
+    )
+    parser_symlink.set_defaults(handler=command_symlink)
+
+    # list:
+    #   show project list.
+    parser_list = subparsers.add_parser(
+        'list', help='list mode. see `list -h`'
+    )
+    parser_list.add_argument(
+        '--json', action='store_true',
+        help='jsonで出力する'
+    )
+    parser_list.add_argument(
+        '-d', type=str,
+        help='指定した日付が範囲内のプロジェクトのみ出力する'
+    )
+    parser_list.set_defaults(handler=command_list)
+
+    # archive:
+    #   project archive mode.
+    # parser_archive = subparsers.add_parser(
+    #     'archive', help='archive mode. see `list -h`'
+    # )
+
+    args = cmd_parser.parse_args()
+    if hasattr(args, 'handler'):
+        args.handler(args)
+    else:
+        # 未知のサブコマンドの場合はヘルプを表示
+        cmd_parser.print_help()
+
+
+if __name__ == '__main__':
+    main()

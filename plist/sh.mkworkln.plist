@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- label -->
+  <key>Label</key>
+  <string>sh.myworkln.plist</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/opt/openssl@1.1/bin:/usr/local/opt/ncurses/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/opt/X11/bin:/Applications/Wireshark.app/Contents/MacOS:/usr/local/opt/go/libexec/bin:/Users/blacknon/_go/bin:/Users/blacknon/bin:/Users/blacknon/.cargo/bin:/Users/blacknon/.gem/ruby/bin:/Users/blacknon/.nodebrew/current/bin:/Users/blacknon/.local/bin
+</string>
+  </dict>
+
+  <!-- script -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>bash</string>
+    <string>/Users/blacknon/dotfiles/bin/mkworkln.sh</string>
+    <string>/Users/blacknon/dotfiles/lib/docktemplete_downloads.txt</string>
+  </array>
+
+  <!-- launchctl loadしたタイミングで実行するか -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- カレンダー指定(毎日0時0分に実行) -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Minute</key>
+    <integer>0</integer>
+    <key>Hour</key>
+    <integer>0</integer>
+  </dict>
+
+  <!-- ログの指定 -->
+  <key>StandardErrorPath</key>
+  <string>/Users/blacknon/log/cron/mkworkln.log</string>
+  <key>StandardOutPath</key>
+  <string>/Users/blacknon/log/cron/mkworkln.log</string>
+
+</dict>
+</plist>

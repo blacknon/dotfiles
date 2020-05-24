@@ -1,0 +1,4 @@
+config
+---
+
+xfceの~/.configディレクトリ

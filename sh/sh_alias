@@ -1,0 +1,113 @@
+#!/bin/bash
+# Copyright(c) 2019 Blacknon. All rights reserved.
+# Use of this source code is governed by an MIT license
+# that can be found in the LICENSE file.
+
+# 一部のコマンドをfunctionに置き換え
+alias mkdir='__mkdirfunc'
+alias ping='__pingfunc'
+
+# ssh接続先かどうかによる分岐
+if [ -z "${SSH_CLIENT}" ]; then
+  # ローカルの場合
+  alias sudo='sudo -E '
+else
+  # リモートの場合
+  alias sudo='__sudofunc '
+fi
+
+# OSの種類による分岐
+case ${OSTYPE} in
+# MacOS Xの場合
+darwin*)
+  # ls(gnu)
+  which gls 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias ls='gls --color=auto' lsc='gls --color=always' || alias ls='ls -G'
+
+  # grep(gnu)
+  which ggrep 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias grep='ggrep --color=auto' || alias grep='grep --color=auto'
+
+  # find(gnu)
+  which gfind 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias find='gfind'
+
+  # sed(gnu)
+  which gsed 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias sed='gsed'
+
+  # date(gnu)
+  which gdate 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias gdate='gdate'
+
+  # cat(gnu)
+  which gcat 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias cat='gcat'
+
+  # cut(gnu)
+  which gcut 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias cut='gcut'
+
+  # shuf(gnu)
+  which gshuf 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias shuf='gshuf'
+
+  # paste(gnu)
+  which gpaste 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias paste='gpaste'
+
+  # numfmt(gnu)
+  which gnumfmt 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias numfmt='gnumfmt'
+
+  # sort(gnu)
+  which gsort 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias sort='gsort'
+
+  # tail(gnu)
+  which gtail 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias tail='gtail'
+
+  # tar(gnu)
+  which gtar 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias tar='gtar'
+
+  # xargs(gnu)
+  which gxargs 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias xargs='gxargs'
+
+  ;;
+linux*)
+  alias ls='ls --color=auto'
+  alias lsc='ls --color=always'
+  alias grep='grep --color=auto '
+  ;;
+esac
+
+# 共通
+alias script='script -f '
+
+# 上書きの有無を確認させる
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Python2/3関係
+alias pip='pip3'
+alias python='python3'
+
+# その他
+alias man='man -P less'
+alias l='ls'
+alias ll='ls -la'
+alias lh='ls -lahS'
+alias sl='ls'
+alias clr='clear'
+alias ww='Work'         # Work Dirの作成・移動関数のalias
+alias dig='dig +short ' # shortでの出力を基本にする
+
+which hwatch 2>/dev/null >/dev/null
+[ $? -eq 0 ] && alias hwatch='hwatch -l $HOME/Today/log/hwatch/hwatch_$(date +%Y%m%d_%H%M%S)_hwatch.log '
+
+which bat 2>/dev/null >/dev/null
+[ $? -eq 0 ] && alias bat='bat -n' bcat='BAT_PAGER="cat" \bat -p'

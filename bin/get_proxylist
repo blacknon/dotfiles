@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+# -*- encoding: UTF-8 -*-
+# Copyright(c) 2019 Blacknon. All rights reserved.
+# Use of this source code is governed by an MIT license
+# that can be found in the LICENSE file.
+#
+# User: Blacknon
+# Description: `www.proxy-list.download`からフリーのプロキシリストを取得してURI形式でリスト取得するスクリプト
+#
+# =============================================
+
+import argparse
+import requests
+from urllib import parse
+
+
+def get_proxy(args):
+    ''' proxyの一覧をuriで取得する '''
+    base_url = 'https://www.proxy-list.download/api/v1/get'
+
+    param = {
+        'type': args.type,
+        'anon': args.anon
+    }
+
+    if args.country is not None:
+        param.update(country=args.country)
+
+    params = parse.urlencode(param)
+
+    session = requests.session()
+    url = base_url + '?' + params
+    html = session.get(url).text
+
+    # print(url, file=sys.stderr)
+    for line in html.split('\n'):
+        if len(line) > 0:
+            print(args.type + '://' + line)
+
+
+def main():
+    # parserの作成
+    parser = argparse.ArgumentParser(
+        description='`www.proxy-list.download`からプロキシリストを取得してURI形式で出力するスクリプト')
+
+    # optionの設定
+    parser.add_argument('--type', default='socks5',
+                        choices=['http', 'https', 'socks4', 'socks5'],
+                        type=str, help='ProxyTypeの指定(デフォルト:socks5)')
+    parser.add_argument('--anon', default='elite',
+                        choices=['transparent', 'anonymous', 'elite'],
+                        type=str, help='Proxyの匿名レベルを指定(デフォルト:elite)')
+    parser.add_argument('--country',
+                        type=str, help='Proxyのある国を指定(ISO alpha-2)')
+
+    args = parser.parse_args()
+
+    get_proxy(args)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,39 @@
+#!/bin/bash
+# Copyright(c) 2019 Blacknon. All rights reserved.
+# Use of this source code is governed by an MIT license
+# that can be found in the LICENSE file.
+
+# ヒストリー件数を定義
+export HISTSIZE=50000000
+export HISTFILE=~/.bash_history
+export CDHISTFILE=~/.cd_bash_history
+
+# 重複した履歴を保存しない
+export HISTCONTROL=ignoredups
+
+# fg,bg,history,cd,clearの履歴を保存しない
+export HISTIGNORE="fg*:bg*:history*:cd*:clear"
+
+# historyにタイムスタンプを付与させる
+HISTTIMEFORMAT=':%Y%m%d %T: ';
+export HISTTIMEFORMAT;
+
+# セッションクローズ時のヒストリファイルへの自動追記を無効化
+shopt -u histappend
+
+# SHELLにbashを入れる
+export SHELL=$(which bash)
+
+# complete
+complete -cf sudo
+
+# bash-completion
+case ${OSTYPE} in
+  darwin*)
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+      source $(brew --prefix)/etc/bash_completion
+    fi
+    ;;
+  linux*)
+    ;;
+esac

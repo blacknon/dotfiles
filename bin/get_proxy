@@ -1,0 +1,38 @@
+#!/bin/bash
+# Copyright (c) 2019 Blacknon. All rights reserved.
+#
+# Requirements:
+#   * curl
+#   * jq
+#
+# Description: pubproxy.comのapiからランダムにSocks5 proxyを取得するスクリプト
+# Note:
+#   詳細はAPIのサイトを参照
+#   http://pubproxy.com/
+
+# usage
+function usage() {
+  cat <<_EOT_
+Usage:
+  $0
+
+Description:
+  pubproxy.comのapiからランダムにSocks5 proxyを取得するスクリプト
+
+_EOT_
+  exit 1
+}
+
+# option check
+while getopts abf:h OPT; do
+  case $OPT in
+  h)
+    echo "h option. display help"
+    usage
+    exit 0
+    ;;
+  esac
+done
+
+uri="socks5://"$(curl -s http://pubproxy.com/api/proxy?type=socks5 | jq -r '.data[].ipPort')
+echo $uri

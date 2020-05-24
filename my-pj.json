@@ -1,0 +1,22 @@
+// my-pj テンプレートファイル
+{
+    "WorkDirectory": "~/Work",
+    "ProjectDirectory": "~/Work/Project",
+    "Templete": {
+        "common": {
+            "path": "~/Work/ProjectTemplete/common",
+            "description": "共通系のプロジェクト",
+            "execute": ""
+        },
+        "webpen": {
+            "path": "~/Work/ProjectTemplete/webpen",
+            "description": "Web系のペンテストプロジェクト",
+            "execute": ""
+        },
+        "nwpen": {
+            "path": "~/Work/ProjectTemplete/nwpen",
+            "description": "NW系のペンテストプロジェクト",
+            "execute": ""
+        }
+    }
+}
