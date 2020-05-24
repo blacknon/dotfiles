@@ -11,7 +11,7 @@ cd ~/dotfiles
 # sh_functionファイルの一覧を取得する
 files=$(ls -1 ./{sh,bash,zsh}/*sh_function* 2>/dev/null)
 
-echo "| File | 関数名 |  概要 |"
+echo "| File | 関数名 | 概要 |"
 echo "| ---- | ----- | --- |"
 
 for file in ${files[@]}; do
@@ -43,9 +43,11 @@ for file in ${files[@]}; do
             ;;
         esac
 
+        # 関数のいる行を取得する
         func_linenum=$(grep -n "^${func_name} " ${file} | cut -d: -f1)
 
-        echo "| ${file} | [${func_name}](${file}#L${fune_linenum}) | ${func_note}|"
+        # テーブルデータの出力
+        echo "| ${file} | [${func_name}](${file}#L${func_linenum}) | ${func_note} |"
     done
 
 done
