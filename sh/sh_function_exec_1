@@ -198,10 +198,7 @@ enc_html() {
 
 # 標準入力から受付たhtmlエンティティ形式のデータをもとに戻す
 dec_html() {
-  cat - | perl -lne '
-   use HTML::Entities;
-   decode_entities($_);
-  '
+  cat - | perl -MHTML::Entities -le 'print decode_entities(<STDIN>);'
 }
 
 # 標準入力から取得した値をHex形式(\xXX)にして返す
