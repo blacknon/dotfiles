@@ -11,3 +11,9 @@ stty -ixon
 # if [ -z "${SSH_CLIENT}" ];then
 #   eval `ssh-agent -a ${SSH_AUTH_SOCK} -P "/usr/local/Cellar/opensc/0.19.0/lib/*,/usr/lib/*,/Library/OpenSC/lib/*" 2>/dev/null 1>/dev/null`
 # fi
+
+# もしMacOSでParalles Desktopを使っている場合、docker-machine-driver-parallelsを使うため
+# Docker実行マシンを切り替える
+if [ -f /usr/local/bin/docker-machine-driver-parallels ]; then
+    eval $(docker-machine env prl-dev)
+fi
