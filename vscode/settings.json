@@ -25,5 +25,8 @@
     "rust.rustup": "/Users/blacknon/.cargo/bin/rustup",
     "rust.rustfmtPath": "/Users/blacknon/.cargo/bin/rustfmt",
     "terminal.integrated.rendererType": "dom",
-    "git.ignoreMissingGitWarning": true
+    "git.ignoreMissingGitWarning": true,
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    }
 }
