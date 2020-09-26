@@ -7,4 +7,4 @@
 
 # scrapinghub/splash (Webスクレイピング用のコンテナ)
 docker pull scrapinghub/splash
-docker run -d --restart=always -it -p 8050:8050 scrapinghub/splash --disable-private-mode
+docker run -d -it -p 8050:8050 --network="host" --restart=always scrapinghub/splash --disable-private-mode
