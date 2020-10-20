@@ -11,7 +11,7 @@ end
 
 -- 区切りとして使っているbarの表示
 function conky_print_infobar(title)
-    return("${font arial black:size=20}${color1}"..title.."${color}INFORMATION${color2} ${hr 3}${color}${font}")
+    return("${font Monospace:size=20}${color1}"..title.."${color}INFORMATION${color2} ${hr 3}${color}${font}")
 end
 
 
@@ -42,7 +42,7 @@ function conky_system_info()
     local text = ""
 
     -- ユーザ名@ホスト名
-    text = text.."${color9}${font arial black:size=32}${execi 3600 whoami}@${color2}${nodename}${color}${font}\n"
+    text = text.."${color9}${font Monospace:size=32}${execi 3600 whoami}@${color2}${nodename}${color}${font}\n"
 
     -- Kernel,Uptimeの表示
     text = text.."${color}Kernel: ${alignr}${color9}${kernel} ${color}\n"
@@ -60,7 +60,7 @@ function conky_system_info()
     end
 
     -- 時計の表示
-    text = text.."${goto 20}${voffset 0}${font arial black:size=64}${color2}${time %H:%M}${voffset -40}${goto 240}${font arial black:size=24}${color9}${time %Y年%m月}${color}${color2}${time %d}${color9}日${voffset 35}${goto 240}${font arial black:size=24}        ${color2}${time %a}${color9}曜日${font}${color}\n"
+    text = text.."${goto 20}${voffset 0}${font Monospace:size=64}${color2}${time %H:%M}${voffset -40}${goto 240}${font Monospace:size=24}${color9}${time %Y年%m月}${color}${color2}${time %d}${color9}日${voffset 35}${goto 240}${font Monospace:size=24}        ${color2}${time %a}${color9}曜日${font}${color}\n"
 
     return(text)
 end
@@ -206,7 +206,7 @@ function conky_top_info()
     -- header
     local text = text.."${color9}NAME${goto 200}PID${goto 270}CPU${goto 370}MEM\n"
 
-    for i = 1,5 do
+    for i = 1,10 do
         text = text.."${top name "..i.."}${goto 200}${top pid "..i.."}${goto 270}${top cpu "..i.."}%${goto 370}${top mem "..i.."}%\n"
     end
 
@@ -255,10 +255,10 @@ function conky_weather_info()
     local humidity = weather_data.main.humidity
 
     -- 現在の気温
-    text = text.."${color2}${voffset 0}${font arial black:size=60}"..temp.."${font arial black:size=28}${color9}℃"
+    text = text.."${color2}${voffset 0}${font Monospace:size=60}"..temp.."${font Monospace:size=28}${color9}℃"
 
     -- 都市名
-    text = text.."${voffset -33}${color9}${alignr}${font arial black:size=28}"..name.."${color}\n"
+    text = text.."${voffset -33}${color9}${alignr}${font Monospace:size=28}"..name.."${color}\n"
 
     -- 最高・最低気温
     text = text.."${voffset 10}${color}${font}最高気温:${color9}"..temp_max.."${color}℃ 最低気温:${color9}"..temp_min.."${color}℃\n"
