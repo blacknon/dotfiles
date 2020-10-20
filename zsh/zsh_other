@@ -238,7 +238,7 @@ bashcompinit
 # コマンドラインの単語として扱う区切り文字を指定する
 autoload -Uz select-word-style
 select-word-style default
-zstyle ':zle:*' word-chars "\"'= _./%:;@　、。$}{)(][-"
+zstyle ':zle:*' word-chars "\"'= ./%:;@　、。$}{)(][_-"
 zstyle ':zle:*' word-style unspecified
 
 # プロンプトカラー等を有効にする

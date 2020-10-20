@@ -350,17 +350,6 @@ mkinst() {
 # 受け付けたリストのurlに対し、curlでアクセスして諸々のデータをまとめるコード
 # httpステータスやレスポンスサイズ、バナーヘッダなどが考えられる？
 
-# XSSのテストを行うfunction
-# TODO:どっかで作成する
-
-# SQLインジェクションのテストを行うfunction
-# TODO:どっかで作成する
-
-# ブラインドSQLインジェクションのテストを行うfunction
-# TODO:どっかで作成する
-# 【参考】
-# https://orebibou.com/2018/08/%EF%BD%9Eksnctf%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%BF%E3%82%8B%EF%BD%9E-6-login/
-
 # 指定したPIDのプロセスをサスペンドする
 # TODO: 作る
 # p_suspend() {}
