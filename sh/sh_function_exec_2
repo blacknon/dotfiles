@@ -57,6 +57,36 @@ url2json() {
 ## ==========
 # ファイル操作関係
 ## ==========
+# Workディレクトリの作成・移動
+Work() {
+  # local変数を定義
+  local today_dir="$HOME/Work/$(date +%Y%m)/$(date +%Y%m%d)"
+
+  # ${today_dir}が存在しない場合
+  if [ ! -d ${today_dir} ]; then
+    # local machineか否かを識別
+    if [ -z "${SSH_CLIENT}" ]; then
+      # local machineの場合
+      case ${OSTYPE} in
+      darwin*)
+        mkworkln.sh ~/dotfiles/lib/docktemplete_downloads.txt ~/dotfiles/lib/docktemplete_parallels.txt
+        ;;
+      linux*)
+        mkworkln.sh
+        ;;
+      esac
+    else
+      # ssh接続をしている場合
+      mkdir -p $today_dir && cd $today_dir
+      if [[ ! -f $today_dir/today_memo.txt ]]; then
+        touch $today_dir/today_memo.txt
+      fi
+    fi
+  fi
+
+  cd ${today_dir}
+  echo ${today_dir}
+}
 
 # TODO(blacknon): moreutilsの有無のチェックを追加
 # TODO(blacknon): moreutilsなしでできるようにする？

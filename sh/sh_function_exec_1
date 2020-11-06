@@ -101,8 +101,7 @@ agrep() {
 ## ==========
 
 # TODO(blacknon): 2進数、8進数、16進数の変換処理をするfunctionを生成しておく(perlでいいや)
-
-# TODO(blacknon): nkfがある場合はnkfを利用するように変更する
+# TODO(blacknon): オプション指定でnkfを利用するように変更する(存在チェックも入れる)
 # 標準入力から取得した値をパーセントエンコーディングする
 #     -a ... ascii文字含め全部をパーセントエンコーディングする
 #     -z ... Null区切りにして改行もパーセントエンコーディング対象とする
@@ -226,38 +225,6 @@ enc_unicode() {
 ## ==========
 # ファイル操作関係
 ## ==========
-
-# Workディレクトリの作成・移動
-Work() {
-  # local変数を定義
-  local today_dir="$HOME/Work/$(date +%Y%m)/$(date +%Y%m%d)"
-
-  # ${today_dir}が存在しない場合
-  if [ ! -d ${today_dir} ]; then
-    # local machineか否かを識別
-    if [ -z "${SSH_CLIENT}" ]; then
-      # local machineの場合
-      case ${OSTYPE} in
-      darwin*)
-        mkworkln.sh ~/dotfiles/lib/docktemplete_downloads.txt ~/dotfiles/lib/docktemplete_parallels.txt
-        ;;
-      linux*)
-        mkworkln.sh
-        ;;
-      esac
-    else
-      # ssh接続をしている場合
-      mkdir -p $today_dir && cd $today_dir
-      if [[ ! -f $today_dir/today_memo.txt ]]; then
-        touch $today_dir/today_memo.txt
-      fi
-    fi
-  fi
-
-  cd ${today_dir}
-  echo ${today_dir}
-}
-
 # ファイルの入れ替え(スイッチ)
 sw() {
   local tmpfile="$2.$(date +%Y%m%d_%H%M%S)"
@@ -298,14 +265,14 @@ todaydir() {
 
 # TODO(blacknon): tarファイル内部の補完処理の追加
 # TODO(blacknon): オプションで内部のファイルについての詳細を出力させる(ls -la的なやつ)
-# tar内のファイルをlsする
+# tarファイル内のデータをlist表示するfunction。
 tarls() {
-  tar tf "${@}"
+  tar tvf "${@}"
 }
 
 # TODO(blacknon): tarファイル内部の補完処理の追加
 # TODO(blacknon): エラーチェックの追加
-# tar内のファイルをcatする
+# tarファイル内のファイルを指定して標準出力に書き出すfunction。
 tarcat() {
   : ----------
   : usage:
@@ -376,6 +343,24 @@ targrep() {
   # tarを実行
   "${tar}" xf "${target_file}" --to-command "${cmd}"
 }
+
+# zipファイル内のデータをlist表示するfunction。
+zipls() {}
+
+# zipファイル内のファイルを指定して標準出力に書き出すfunction。
+zipcat() {}
+
+# zipファイル内のデータに対してgrep(相当の処理)を行うfunction。
+zipgrep() {}
+
+# rarファイル内のデータをlist表示するfunction。
+rarls() {}
+
+# rarファイル内のファイルを指定して標準出力に書き出すfunction。
+rarcat() {}
+
+# rarファイル内のデータに対してgrep(相当の処理)を行うfunction。
+rargrep() {}
 
 ## ==========
 # ネットワーク関係

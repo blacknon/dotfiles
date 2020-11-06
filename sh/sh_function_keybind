@@ -81,6 +81,7 @@ __copy_current_command() {
 
 # TODO(blacknon): zshで入力中の内容がそのまま残ることがあるので、強制的に消す方法を考える
 # TODO(blacknon): zshでpeco貼付け時にメタキャラクタまで入力される事がある。対策を考える。
+# TODO(blacknon): optionで全上書きとその場に追記で分ける(Ctrl + X, R でカーソル位置に履歴を書き込めるようにする)
 # Ctrl + R でhistory検索をする(peco,bocoを使用)
 __history_selection() {
   # 逆順に出力するコマンド
