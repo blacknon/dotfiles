@@ -36,7 +36,8 @@
 
 |File|概要|
 |---|---|
-| [AppleScripts/music_rename.applescript](AppleScripts/music_rename.applescript) | iTunesの選択中のタイトル名を、`~/Work/YYYYmm/YYYYmmdd/itunes.txt`のタイトルに変換していくスクリプト(`~/Work/YYYYmm/YYYYmmdd/itunes.txt`はShift-JISで記述する必要があるので注意) |
+| [AppleScripts/music_rename.applescript](AppleScripts/music_rename.applescript)           | iTunesの選択中のタイトル名を、`~/Work/YYYYmm/YYYYmmdd/itunes.txt`のタイトルに変換していくスクリプト(`~/Work/YYYYmm/YYYYmmdd/itunes.txt`はShift-JISで記述する必要があるので注意) |
+| [AppleScripts/music_settracknum.applescript](AppleScripts/music_settracknum.applescript) | iTunesの選択中の曲にtrack numberを連番でセットしていくapple script.                                                                                                             |
 
 ### 実行ファイル
 
