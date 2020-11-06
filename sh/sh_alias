@@ -38,7 +38,11 @@ darwin*)
 
   # date(gnu)
   which gdate 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias gdate='gdate'
+  [ $? -eq 0 ] && alias date='gdate'
+
+  # du(gnu)
+  which gdu 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias du='gdu'
 
   # cat(gnu)
   which gcat 2>&1 >/dev/null
