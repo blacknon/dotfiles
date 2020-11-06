@@ -103,49 +103,51 @@ agrep() {
 # TODO(blacknon): 2進数、8進数、16進数の変換処理をするfunctionを生成しておく(perlでいいや)
 # TODO(blacknon): オプション指定でnkfを利用するように変更する(存在チェックも入れる)
 # 標準入力から取得した値をパーセントエンコーディングする
-#     -a ... ascii文字含め全部をパーセントエンコーディングする
+#     -n ... nkfを使用してパーセントエンコーディングする(-a,-zは無効化)
+#     -a ... ascii文字含め全部をパーセントエンコーディングする(-nのときは無効)
 #     -z ... Null区切りにして改行もパーセントエンコーディング対象とする
 enc_url() {
   # optionをパース
   local opt
-  while getopts az opt; do
+  while getopts azn opt; do
     case $opt in
     a) local flg_a=1 ;;
     z) local flg_z=1 ;;
+    n) local flg_n=1 ;;
     esac
   done
+  shift $((OPTIND - 1))
 
   # 変換対象を変数に代入
   local data
   data="$(cat)"
 
-  # -a オプションの有無でPerlのコードを変更
-  local perl_code
-  if [[ $flg_a -eq 1 ]]; then
-    perl_code='
+  # -nオプションの有無でnkfを利用するか否かを指定する
+  if [[ $flg_n -eq 1 ]]; then
+    printf "%s" "${data}" | nkf -WwMQ | sed 's/=$//g' | tr = % | tr -d '\n'
+  else
+    # -a オプションの有無でPerlのコードを変更
+    local perl_code
+    if [[ $flg_a -eq 1 ]]; then
+      perl_code='
       use URI::Escape;
       $uri=uri_escape_utf8($_,"^.");
       print uri_escape_utf8($uri, ".")
     '
-  else
-    perl_code='
+    else
+      perl_code='
       use URI::Escape;
       print uri_escape_utf8($_)
     '
-  fi
+    fi
 
-  # -z オプションの有無でPerlのオプションを変更して実行
-  if [[ $flg_z -eq 1 ]]; then
-    printf "%s" "${data}" | eval perl -0lne "'"${perl_code}"'"
-  else
-    printf "%s" "${data}" | eval perl -lne "'"${perl_code}"'"
+    # -z オプションの有無でPerlのオプションを変更して実行
+    if [[ $flg_z -eq 1 ]]; then
+      printf "%s" "${data}" | eval perl -0lne "'"${perl_code}"'"
+    else
+      printf "%s" "${data}" | eval perl -lne "'"${perl_code}"'"
+    fi
   fi
-}
-
-# TODO(blacknon): enc_urlにマージする
-# nkfを利用してurlエンコードする
-enc_url_nkf() {
-  echo $1 | nkf -WwMQ | sed 's/=$//g' | tr = % | tr -d '\n'
 }
 
 # 標準入力から取得したパーセントエンコーディングを戻す
@@ -263,14 +265,25 @@ todaydir() {
   cd ./$today
 }
 
-# TODO(blacknon): tarファイル内部の補完処理の追加
-# TODO(blacknon): オプションで内部のファイルについての詳細を出力させる(ls -la的なやつ)
 # tarファイル内のデータをlist表示するfunction。
 tarls() {
-  tar tvf "${@}"
+  # optionをパース
+  local opt
+  while getopts l opt; do
+    case $opt in
+    l) local flg_l=1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  if [[ $flg_l -eq 1 ]]; then
+    tar tvf "${@}"
+  else
+    tar tv "${@}"
+  fi
 }
 
-# TODO(blacknon): tarファイル内部の補完処理の追加
+# TODO(blacknon): tarファイル内部の補完処理の追加(peco等で処理をさせる)
 # TODO(blacknon): エラーチェックの追加
 # tarファイル内のファイルを指定して標準出力に書き出すfunction。
 tarcat() {
@@ -345,22 +358,38 @@ targrep() {
 }
 
 # zipファイル内のデータをlist表示するfunction。
-zipls() {}
+zipls() {
+  # optionをパース
+  local opt
+  while getopts l opt; do
+    case $opt in
+    l) local flg_l=1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  if [[ $flg_l -eq 1 ]]; then
+    unzip -Zs "${@}"
+  else
+    unzip -Z1 "${@}"
+  fi
+
+}
 
 # zipファイル内のファイルを指定して標準出力に書き出すfunction。
-zipcat() {}
+# zipcat() {}
 
 # zipファイル内のデータに対してgrep(相当の処理)を行うfunction。
-zipgrep() {}
+# zipgrep() {}
 
 # rarファイル内のデータをlist表示するfunction。
-rarls() {}
+# rarls() {}
 
 # rarファイル内のファイルを指定して標準出力に書き出すfunction。
-rarcat() {}
+# rarcat() {}
 
 # rarファイル内のデータに対してgrep(相当の処理)を行うfunction。
-rargrep() {}
+# rargrep() {}
 
 ## ==========
 # ネットワーク関係
