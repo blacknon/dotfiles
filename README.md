@@ -68,21 +68,21 @@
 | [./sh/sh_function_common](./sh/sh_function_common) | [____get_escape()](./sh/sh_function_common#L48-L97) | エスケープした文字を返す |
 | [./sh/sh_function_common](./sh/sh_function_common) | [____1char2dotchar()](./sh/sh_function_common#L33-L45) | 各文字を1文字だけドット(.)にした文字列の一覧を出力する(agrepで使用) |
 | [./sh/sh_function_common](./sh/sh_function_common) | [____shift1chars()](./sh/sh_function_common#L14-L30) | 各文字を1文字ずつずらした文字列を出力する(agrepで使用) |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ttmux()](./sh/sh_function_exec_1#L606-L611) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [check_cert()](./sh/sh_function_exec_1#L574-L578) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_globalip()](./sh/sh_function_exec_1#L569-L571) | Get Global ip address |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_ip()](./sh/sh_function_exec_1#L535-L566) | ipアドレスとinterfaceの組み合わせをシンプルなリストにして出力する |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [pping()](./sh/sh_function_exec_1#L456-L532) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ddig()](./sh/sh_function_exec_1#L421-L452) | スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1} |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [rarls()](./sh/sh_function_exec_1#L393-L408) | rarファイル内のデータをlist表示するfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipcat()](./sh/sh_function_exec_1#L385-L387) | zipファイル内のファイルを指定して標準出力に書き出すfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipls()](./sh/sh_function_exec_1#L367-L382) | zipファイル内のデータをlist表示するfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [targrep()](./sh/sh_function_exec_1#L307-L364) | tarファイル内のファイルに対してgrep(相当の処理)を行うfunction。<br/>awkを利用する。 ※ GNU tarでないと動作しないので注意 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarcat()](./sh/sh_function_exec_1#L295-L301) | tarファイル内のファイルを指定して標準出力に書き出すfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarls()](./sh/sh_function_exec_1#L275-L290) | tarファイル内のデータをlist表示するfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [todaydir()](./sh/sh_function_exec_1#L268-L272) | make today dir |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [find_bigfile()](./sh/sh_function_exec_1#L245-L265) | サイズの大きいファイルをサーチする |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [sw()](./sh/sh_function_exec_1#L237-L242) | ## ==========<br/>ファイル操作関係<br/>## ==========<br/>ファイルの入れ替え(スイッチ) |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ttmux()](./sh/sh_function_exec_1#L607-L612) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [check_cert()](./sh/sh_function_exec_1#L575-L579) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_globalip()](./sh/sh_function_exec_1#L570-L572) | Get Global ip address |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_ip()](./sh/sh_function_exec_1#L536-L567) | ipアドレスとinterfaceの組み合わせをシンプルなリストにして出力する |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [pping()](./sh/sh_function_exec_1#L457-L533) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ddig()](./sh/sh_function_exec_1#L422-L453) | スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1} |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [rarls()](./sh/sh_function_exec_1#L394-L409) | rarファイル内のデータをlist表示するfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipcat()](./sh/sh_function_exec_1#L386-L388) | zipファイル内のファイルを指定して標準出力に書き出すfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipls()](./sh/sh_function_exec_1#L368-L383) | zipファイル内のデータをlist表示するfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [targrep()](./sh/sh_function_exec_1#L308-L365) | tarファイル内のファイルに対してgrep(相当の処理)を行うfunction。<br/>awkを利用する。 ※ GNU tarでないと動作しないので注意 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarcat()](./sh/sh_function_exec_1#L296-L302) | tarファイル内のファイルを指定して標準出力に書き出すfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarls()](./sh/sh_function_exec_1#L276-L291) | tarファイル内のデータをlist表示するfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [todaydir()](./sh/sh_function_exec_1#L269-L273) | make today dir |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [find_bigfile()](./sh/sh_function_exec_1#L246-L266) | サイズの大きいファイルをサーチする |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [sw()](./sh/sh_function_exec_1#L238-L243) | ファイルの入れ替え(スイッチ) |
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_unicode()](./sh/sh_function_exec_1#L218-L231) | 標準入力から取得した値をUnicode Escape Sequence形式に変換する<br/>※ nkfが必要 |
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_hex()](./sh/sh_function_exec_1#L212-L214) | 標準入力から取得した値をHex形式(\xXX)にして返す |
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [dec_html()](./sh/sh_function_exec_1#L207-L209) | 標準入力から受付たhtmlエンティティ形式のデータをもとに戻す |
@@ -91,7 +91,7 @@
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_url()](./sh/sh_function_exec_1#L115-L157) | 標準入力から取得した値をパーセントエンコーディングする<br/>    -n ... nkfを使用してパーセントエンコーディングする(-a,-zは無効化)<br/>    -a ... ascii文字含め全部をパーセントエンコーディングする(-nのときは無効)<br/>    -z ... Null区切りにして改行もパーセントエンコーディング対象とする |
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [agrep()](./sh/sh_function_exec_1#L58-L97) | あいまいgrepをするfunction<br/>(1文字違う文字列(abc=>{.bc,a.c,ab.})と、1文字ずつずらした文字列(abc=>{abc,bac,acb})でgrepをする(typoも発見できる)) |
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [joinby()](./sh/sh_function_exec_1#L50-L54) | Join array |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ts()](./sh/sh_function_exec_1#L2-L532) | 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ts()](./sh/sh_function_exec_1#L2-L533) | 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [mkinst()](./sh/sh_function_exec_2#L382-L384) | make install を一気に行うためのfunction |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [scx()](./sh/sh_function_exec_2#L373-L375) | 完全にlocalで実行する用のscのラッパーfunction。<br/>bashrcをsourceした状態で引数のコマンドを実行させるので、functionも実行できるようにする。 |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [sc()](./sh/sh_function_exec_2#L11-L375) | scriptコマンドで/Work配下にターミナルログを記録する |
