@@ -79,9 +79,9 @@ __copy_current_command() {
   # esac
 }
 
+
 # TODO(blacknon): zshで入力中の内容がそのまま残ることがあるので、強制的に消す方法を考える
 # TODO(blacknon): zshでpeco貼付け時にメタキャラクタまで入力される事がある。対策を考える。
-# TODO(blacknon): optionで全上書きとその場に追記で分ける(Ctrl + X, R でカーソル位置に履歴を書き込めるようにする)
 # Ctrl + R でhistory検索をする(peco,bocoを使用)
 __history_selection() {
   # optionをパース
@@ -124,7 +124,8 @@ __history_selection() {
   case $(basename "${SHELL}") in
     zsh*)
       if [[ $flg_x -eq 1 ]];then
-        echo 1
+        BUFFER=${LBUFFER}$(history -n 1 | eval "${reverse}" | awk '!a[$0]++' | eval "${selecter}")${RBUFFER} # 入力中のコマンドに差し込み
+        CURSOR="${#LBUFFER}" # カーソル位置を移動
       else
         BUFFER=$(history -n 1 | eval "${reverse}" | awk '!a[$0]++' | eval "${selecter}") # 入力中のコマンドの内容を上書き
         CURSOR="${#BUFFER}" # カーソル位置を移動
@@ -149,6 +150,12 @@ __history_selection() {
   if [[ ${selecter} =~ ^boco ]];then
     printf '\033[?7h'
   fi
+}
+
+
+# Ctrl + R でhistory検索をして現在カーソルに差し込みをするfunction
+__history_selection_insert() {
+  __history_selection -x
 }
 
 

@@ -93,10 +93,10 @@ setopt nonomatch
 #### - Ctrl + X, Ctrl + Y: __copy_current_command(現在プロンプトに入力されているコマンドをクリップボードにコピー)
 #### - Ctrl + X, Ctrl + D: __cd_selection(移動先を選択してcdで移動する)
 #### - Ctrl + X, Ctrl + L: ls -la
-#### - Ctrl + X, Ctrl + R: 履歴検索(現在のカーソル位置に差し込み)
 #### - Ctrl + X, Ctrl + T: 日付をYYYYMMDD形式で自動入力
 #### - Ctrl + X, Ctrl + E: コマンドをエディタ編集モードで編集
-#### - Ctrl + X, Ctrl + P: Petの内容をペーストする
+#### - Ctrl + X, Ctrl + R: 履歴検索(現在のカーソル位置に差し込み)
+#### - Ctrl + X, Ctrl + P: Petの内容をペースト(現在のカーソル位置に差し込み)
 #### - Ctrl + X, Ctrl + S: コマンドの置換
 #### - Ctrl + X, Ctrl + X, Ctrl + L: lssh
 ####
@@ -148,10 +148,6 @@ bindkey '^L' __zsh_clear
 zle -N __zsh_lsla
 bindkey '^X^L' __zsh_lsla
 
-# Ctrl + X, Ctrl + X, Ctrl + L でlsshを実行する
-zle -N __zsh_lssh
-bindkey '^X^X^L' __zsh_lssh
-
 # Ctrl + X, Ctrl + S で入力中のコマンドを置換する
 zle -N __substitute_line
 bindkey '^X^S' __substitute_line
@@ -181,6 +177,10 @@ bindkey '^[q' __toggle_singlequote_format
 zle -N __toggle_doublequote_format
 bindkey '^[d' __toggle_doublequote_format
 
+# Ctrl + X, Ctrl + R で履歴検索して現在のカーソル位置に差し込みをする
+zle -N __history_selection_insert
+bindkey '^X^R' __history_selection_insert
+
 # Ctrl + X, Ctrl + Y で、現在入力中の内容をクリップボードにコピーする
 zle -N __copy_current_command
 bindkey '^X^Y' __copy_current_command
@@ -195,6 +195,10 @@ bindkey '^X^Y' __copy_current_command
 # Ctrl + X, Ctrl + E で、現在入力中のコマンドをエディタで編集するモードに切り替える
 
 # Ctrl + X, Ctrl + H で、現在のカーソル位置があるパイプラインで実行しようとしているコマンドのmanを表示させる
+
+# Ctrl + X, Ctrl + X, Ctrl + L でlsshを実行する
+zle -N __zsh_lssh
+bindkey '^X^X^L' __zsh_lssh
 
 ### Setup Other
 # インクリメンタルからの検索

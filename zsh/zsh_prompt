@@ -28,6 +28,7 @@ TRAPALRM() {
        [ "$WIDGET" != "self-insert" ] && # プロンプトに何かしらの文字が入ってる場合は更新を停止  \
        [ "$WIDGET" != "self-insert-unmeta" ] && # プロンプトに何かしらの文字が入ってる場合は更新を停止  \
        [ "$WIDGET" != "__history_selection" ] && \
+       [ "$WIDGET" != "__history_selection_insert" ] && \
        [ "$WIDGET" != "__cd_selection" ] && \
        [ "$WIDGET" != "__substitute_line" ] && \
        [ "$WIDGET" != "__pet_set" ] && \
