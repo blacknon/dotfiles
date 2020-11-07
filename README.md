@@ -92,18 +92,18 @@
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [agrep()](./sh/sh_function_exec_1#L58-L97) | あいまいgrepをするfunction<br/>(1文字違う文字列(abc=>{.bc,a.c,ab.})と、1文字ずつずらした文字列(abc=>{abc,bac,acb})でgrepをする(typoも発見できる)) |
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [joinby()](./sh/sh_function_exec_1#L50-L54) | Join array |
 | [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ts()](./sh/sh_function_exec_1#L2-L533) | 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [mkinst()](./sh/sh_function_exec_2#L382-L384) | make install を一気に行うためのfunction |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [scx()](./sh/sh_function_exec_2#L373-L375) | 完全にlocalで実行する用のscのラッパーfunction。<br/>bashrcをsourceした状態で引数のコマンドを実行させるので、functionも実行できるようにする。 |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [sc()](./sh/sh_function_exec_2#L11-L375) | scriptコマンドで/Work配下にターミナルログを記録する |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [battery()](./sh/sh_function_exec_2#L293-L302) | バッテリー残量を取得 |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [pe()](./sh/sh_function_exec_2#L118-L396) | petからsnippetを実行する(実行後はhistoryに登録) |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [prev()](./sh/sh_function_exec_2#L276-L279) | 直前に実行したコマンドをpetに登録する |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [docker_login()](./sh/sh_function_exec_2#L207-L269) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_login コンテナ名<br/>    docker_login -e コンテナ名 # 現在のfunctionを利用してログイン<br/>    docker_login -r コンテナ名 # rcファイルを利用してログイン |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [docker_runin()](./sh/sh_function_exec_2#L128-L201) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_runin コンテナ名<br/>    docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン<br/>    docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン<br/>    docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可) |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [ud()](./sh/sh_function_exec_2#L108-L384) | 上のディレクトリに移動するfunction.<br/>cd(Change Directory) → ud(Up Directory)<br/>...という命名方式 |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [sortsave()](./sh/sh_function_exec_2#L102-L105) | sortしてその内容をそのまま保存する<br/>※ moreutils必須 |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [wd()](./sh/sh_function_exec_2#L92-L95) | 本日のDownloadディレクトリへの遷移用function |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [Work()](./sh/sh_function_exec_2#L369-L60) | ## ==========<br/>ファイル操作関係<br/>## ==========<br/>Workディレクトリの作成・移動 |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [mkinst()](./sh/sh_function_exec_2#L383-L385) | make install を一気に行うためのfunction |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [scx()](./sh/sh_function_exec_2#L374-L376) | 完全にlocalで実行する用のscのラッパーfunction。<br/>bashrcをsourceした状態で引数のコマンドを実行させるので、functionも実行できるようにする。 |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [sc()](./sh/sh_function_exec_2#L11-L376) | scriptコマンドで/Work配下にターミナルログを記録する |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [battery()](./sh/sh_function_exec_2#L294-L303) | バッテリー残量を取得 |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [pe()](./sh/sh_function_exec_2#L119-L397) | petからsnippetを実行する(実行後はhistoryに登録) |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [prev()](./sh/sh_function_exec_2#L277-L280) | 直前に実行したコマンドをpetに登録する |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [docker_login()](./sh/sh_function_exec_2#L208-L270) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_login コンテナ名<br/>    docker_login -e コンテナ名 # 現在のfunctionを利用してログイン<br/>    docker_login -r コンテナ名 # rcファイルを利用してログイン |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [docker_runin()](./sh/sh_function_exec_2#L129-L202) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_runin コンテナ名<br/>    docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン<br/>    docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン<br/>    docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可) |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [ud()](./sh/sh_function_exec_2#L109-L385) | 上のディレクトリに移動するfunction.<br/>cd(Change Directory) → ud(Up Directory)<br/>...という命名方式 |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [sortsave()](./sh/sh_function_exec_2#L103-L106) | sortしてその内容をそのまま保存する<br/>※ moreutils必須 |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [wd()](./sh/sh_function_exec_2#L93-L96) | 本日のDownloadディレクトリへの遷移用function |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [Work()](./sh/sh_function_exec_2#L370-L61) | Workディレクトリの作成・移動 |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [url2json()](./sh/sh_function_exec_2#L41-L55) | パイプから受け付けたurl encodeされたパラメータをjsonにして出力するfunction(要php) |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [json2url()](./sh/sh_function_exec_2#L20-L38) | パイプから受け付けたjsonをurlencodeして出力するfunction(要php) |
 | [./sh/sh_function_iterm2](./sh/sh_function_iterm2) | [imgls()](./sh/sh_function_iterm2#L223-L89) | imgls():<br/>  about:<br/>    iTerm2上で画像ファイルをls状に表示するfunction<br/>  origin:<br/>    https://www.iterm2.com/utilities/imgls<br/>  require:<br/>    - php |
