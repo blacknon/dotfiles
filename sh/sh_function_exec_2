@@ -88,6 +88,12 @@ Work() {
   echo ${today_dir}
 }
 
+# 本日のDownloadディレクトリへの遷移用function
+wd() {
+  local today_dir="$HOME/Work/$(date +%Y%m)/$(date +%Y%m%d)"
+  cd ${today_dir}/Downloads
+}
+
 # TODO(blacknon): moreutilsの有無のチェックを追加
 # TODO(blacknon): moreutilsなしでできるようにする？
 # TODO(blacknon): sortのオプションを付与できるようにする
