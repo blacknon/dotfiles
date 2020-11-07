@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright(c) 2019 Blacknon. All rights reserved.
+# Copyright(c) 2020 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
@@ -95,6 +95,12 @@ agrep() {
     ) ${@:2}
   fi
 }
+
+# 指定したフィールドだけを出力する
+# slf() {}
+
+# 指定したフィールドを除外して出力する
+# dlf() {}
 
 ## ==========
 # エンコード/デコード関係
@@ -373,17 +379,33 @@ zipls() {
   else
     unzip -Z1 "${@}"
   fi
-
 }
 
 # zipファイル内のファイルを指定して標準出力に書き出すfunction。
-# zipcat() {}
+zipcat() {
+  unzip -p $1 $2
+}
 
 # zipファイル内のデータに対してgrep(相当の処理)を行うfunction。
 # zipgrep() {}
 
 # rarファイル内のデータをlist表示するfunction。
-# rarls() {}
+rarls() {
+  # optionをパース
+  local opt
+  while getopts l opt; do
+    case $opt in
+    l) local flg_l=1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  if [[ $flg_l -eq 1 ]]; then
+    unrar la "${@}"
+  else
+    unrar lb "${@}"
+  fi
+}
 
 # rarファイル内のファイルを指定して標準出力に書き出すfunction。
 # rarcat() {}

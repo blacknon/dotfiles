@@ -84,7 +84,6 @@ setopt nonomatch
 #### - Ctrl + L : clear
 #### - Ctrl + J : 現在実行中のコマンドをバックグラウンドジョブ化する(TODO: 作成する)
 #### - Ctrl + R : 履歴検索
-#### - Ctrl + S : コマンドの置換
 #### - Ctrl + B : 左の単語を切り取り(1文字削除はバックスペースで代用)
 #### - Ctrl + F : 右の単語を切り取り
 #### - Ctrl + K : カーソルから行末までを切り取り
@@ -94,10 +93,12 @@ setopt nonomatch
 #### - Ctrl + X, Ctrl + Y: __copy_current_command(現在プロンプトに入力されているコマンドをクリップボードにコピー)
 #### - Ctrl + X, Ctrl + D: __cd_selection(移動先を選択してcdで移動する)
 #### - Ctrl + X, Ctrl + L: ls -la
+#### - Ctrl + X, Ctrl + R: 履歴検索(現在のカーソル位置に差し込み)
 #### - Ctrl + X, Ctrl + T: 日付をYYYYMMDD形式で自動入力
 #### - Ctrl + X, Ctrl + E: コマンドをエディタ編集モードで編集
-#### - Ctrl + X, Ctrl + X, Ctrl + L: lssh
 #### - Ctrl + X, Ctrl + P: Petの内容をペーストする
+#### - Ctrl + X, Ctrl + S: コマンドの置換
+#### - Ctrl + X, Ctrl + X, Ctrl + L: lssh
 ####
 #### 【Altキー】
 #### - Alt + 矢印キー: 単語での移動(Ctrl + B,Fについてはこれで代用)
@@ -151,9 +152,9 @@ bindkey '^X^L' __zsh_lsla
 zle -N __zsh_lssh
 bindkey '^X^X^L' __zsh_lssh
 
-# Ctrl + S で入力中のコマンドを置換する
+# Ctrl + X, Ctrl + S で入力中のコマンドを置換する
 zle -N __substitute_line
-bindkey '^S' __substitute_line
+bindkey '^X^S' __substitute_line
 
 # Ctrl + X, Ctrl + T で今日の日付をYYYYMMDD形式で入力する
 zle -N __zsh_input_yyyymmdd

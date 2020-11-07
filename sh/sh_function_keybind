@@ -84,6 +84,14 @@ __copy_current_command() {
 # TODO(blacknon): optionで全上書きとその場に追記で分ける(Ctrl + X, R でカーソル位置に履歴を書き込めるようにする)
 # Ctrl + R でhistory検索をする(peco,bocoを使用)
 __history_selection() {
+  # optionをパース
+  local opt
+  while getopts "x" opt; do
+    case "$opt" in
+    x) local flg_x=1 ;;
+    esac
+  done
+
   # 逆順に出力するコマンド
   if which tac >/dev/null; then
     local reverse="tac"
@@ -115,8 +123,12 @@ __history_selection() {
   # shellに応じて処理を変える
   case $(basename "${SHELL}") in
     zsh*)
-      BUFFER=$(history -n 1 | eval "${reverse}" | awk '!a[$0]++' | eval "${selecter}") # 入力中のコマンドの内容を上書き
-      CURSOR="${#BUFFER}" # カーソル位置を移動
+      if [[ $flg_x -eq 1 ]];then
+        echo 1
+      else
+        BUFFER=$(history -n 1 | eval "${reverse}" | awk '!a[$0]++' | eval "${selecter}") # 入力中のコマンドの内容を上書き
+        CURSOR="${#BUFFER}" # カーソル位置を移動
+      fi
       ;;
     bash*)
       if [[ -n ${HISTTIMEFORMAT} ]];then # $HISTTIMEFORMATに値が入っている場合 => history番号とタイムスタンプを削除する
@@ -124,8 +136,13 @@ __history_selection() {
       else # $HISTTIMEFORMATに値が入ってない(空っぽ)場合 => history番号だけ削除する
         local buffer=$(history | sed -r 's/^ *[0-9*]+ +//g' | eval ${reverse} | awk '!a[$0]++' | eval ${selecter})
       fi
-      READLINE_LINE="${buffer}" # 入力中のコマンドの内容を上書き
-      READLINE_POINT="${#READLINE_LINE}" # カーソル位置を移動
+
+      if [[ $flg_x -eq 1 ]];then
+        echo 1
+      else
+        READLINE_LINE="${buffer}" # 入力中のコマンドの内容を上書き
+        READLINE_POINT="${#READLINE_LINE}" # カーソル位置を移動
+      fi
       ;;
   esac
 
