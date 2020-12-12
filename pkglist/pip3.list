@@ -15,6 +15,8 @@ PySide2
 PySocks
 PyYAML
 Pygments
+QDarkStyle
+QtPy
 ansible
 anytree
 appdirs
@@ -31,6 +33,7 @@ awscli
 backcall
 bcrypt
 beautifulsoup4
+blessed
 blessings
 blist
 botocore
@@ -45,6 +48,7 @@ cephfs-shell
 certifi
 cffi
 chardet
+click
 colorama
 colorlog
 compoundfiles
@@ -72,6 +76,8 @@ fake_useragent
 fido2
 flake8
 fnvhash
+frida
+frida-tools
 funcy
 future
 genzshcomp
@@ -79,6 +85,7 @@ gobject
 google
 greenlet
 gufw
+helpdev
 html5lib
 idna
 importlib-metadata
@@ -123,9 +130,13 @@ pingtop
 pip
 pluggy
 ply
+postgres
 progress
 prompt-toolkit
 psutil
+psycopg2
+psycopg2-binary
+psycopg2-pool
 ptpython
 ptview
 ptyprocess
@@ -196,6 +207,8 @@ websocket-client
 whaaaaat
 wheel
 wrapt
+xlwt
+yapf
 yubikey-manager
 zipp
 zope.interface
