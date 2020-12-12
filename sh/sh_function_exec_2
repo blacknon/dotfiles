@@ -203,7 +203,7 @@ docker_runin() {
 
 # TODO(blacknon): 操作ログを取得させる(scriptコマンド？)
 # TODO(blacknon): -vは対応しない(できない)が、historyの同期をどうやるべきか考えておく。
-# dockerコンテナを起動してログインするためのfunction。
+# 起動中のdockerコンテナにログインするためのfunction。
 # usage:
 #     docker_login コンテナ名
 #     docker_login -e コンテナ名 # 現在のfunctionを利用してログイン
