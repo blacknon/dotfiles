@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "go.useLanguageServer": true,
     "files.insertFinalNewline": true,
     "editor.fontSize": 14,

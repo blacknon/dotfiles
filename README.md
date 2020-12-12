@@ -26,8 +26,8 @@
 | [sh/sh_function_exec_1](sh/sh_function_exec_1)                                           | インタラクティブシェルから実行する関数1(ssh先に持っていくもの) |
 | [sh/sh_function_exec_2](sh/sh_function_exec_2)                                           | インタラクティブシェルから実行する関数2(ssh先に持っていかない・利用頻度の低いもの) |
 | [sh/sh_function_iterm2](sh/sh_function_iterm2)                                           | iTerm2で利用する関数 |
-| [sh/sh_function_exec_2](sh/sh_function_keybind)                                          | Keybindで使用する関数 |
-| [sh/sh_function_exec_2](sh/sh_function_replace)                                          | 既存のコマンドからaliasで置き換える関数 |
+| [sh/sh_function_keybind](sh/sh_function_keybind)                                          | Keybindで使用する関数 |
+| [sh/sh_function_replace](sh/sh_function_replace)                                          | 既存のコマンドからaliasで置き換える関数 |
 | [sh/sh_other](sh/sh_other)                                                               | その他 |
 
 ## 実行コマンド・関数

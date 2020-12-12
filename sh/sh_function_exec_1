@@ -45,7 +45,6 @@ ts() {
 # TODO(blacknon): オプションで結合文字列を指定できるようにする。
 # TODO(blacknon): 結合する配列をパイプから受け付けるようにする。
 # TODO(blacknon): parseする文字をオプションで指定できるようにする。
-
 # Join array
 joinby() {
   local IFS="$1"
