@@ -2,7 +2,7 @@
 -- Conkyの設定内容
 conky.config = {
     alignment = 'top_right', -- 右上に合わせる
-    gap_x = 481, -- 横位置の調整
+    gap_x = 491, -- 横位置の調整
     gap_y = 30, -- 縦位置の調整
     maximum_size = 500,
 
