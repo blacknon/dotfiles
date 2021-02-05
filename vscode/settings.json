@@ -1,40 +1,67 @@
 {
-    "window.zoomLevel": 1,
-    "go.useLanguageServer": true,
-    "files.insertFinalNewline": true,
-    "editor.fontSize": 14,
-    "editor.wrappingIndent": "same",
-    "editor.lineNumbers": "on",
-    "editor.matchBrackets": true,
-    "files.trimTrailingWhitespace": true,
+    // ウィンドウ設定
+    // ===============
+    "window.zoomLevel": 0, // window 全体のzoom level
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // フルパス表示
+    // エディター設定
+    // ===============
+    "editor.fontSize": 13,
+    "editor.lineNumbers": "on", // 行番号の有効
+    "editor.folding": true, // コードの折りたたみを許可
+    "editor.wordWrap": "on", // 行の右端での折返しを有効にする
+    "editor.wrappingIndent": "same", // 行を折り返した際のインデントを合わせる
+    "editor.matchBrackets": true, // 対応する括弧の強調表示をオンにする
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~? 　、。",
-    "editor.wordWrap": "on",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.snippetSuggestions": "top",
-    "materialTheme.accent": "Cyan",
-    "guides.enabled": false,
+    "editor.formatOnType": true, // コード整形
+    "editor.formatOnPaste": true, // コード整形
+    "editor.formatOnSave": true, // コード整形
+    "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
+    "editor.snippetSuggestions": "top", // スニペット候補を優先表示
+    "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace", // 使用するフォント
+    // ファイル設定
+    // ===============
+    "files.insertFinalNewline": true, // 保存時に末尾を空行にする
+    "files.trimFinalNewlines": true, // 保存時に最終行以降を削除する
+    "files.trimTrailingWhitespace": true, // 保存時に行末のホワイトスペースを削除する
+    // エクスプローラー
+    // ===============
+    "explorer.confirmDelete": false, // ファイル削除時の確認ダイアログの表示をしない
+    // Debug
+    // ===============
+    "debug.console.fontSize": 14,
+    // Terminal
+    // ===============
+    "terminal.integrated.rendererType": "canvas",
+    // git
+    // ===============
+    "git.ignoreMissingGitWarning": true,
+    // 言語別設定
+    // ===============
+    // Python
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "explorer.confirmDelete": false,
-    "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace",
-    "debug.console.fontSize": 14,
-    "rust.mode": "legacy",
-    "rust.formatOnSave": true,
-    "rust.rustup": "/Users/blacknon/.cargo/bin/rustup",
-    "rust.rustfmtPath": "/Users/blacknon/.cargo/bin/rustfmt",
-    "terminal.integrated.rendererType": "dom",
-    "git.ignoreMissingGitWarning": true,
-    "[dockerfile]": {
-        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-    },
+    "python.linting.flake8Args": [
+        "--ignore=E501"
+    ],
+    // Go
     "go.playground": {
         "openbrowser": true,
         "share": true,
         "run": true
     },
-    "python.linting.flake8Args": [
-        "--ignore=E501"
-    ]
+    "go.useLanguageServer": true,
+    // Rust
+    "rust.mode": "legacy",
+    "rust.rustup": "/Users/blacknon/.cargo/bin/rustup",
+    "rust.rustfmtPath": "/Users/blacknon/.cargo/bin/rustfmt",
+    // 拡張子別設定
+    // ===============
+    // dockerfiles
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    // AppleScript
+    "[applescript]": {
+        "files.encoding": "shiftjis",
+    },
 }

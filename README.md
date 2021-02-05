@@ -68,37 +68,38 @@
 | [./sh/sh_function_common](./sh/sh_function_common) | [____get_escape()](./sh/sh_function_common#L48-L97) | エスケープした文字を返す |
 | [./sh/sh_function_common](./sh/sh_function_common) | [____1char2dotchar()](./sh/sh_function_common#L33-L45) | 各文字を1文字だけドット(.)にした文字列の一覧を出力する(agrepで使用) |
 | [./sh/sh_function_common](./sh/sh_function_common) | [____shift1chars()](./sh/sh_function_common#L14-L30) | 各文字を1文字ずつずらした文字列を出力する(agrepで使用) |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ttmux()](./sh/sh_function_exec_1#L607-L612) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [check_cert()](./sh/sh_function_exec_1#L575-L579) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_globalip()](./sh/sh_function_exec_1#L570-L572) | Get Global ip address |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_ip()](./sh/sh_function_exec_1#L536-L567) | ipアドレスとinterfaceの組み合わせをシンプルなリストにして出力する |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [pping()](./sh/sh_function_exec_1#L457-L533) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ddig()](./sh/sh_function_exec_1#L422-L453) | スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1} |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [rarls()](./sh/sh_function_exec_1#L394-L409) | rarファイル内のデータをlist表示するfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipcat()](./sh/sh_function_exec_1#L386-L388) | zipファイル内のファイルを指定して標準出力に書き出すfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipls()](./sh/sh_function_exec_1#L368-L383) | zipファイル内のデータをlist表示するfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [targrep()](./sh/sh_function_exec_1#L308-L365) | tarファイル内のファイルに対してgrep(相当の処理)を行うfunction。<br/>awkを利用する。 ※ GNU tarでないと動作しないので注意 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarcat()](./sh/sh_function_exec_1#L296-L302) | tarファイル内のファイルを指定して標準出力に書き出すfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarls()](./sh/sh_function_exec_1#L276-L291) | tarファイル内のデータをlist表示するfunction。 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [todaydir()](./sh/sh_function_exec_1#L269-L273) | make today dir |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [find_bigfile()](./sh/sh_function_exec_1#L246-L266) | サイズの大きいファイルをサーチする |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [sw()](./sh/sh_function_exec_1#L238-L243) | ファイルの入れ替え(スイッチ) |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_unicode()](./sh/sh_function_exec_1#L218-L231) | 標準入力から取得した値をUnicode Escape Sequence形式に変換する<br/>※ nkfが必要 |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_hex()](./sh/sh_function_exec_1#L212-L214) | 標準入力から取得した値をHex形式(\xXX)にして返す |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [dec_html()](./sh/sh_function_exec_1#L207-L209) | 標準入力から受付たhtmlエンティティ形式のデータをもとに戻す |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_html()](./sh/sh_function_exec_1#L165-L204) | 標準入力から取得した値をhtmlエンティティ形式に変換する |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [dec_url()](./sh/sh_function_exec_1#L160-L162) | 標準入力から取得したパーセントエンコーディングを戻す |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_url()](./sh/sh_function_exec_1#L115-L157) | 標準入力から取得した値をパーセントエンコーディングする<br/>    -n ... nkfを使用してパーセントエンコーディングする(-a,-zは無効化)<br/>    -a ... ascii文字含め全部をパーセントエンコーディングする(-nのときは無効)<br/>    -z ... Null区切りにして改行もパーセントエンコーディング対象とする |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [agrep()](./sh/sh_function_exec_1#L58-L97) | あいまいgrepをするfunction<br/>(1文字違う文字列(abc=>{.bc,a.c,ab.})と、1文字ずつずらした文字列(abc=>{abc,bac,acb})でgrepをする(typoも発見できる)) |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [joinby()](./sh/sh_function_exec_1#L50-L54) | Join array |
-| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ts()](./sh/sh_function_exec_1#L2-L533) | 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ttmux()](./sh/sh_function_exec_1#L617-L622) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [check_cert()](./sh/sh_function_exec_1#L585-L589) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_globalip()](./sh/sh_function_exec_1#L580-L582) | Get Global ip address |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [get_ip()](./sh/sh_function_exec_1#L546-L577) | ipアドレスとinterfaceの組み合わせをシンプルなリストにして出力する |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [pping()](./sh/sh_function_exec_1#L467-L543) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ddig()](./sh/sh_function_exec_1#L432-L463) | スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1} |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [rarls()](./sh/sh_function_exec_1#L404-L419) | rarファイル内のデータをlist表示するfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipcat()](./sh/sh_function_exec_1#L396-L398) | zipファイル内のファイルを指定して標準出力に書き出すfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [zipls()](./sh/sh_function_exec_1#L378-L393) | zipファイル内のデータをlist表示するfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [targrep()](./sh/sh_function_exec_1#L318-L375) | tarファイル内のファイルに対してgrep(相当の処理)を行うfunction。<br/>awkを利用する。 ※ GNU tarでないと動作しないので注意 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarcat()](./sh/sh_function_exec_1#L306-L312) | tarファイル内のファイルを指定して標準出力に書き出すfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [tarls()](./sh/sh_function_exec_1#L286-L301) | tarファイル内のデータをlist表示するfunction。 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [todaydir()](./sh/sh_function_exec_1#L279-L283) | make today dir |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [find_bigfile()](./sh/sh_function_exec_1#L256-L276) | サイズの大きいファイルをサーチする |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [sw()](./sh/sh_function_exec_1#L248-L253) | ファイルの入れ替え(スイッチ) |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [dec_jwt()](./sh/sh_function_exec_1#L233-L241) | 標準入力から受け付けたjwtトークンをDecodeする |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_unicode()](./sh/sh_function_exec_1#L217-L230) | 標準入力から取得した値をUnicode Escape Sequence形式に変換する<br/>※ nkfが必要 |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_hex()](./sh/sh_function_exec_1#L211-L213) | 標準入力から取得した値をHex形式(\xXX)にして返す |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [dec_html()](./sh/sh_function_exec_1#L206-L208) | 標準入力から受付たhtmlエンティティ形式のデータをもとに戻す |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_html()](./sh/sh_function_exec_1#L164-L203) | 標準入力から取得した値をhtmlエンティティ形式に変換する |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [dec_url()](./sh/sh_function_exec_1#L159-L161) | 標準入力から取得したパーセントエンコーディングを戻す |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [enc_url()](./sh/sh_function_exec_1#L114-L156) | 標準入力から取得した値をパーセントエンコーディングする<br/>    -n ... nkfを使用してパーセントエンコーディングする(-a,-zは無効化)<br/>    -a ... ascii文字含め全部をパーセントエンコーディングする(-nのときは無効)<br/>    -z ... Null区切りにして改行もパーセントエンコーディング対象とする |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [agrep()](./sh/sh_function_exec_1#L57-L96) | あいまいgrepをするfunction<br/>(1文字違う文字列(abc=>{.bc,a.c,ab.})と、1文字ずつずらした文字列(abc=>{abc,bac,acb})でgrepをする(typoも発見できる)) |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [joinby()](./sh/sh_function_exec_1#L49-L53) | Join array |
+| [./sh/sh_function_exec_1](./sh/sh_function_exec_1) | [ts()](./sh/sh_function_exec_1#L2-L543) | 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [mkinst()](./sh/sh_function_exec_2#L383-L385) | make install を一気に行うためのfunction |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [scx()](./sh/sh_function_exec_2#L374-L376) | 完全にlocalで実行する用のscのラッパーfunction。<br/>bashrcをsourceした状態で引数のコマンドを実行させるので、functionも実行できるようにする。 |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [sc()](./sh/sh_function_exec_2#L11-L376) | scriptコマンドで/Work配下にターミナルログを記録する |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [battery()](./sh/sh_function_exec_2#L294-L303) | バッテリー残量を取得 |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [pe()](./sh/sh_function_exec_2#L119-L397) | petからsnippetを実行する(実行後はhistoryに登録) |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [prev()](./sh/sh_function_exec_2#L277-L280) | 直前に実行したコマンドをpetに登録する |
-| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [docker_login()](./sh/sh_function_exec_2#L208-L270) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_login コンテナ名<br/>    docker_login -e コンテナ名 # 現在のfunctionを利用してログイン<br/>    docker_login -r コンテナ名 # rcファイルを利用してログイン |
+| [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [docker_login()](./sh/sh_function_exec_2#L208-L270) | 起動中のdockerコンテナにログインするためのfunction。<br/>usage:<br/>    docker_login コンテナ名<br/>    docker_login -e コンテナ名 # 現在のfunctionを利用してログイン<br/>    docker_login -r コンテナ名 # rcファイルを利用してログイン |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [docker_runin()](./sh/sh_function_exec_2#L129-L202) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_runin コンテナ名<br/>    docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン<br/>    docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン<br/>    docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可) |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [ud()](./sh/sh_function_exec_2#L109-L385) | 上のディレクトリに移動するfunction.<br/>cd(Change Directory) → ud(Up Directory)<br/>...という命名方式 |
 | [./sh/sh_function_exec_2](./sh/sh_function_exec_2) | [sortsave()](./sh/sh_function_exec_2#L103-L106) | sortしてその内容をそのまま保存する<br/>※ moreutils必須 |
@@ -115,12 +116,12 @@
 | [./sh/sh_function_iterm2](./sh/sh_function_iterm2) | [____check_dependency()](./sh/sh_function_iterm2#L223-L30) | ____check_dependency():<br/>  about:<br/>    コマンドの有無を確認するfunction。 |
 | [./sh/sh_function_iterm2](./sh/sh_function_iterm2) | [____print_st()](./sh/sh_function_iterm2#L121-L17) | ____print_st():<br/>  about:<br/>    More of the tmux workaround described above. |
 | [./sh/sh_function_iterm2](./sh/sh_function_iterm2) | [____print_osc()](./sh/sh_function_iterm2#L121-L6) | ____print_osc():<br/>  about:<br/>    tmuxなどの場合にOSCエスケープシーケンスを出力するためのfunction。 |
-| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__toggle_doublequote_format()](./sh/sh_function_keybind#L196-L198) | 入力中の内容をダブルクオーテーションで囲む |
-| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__toggle_singlequote_format()](./sh/sh_function_keybind#L190-L192) | 入力中の内容をシングルクオーテーションで囲む |
-| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__toggle_substitution_format()](./sh/sh_function_keybind#L184-L186) | コマンド置換形式に変換する |
-| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__pet_set()](./sh/sh_function_keybind#L163-L180) | pet searchをしてコマンドラインを置き換えるkeybind用のfunction |
-| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__history_selection_insert()](./sh/sh_function_keybind#L157-L159) | Ctrl + R でhistory検索をして現在カーソルに差し込みをするfunction |
-| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__history_selection()](./sh/sh_function_keybind#L159-L86) | Ctrl + R でhistory検索をする(peco,bocoを使用) |
+| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__toggle_doublequote_format()](./sh/sh_function_keybind#L204-L206) | 入力中の内容をダブルクオーテーションで囲む |
+| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__toggle_singlequote_format()](./sh/sh_function_keybind#L198-L200) | 入力中の内容をシングルクオーテーションで囲む |
+| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__toggle_substitution_format()](./sh/sh_function_keybind#L192-L194) | コマンド置換形式に変換する |
+| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__pet_set()](./sh/sh_function_keybind#L171-L188) | pet searchをしてコマンドラインを置き換えるkeybind用のfunction |
+| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__history_selection_insert()](./sh/sh_function_keybind#L165-L167) | Ctrl + R でhistory検索をして現在カーソルに差し込みをするfunction |
+| [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__history_selection()](./sh/sh_function_keybind#L167-L86) | Ctrl + R でhistory検索をする(peco,bocoを使用) |
 | [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__copy_current_command()](./sh/sh_function_keybind#L58-L80) | Ctrl + X, Cで、現在のプロンプトのコマンドをコピーする(ssh先でも使えるように、OSCエスケープシーケンスを使用)<br/>NOTE: 【前提】 Macの場合、iTerm2を使ってることが前提<br/>NOTE: 【前提】 iTerm2の場合、`Perferences`で`Applications in terminal may access clipboard`にチェックが入ってる必要がある |
 | [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__cd_selection()](./sh/sh_function_keybind#L21-L51) | Ctrl + X, Ctrl + Dでcdを行うためのfunction(bash/zsh共通) |
 | [./sh/sh_function_keybind](./sh/sh_function_keybind) | [__cd_record()](./sh/sh_function_keybind#L15-L17) | cdのhistoryを記録するためのfunction |
