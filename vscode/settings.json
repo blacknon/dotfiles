@@ -5,36 +5,53 @@
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // フルパス表示
     // エディター設定
     // ===============
-    "editor.fontSize": 13,
+    "editor.fontSize": 14, // エディターの文字サイズ
     "editor.lineNumbers": "on", // 行番号の有効
+    "editor.quickSuggestions": true, // 入力補完を表示
     "editor.folding": true, // コードの折りたたみを許可
     "editor.wordWrap": "on", // 行の右端での折返しを有効にする
     "editor.wrappingIndent": "same", // 行を折り返した際のインデントを合わせる
     "editor.matchBrackets": true, // 対応する括弧の強調表示をオンにする
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~? 　、。",
-    "editor.formatOnType": true, // コード整形
-    "editor.formatOnPaste": true, // コード整形
-    "editor.formatOnSave": true, // コード整形
+    "editor.formatOnType": true, // 入力時に自動整形
+    "editor.formatOnPaste": true, // ペースト時に自動整形
+    "editor.formatOnSave": true, // 保存時に自動整形
     "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
     "editor.snippetSuggestions": "top", // スニペット候補を優先表示
     "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace", // 使用するフォント
+    "editor.renderIndentGuides": true, // インデントガイド(インデントに沿って縦線を表示)を有効
+    "editor.renderLineHighlight": "all", // 選択行の行番号ハイライト
+    "editor.renderWhitespace": "all", // ホワイトスペース（半角スペース等）の表示
+    "editor.renderControlCharacters": true, // 制御文字表示
+    // editor.minimap
+    "editor.minimap.showSlider": "always", // ミニマップ表示領域をハイライト
+    "editor.minimap.renderCharacters": false, // ミニマップの文字をブロック表示
     // ファイル設定
     // ===============
     "files.insertFinalNewline": true, // 保存時に末尾を空行にする
     "files.trimFinalNewlines": true, // 保存時に最終行以降を削除する
     "files.trimTrailingWhitespace": true, // 保存時に行末のホワイトスペースを削除する
+    "files.exclude": { // 非表示にするファイル
+        "**/.DS_Store": true
+    },
     // エクスプローラー
     // ===============
     "explorer.confirmDelete": false, // ファイル削除時の確認ダイアログの表示をしない
+    "explorer.compactFolders": false, // エクスプローラの省略表示をしない
     // Debug
     // ===============
-    "debug.console.fontSize": 14,
+    "debug.console.fontSize": 14, // Debugコンソールの文字サイズ
     // Terminal
     // ===============
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.fontSize": 13,
     "terminal.integrated.rendererType": "canvas",
     // git
     // ===============
     "git.ignoreMissingGitWarning": true,
+    // 拡張機能
+    // ===============
+    "extensions.autoUpdate": true,
     // 言語別設定
     // ===============
     // Python
@@ -64,4 +81,5 @@
     "[applescript]": {
         "files.encoding": "shiftjis",
     },
+    "git.enableSmartCommit": true,
 }
