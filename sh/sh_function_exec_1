@@ -229,6 +229,17 @@ enc_unicode() {
   echo
 }
 
+# 標準入力から受け付けたjwtトークンをDecodeする
+dec_jwt() {
+  # OS別での使用コマンドの識別
+  case ${OSTYPE} in
+  darwin*) local sed="gsed" ;;
+  linux*) local sed="sed" ;;
+  esac
+
+  cat - | cut -d. -f1,2 | ${sed} 's/\./\n/g' | base64 --decode
+}
+
 ## ==========
 # ファイル操作関係
 ## ==========

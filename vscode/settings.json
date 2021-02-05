@@ -28,5 +28,13 @@
     "git.ignoreMissingGitWarning": true,
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-    }
+    },
+    "go.playground": {
+        "openbrowser": true,
+        "share": true,
+        "run": true
+    },
+    "python.linting.flake8Args": [
+        "--ignore=E501"
+    ]
 }
