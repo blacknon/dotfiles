@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- encoding: UTF-8 -*-
-# Copyright(c) 2020 Blacknon. All rights reserved.
+# Copyright(c) 2021 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 #
