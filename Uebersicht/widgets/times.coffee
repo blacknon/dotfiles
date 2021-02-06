@@ -47,9 +47,9 @@ locale: locale
 refreshFrequency: 1000
 
 style: """
-  width: 330px
+  width: 300px
   top: 10px
-  right: 10px
+  right: 20px
   font-family: Helvetica
   font-size: 16px
   line-height: 1
@@ -71,6 +71,8 @@ style: """
     overflow: hidden
   .left
     float: left
+  .right
+    align: right
   .txt-default
     color: #{ settings.colors.default }
   .txt-accent
@@ -104,12 +106,10 @@ render: () -> """
       <span class='weekday txt-accent'></span>
 
     </div>
-    <div class='table'>
+    <div class='table right'>
       <span class='hours txt-default txt-large '></span>
       <span class='txt-accent txt-large'>:</span>
       <span class='minutes txt-default txt-large'></span>
-      <span class='txt-accent txt-large'>:</span>
-      <span class='seconds txt-default txt-large'></span>
       <span class='suffix txt-default txt-small'></span>
     </div>
 
