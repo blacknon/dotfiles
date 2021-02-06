@@ -32,7 +32,19 @@
     "files.trimFinalNewlines": true, // 保存時に最終行以降を削除する
     "files.trimTrailingWhitespace": true, // 保存時に行末のホワイトスペースを削除する
     "files.exclude": { // 非表示にするファイル
-        "**/.DS_Store": true
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/node_modules/": true
+    },
+    "files.watcherExclude": { // ファイル監視から除外するファイル
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.rvm/**": true,
+        "**/node_modules/**": true,
+        "**/GoogleDrive/**": true,
+        "**/Dropbox/**": true,
+        "**/Pictures/**": true
     },
     // エクスプローラー
     // ===============
