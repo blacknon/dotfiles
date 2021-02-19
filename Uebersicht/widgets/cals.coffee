@@ -36,6 +36,7 @@ style: """
     box-shadow: #{ settings.shadows.box }
     text-shadow: #{ settings.shadows.text }
     color: #{ settings.colors.default }
+    border-radius: 1rem
   td
     text-align: center
     padding: 4px 6px

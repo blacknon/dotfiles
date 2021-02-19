@@ -25,7 +25,8 @@ tell application "Music"
     if selection = {} then -- 選択中のトラックがない場合、その旨を表示して終了
         display dialog "No tracks selected." buttons {"Cancel"} default button 1 with icon 1
 
-    else -- 選択中のトラックがある場合
+    -- 選択中のトラックがある場合
+    else
         -- 当日の作業用ディレクトリのPATH(~/Work/YYYYmm/YYYYmmdd/)を取得
         set today_dir to (the POSIX path of (path to home folder)) & "Work/" & today_year & today_month & "/" & today_year & today_month & today_day & "/" as string
 

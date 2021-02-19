@@ -49,7 +49,7 @@ refreshFrequency: 1000
 style: """
   width: 300px
   top: 10px
-  right: 20px
+  right: 5px
   font-family: Helvetica
   font-size: 16px
   line-height: 1
