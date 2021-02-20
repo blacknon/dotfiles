@@ -189,12 +189,15 @@ docker_runin() {
   # docker runをして接続する
   if [[ ${is_rc} -eq 1 ]]; then
     local cmd="'bash --rcfile <(echo $(____get_rcdata)|base64 -d)'"
-    eval docker run -v "type=bind,source=${HOME}/.docker_history,target=/root/.bash_history" --rm "${volarg}" -it "${cnt}" bash -c "${cmd}"
+    eval docker run -v "${HOME}/.docker_history:/root/.bash_history" --rm "${volarg}" -it "${cnt}" bash -c "${cmd}"
+    # eval docker run --rm "${volarg}" -it "${cnt}" bash -c "${cmd}"
   elif [[ ${is_env} -eq 1 ]]; then
     local cmd="'bash --rcfile <(echo $(____get_envdata)|base64 -d)'"
-    eval docker run -v "type=bind,source=${HOME}/.docker_history,target=/root/.bash_history" "${volarg}" --rm -it "${cnt}" bash -c "${cmd}"
+    eval docker run -v "${HOME}/.docker_history:/root/.bash_history" "${volarg}" --rm -it "${cnt}" bash -c "${cmd}"
+    # eval docker run "${volarg}" --rm -it "${cnt}" bash -c "${cmd}"
   else
-    eval docker run -v "type=bind,source=${HOME}/.docker_history,target=/root/.bash_history" "${volarg}" --rm -it "${cnt}" bash
+    eval docker run -v "${HOME}/.docker_history:/root/.bash_history" "${volarg}" --rm -it "${cnt}" bash
+    # eval docker run "${volarg}" --rm -it "${cnt}" bash
   fi
 
   # dockerへの接続後に実行するコマンド
