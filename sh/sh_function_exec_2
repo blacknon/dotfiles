@@ -130,6 +130,7 @@ ud() {
 #     docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン
 #     docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン
 #     docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可)
+# NOTE: docker-machine環境下でvolume mountがうまくいかなくなった場合、とりあえずアップグレードすることで直る場合がある。まずはそれをやってみること。
 docker_runin() {
   # container
   local cnt
