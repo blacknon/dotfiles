@@ -1,7 +1,4 @@
 {
-    // ウィンドウ設定
-    // ===============
-    "window.zoomLevel": 0, // window 全体のzoom level
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // フルパス表示
     // エディター設定
     // ===============
