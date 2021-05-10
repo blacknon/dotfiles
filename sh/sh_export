@@ -62,6 +62,7 @@ linux*)
   ;;
 esac
 export PATH=$PATH:~/.cargo/bin            # Rust(Cargo)用PATH
+export PATH=$PATH:~/.composer/vendor/bin  # php(composer)用のPATH
 export PATH=$PATH:~/.gem/ruby/bin         # Ruby gem用PATH
 export PATH=$PATH:~/.nodebrew/current/bin # NodeJS用PATH
 export PATH=$PATH:~/.local/bin            # Python(pip)用PATH
