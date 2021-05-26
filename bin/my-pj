@@ -18,6 +18,8 @@ import shutil
 import json
 from pathlib import Path
 
+# TODO(blakcnon): cdで移動できる仕組みを導入したい(functionでいいかも)
+
 # TODO(blacknon): 指定したテンプレート変数の置換処理について追加する(とりあえず3個くらい？)
 # ※ ファイル名についても対応する
 #   - {{ProjectName}}  ... プロジェクト名
