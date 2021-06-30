@@ -7,6 +7,7 @@
 # User:
 #   blacknon
 # Description: [hwatch](https://github.com/blacknon/hwatch)のlogをパースして出力するスクリプト
+# =============================================
 
 import argparse
 import difflib

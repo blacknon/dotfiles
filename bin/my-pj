@@ -3,7 +3,9 @@
 # Copyright(c) 2021 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
+#
 # Description: 期間の決まっているプロジェクト用のディレクトリ生成スクリプト(~/Workとセット)
+# =============================================
 
 import argparse
 import datetime

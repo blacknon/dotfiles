@@ -3,7 +3,9 @@
 # Copyright(c) 2021 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
+#
 # Description: 文字列のROT対応用スクリプト(未作成)
+# =============================================
 
 # TODO(blacknon): オプションとかも含みで、あとでちゃんと作る。
 

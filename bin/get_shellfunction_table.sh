@@ -4,6 +4,7 @@
 # that can be found in the LICENSE file.
 #
 # Description: シェル関数とその説明を`sh_function*`ファイルから取得してtableにするスクリプト
+# =============================================
 
 # ~/dotfilesに移動
 cd ~/dotfiles
