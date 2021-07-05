@@ -99,8 +99,8 @@ darwin*)
 
   # Symbolic linkを置き換え
   TARGET_DESKTOP_DIR="${HOME}/Desktop"
-  sudo rm -rf "${TARGET_DESKTOP_DIR}"
-  ln -sF "${WORKDIR}" "${TARGET_DESKTOP_DIR}"
+  rm -rf "${TARGET_DESKTOP_DIR}"
+  ln -sF ~/Today "${TARGET_DESKTOP_DIR}"
 
   # Finderを再起動して表示を更新する
   killall Finder

@@ -114,4 +114,5 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
+    "explorer.confirmDragAndDrop": false,
 }
