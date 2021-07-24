@@ -34,7 +34,6 @@ FILES=(
 )
 for i in ${FILES[@]}; do
     if [ -f "$i" ]; then
-        echo $i
         source "$i"
     fi
 done

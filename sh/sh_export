@@ -3,6 +3,7 @@
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
+# python encode
 export PYTHONIOENCODING='UTF-8'
 
 # editor
@@ -41,32 +42,57 @@ export LESS=-R # lessでスクロールが効くようにする
 # bat
 export BAT_PAGER="less -RF" # batのpagerを設定
 
-# PATH
+# GOPATH(PATHより前に定義)
 export GOPATH=~/_go
+
+# PATH
+# 最後に存在チェックして突っ込んでくPATHリスト
+PATH_LIST=()
+
 case ${OSTYPE} in
 darwin*)
+  # GOROOT
   export GOROOT=/usr/local/opt/go/libexec
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:~/bin
-  export PATH=$PATH:~/dotfiles/AppleScripts
-  export PATH=/usr/local/opt/ncurses/bin:$PATH
-  export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-  export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/ncurses/lib/
+
+  # PATH
+  PATH_LIST+=("$GOROOT/bin")
+  PATH_LIST+=("$GOPATH/bin")
+  PATH_LIST+=("~/dotfiles/AppleScripts")
+  PATH_LIST+=("/usr/local/opt/ncurses/bin")
+  PATH_LIST+=("/usr/local/opt/mysql-client/bin")
+  PATH_LIST+=("/usr/local/opt/openssl@1.1/bin")
+
+  # LIBRARY_PATH
+  export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/ncurses/lib/"
+
+  # LDFLAGS
   export LDFLAGS=" -L/usr/local/opt/ncurses/lib"
-  export CPPFLAGS=" -I/usr/local/opt/ncurses/include"
   export LDFLAGS=$LDFLAGS" -L/usr/local/opt/openssl@1.1/lib"
+
+  # CPPFLAGS
+  export CPPFLAGS=" -I/usr/local/opt/ncurses/include"
   export CPPFLAGS=$CPPFLAGS" -I/usr/local/opt/openssl@0.1/include"
   ;;
 linux*)
-  export PATH=$PATH:$GOPATH/bin:~/bin
-  export PATH=$PATH:/usr/local/go/bin
+  # PATH
+  PATH_LIST+=("$GOPATH/bin")
+  PATH_LIST+=("/usr/local/go/bin")
   ;;
 esac
-export PATH=$PATH:~/.cargo/bin            # Rust(Cargo)用PATH
-export PATH=$PATH:~/.composer/vendor/bin  # php(composer)用のPATH
-export PATH=$PATH:~/.gem/ruby/bin         # Ruby gem用PATH
-export PATH=$PATH:~/.nodebrew/current/bin # NodeJS用PATH
-export PATH=$PATH:~/.local/bin            # Python(pip)用PATH
-export PATH=$PATH:~/bin                   # 自作スクリプト群の配置用ディレクトリPATH
+
+PATH_LIST+=("~/.cargo/bin")            # Rust(Cargo)用PATH
+PATH_LIST+=("~/.composer/vendor/bin")  # php(composer)用のPATH
+PATH_LIST+=("~/.gem/ruby/bin")         # Ruby gem用PATH
+PATH_LIST+=("~/.nodebrew/current/bin") # NodeJS用PATH
+PATH_LIST+=("~/.local/bin")            # Python(pip)用PATH
+PATH_LIST+=("~/bin")                   # 自作スクリプト群の配置用ディレクトリPATH
+
+# PATHを一気に追加
+for p in ${PATH_LIST[@]}; do
+  if [ -d "$p" ]; then
+    export PATH="$PATH:$p"
+  fi
+done
 
 # ssh agent用のsockファイル
 if [ -z "${SSH_CLIENT}" ]; then
