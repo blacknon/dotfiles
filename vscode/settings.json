@@ -107,7 +107,7 @@
             "server": "{{put-server-name-here}}",
             "database": "{{put-database-name-here}}",
             "user": "{{put-username-here}}",
-            "password": "{{put-password-here}}"
+            "password": ""
         }
     ],
     "notebook.cellToolbarLocation": {
@@ -115,4 +115,5 @@
         "jupyter-notebook": "left"
     },
     "explorer.confirmDragAndDrop": false,
+    "latex-workshop.view.pdf.viewer": "tab",
 }
