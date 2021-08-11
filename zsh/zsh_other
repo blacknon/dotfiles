@@ -275,6 +275,15 @@ fi
 autoload -Uz compinit
 compinit -u
 
+
+# Azure-CLI用のfunctionを読み込ませる(azコマンドの自動補完用)
+source $(dirname $(realpath "${(%):-%N}"))/zsh_complete_function_az
+
+# aws_completerがある場合、読み込ませる(awsコマンドの自動補完用)
+if [ -f /usr/local/bin/aws_completer ]; then
+    complete -C '/usr/local/bin/aws_completer' aws
+fi
+
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zhistory
 export CDHISTFILE=${HOME}/.cd_zhistory
