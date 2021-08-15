@@ -24,6 +24,7 @@ FILES=(
     ~/_shell/boco/sh_function_boco
     ~/_shell/substitute_line/sh_function_substitute_line
     ~/_env/env_shell_function
+    ~/_env/sh_export
     ~/dotfiles_private/zshrc
 )
 for i in ${FILES}; do
