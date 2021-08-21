@@ -30,6 +30,7 @@ FILES=(
     ~/_shell/boco/sh_function_boco
     ~/_shell/substitute_line/sh_function_substitute_line
     ~/_env/env_shell_* # 環境に依存したファイル群
+    ~/_env/sh_export   # 環境に依存したファイル
     ~/dotfiles_private/bashrc
 )
 for i in ${FILES[@]}; do
