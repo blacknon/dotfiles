@@ -116,4 +116,5 @@
     },
     "explorer.confirmDragAndDrop": false,
     "latex-workshop.view.pdf.viewer": "tab",
+    "window.zoomLevel": -1,
 }

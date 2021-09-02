@@ -101,8 +101,7 @@ darwin*)
   TARGET_DESKTOP_DIR="${HOME}/Desktop"
 
   # check symlink
-  TARGET_PATH_TYPE=$(file -h ~/Desktop | awk '{print $2,$3}')
-  if [ ! -L "${TARGET_PATH_TYPE}" ]; then
+  if [ ! -L "${TARGET_DESKTOP_DIR}" ]; then
     rm -rf "${TARGET_DESKTOP_DIR}"
     ln -sF ~/Today "${TARGET_DESKTOP_DIR}"
   fi
