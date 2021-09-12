@@ -12,6 +12,7 @@
 #        ```php
 #        echo '{"data":[{"id":1,"answer":"aaa"},{"id":2,"answer":"bbb"}]}' | php -r 'echo http_build_query(json_decode(trim(fgets(STDIN)),true));'
 #        ```
+# =============================================
 
 import argparse
 import urllib.parse

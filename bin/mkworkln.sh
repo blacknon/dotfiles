@@ -99,8 +99,12 @@ darwin*)
 
   # Symbolic linkを置き換え
   TARGET_DESKTOP_DIR="${HOME}/Desktop"
-  sudo rm -rf "${TARGET_DESKTOP_DIR}"
-  ln -sF "${WORKDIR}" "${TARGET_DESKTOP_DIR}"
+
+  # check symlink
+  if [ ! -L "${TARGET_DESKTOP_DIR}" ]; then
+    rm -rf "${TARGET_DESKTOP_DIR}"
+    ln -sF ~/Today "${TARGET_DESKTOP_DIR}"
+  fi
 
   # Finderを再起動して表示を更新する
   killall Finder
@@ -114,8 +118,10 @@ ln -sF "${DOWNLOAD_DIR}" "${TARGET_DOWNLOAD_DIR}"
 
 # Todayディレクトリ
 TARGET_TODAY_DIR="${HOME}/Today"
-test -L "${TARGET_TODAY_DIR}" && rm -rf "${TARGET_TODAY_DIR}"
-ln -sF "${WORKDIR}" "${TARGET_TODAY_DIR}"
+if [ -L "${TARGET_TODAY_DIR}" ]; then
+  rm -rf "${TARGET_TODAY_DIR}"
+  ln -sF "${WORKDIR}" "${TARGET_TODAY_DIR}"
+fi
 
 # もし前日のディレクトリを利用していなかった場合、削除する
 case "${OSTYPE}" in

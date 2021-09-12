@@ -2,7 +2,9 @@
 # Copyright(c) 2021 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
+#
 # Description: dotfiles配下のconkyrcを利用したconkyの管理用スクリプト(Desktop Linux用)
+# =============================================
 
 # usage
 function usage() {
@@ -14,11 +16,11 @@ Description:
   dotfiles配下のconkyrcを利用したconkyの管理用スクリプト
 
 _EOT_
-  exit 1
+  exit 0
 }
 
 # option check
-while getopts abf:h OPT; do
+while getopts h OPT; do
   case $OPT in
   h)
     echo "h option. display help"

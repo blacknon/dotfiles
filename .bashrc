@@ -30,11 +30,11 @@ FILES=(
     ~/_shell/boco/sh_function_boco
     ~/_shell/substitute_line/sh_function_substitute_line
     ~/_env/env_shell_* # 環境に依存したファイル群
-    ~/dotfiles_private/sh/sh_export_key
+    ~/_env/sh_export   # 環境に依存したファイル
+    ~/dotfiles_private/bashrc
 )
 for i in ${FILES[@]}; do
     if [ -f "$i" ]; then
-        echo $i
         source "$i"
     fi
 done

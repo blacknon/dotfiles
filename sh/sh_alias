@@ -56,6 +56,10 @@ darwin*)
   which gshuf 2>&1 >/dev/null
   [ $? -eq 0 ] && alias shuf='gshuf'
 
+  # join(gnu)
+  which gjoin 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias join='gjoin'
+
   # paste(gnu)
   which gpaste 2>&1 >/dev/null
   [ $? -eq 0 ] && alias paste='gpaste'

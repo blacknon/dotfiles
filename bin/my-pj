@@ -3,7 +3,9 @@
 # Copyright(c) 2021 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
+#
 # Description: 期間の決まっているプロジェクト用のディレクトリ生成スクリプト(~/Workとセット)
+# =============================================
 
 import argparse
 import datetime
@@ -17,6 +19,8 @@ import sys
 import shutil
 import json
 from pathlib import Path
+
+# TODO(blakcnon): cdで移動できる仕組みを導入したい(functionでいいかも)
 
 # TODO(blacknon): 指定したテンプレート変数の置換処理について追加する(とりあえず3個くらい？)
 # ※ ファイル名についても対応する
