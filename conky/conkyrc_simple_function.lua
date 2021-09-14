@@ -119,11 +119,11 @@ function conky_network_info()
     local text = ""
 
     -- 現在のグローバルIPの表示
-    local text = text.."${color}GlobalIP : ${alignr}${color9}${execi 600 curl globalip.me}${color}\n"
+    local text = text.."${color}GlobalIP : ${alignr}${color9}${execi 600 curl -s httpbin.org/ip| jq -r .origin}${color}\n"
 
     -- NICの一覧を取得
     local nic_list = exec_oscommand("ip -f inet -o addr show | awk -F'[\t ]' '{print $2}'")
-    local nic_table = split(nic_list,"\n")
+    local nic_table = split(nic_list, "\n")
 
 
     for key, value in pairs(nic_table) do
