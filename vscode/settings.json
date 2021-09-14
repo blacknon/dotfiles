@@ -1,5 +1,6 @@
 {
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // フルパス表示
+    "window.zoomLevel": -1, // 表示サイズを指定
     // エディター設定
     // ===============
     "editor.fontSize": 14, // エディターの文字サイズ
@@ -16,6 +17,7 @@
     "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
     "editor.snippetSuggestions": "top", // スニペット候補を優先表示
     "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace", // 使用するフォント
+    "editor.fontLigatures": null,
     "editor.renderIndentGuides": true, // インデントガイド(インデントに沿って縦線を表示)を有効
     "editor.renderLineHighlight": "all", // 選択行の行番号ハイライト
     "editor.renderWhitespace": "all", // ホワイトスペース（半角スペース等）の表示
@@ -47,6 +49,7 @@
     // ===============
     "explorer.confirmDelete": false, // ファイル削除時の確認ダイアログの表示をしない
     "explorer.compactFolders": false, // エクスプローラの省略表示をしない
+    "explorer.confirmDragAndDrop": false, // ファイルorフォルダの誤移動防止の確認ダイアログを表示させない
     // Debug
     // ===============
     "debug.console.fontSize": 14, // Debugコンソールの文字サイズ
@@ -55,9 +58,12 @@
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.rendererType": "canvas",
+    "terminal.integrated.macOptionIsMeta": true,
     // git
     // ===============
     "git.ignoreMissingGitWarning": true,
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
     // 拡張機能
     // ===============
     "extensions.autoUpdate": true,
@@ -91,30 +97,5 @@
     // AppleScript
     "[applescript]": {
         "files.encoding": "shiftjis",
-    },
-    "git.enableSmartCommit": true,
-    "git.autofetch": true,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
-    "launch": {
-        "configurations": [],
-        "compounds": []
-    },
-    "editor.fontLigatures": null,
-    "mssql.connections": [
-        {
-            "server": "{{put-server-name-here}}",
-            "database": "{{put-database-name-here}}",
-            "user": "{{put-username-here}}",
-            "password": ""
-        }
-    ],
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
-    "explorer.confirmDragAndDrop": false,
-    "latex-workshop.view.pdf.viewer": "tab",
-    "window.zoomLevel": -1,
+    }
 }
