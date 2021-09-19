@@ -5,7 +5,8 @@ conky.config = {
     gap_x = 491, -- 横位置の調整
     gap_y = 30, -- 縦位置の調整
     maximum_size = 500,
-
+    maximum_width = 600,
+    minimum_size = 600,
 
     default_color = 'white',
     default_outline_color = 'white',
@@ -71,6 +72,9 @@ ${lua_parse network_info}
 # ディスク関係
 ${lua_parse print_infobar DISK}
 ${lua_parse disk_info}
+
+
+
 
 
 
