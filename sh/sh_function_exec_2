@@ -115,6 +115,11 @@ gcd() {
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     cd $(pwd)/$(git rev-parse --show-cdup)
   fi
+
+  # shellに応じて処理を変える
+  case $(basename ${SHELL}) in
+  zsh*) zle .accept-line ;;
+  esac
 }
 
 # gitリポジトリ内のディレクトリを選択して移動する
@@ -140,6 +145,11 @@ gscd() {
       cd "$(pwd)/$(git rev-parse --show-cdup)/$dir"
     fi
   fi
+
+  # shellに応じて処理を変える
+  case $(basename ${SHELL}) in
+  zsh*) zle .accept-line ;;
+  esac
 }
 
 # TODO(blacknon): moreutilsの有無のチェックを追加
