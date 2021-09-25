@@ -91,7 +91,8 @@ setopt nonomatch
 #### - Ctrl + Y : 戻った内容を戻す(redo)
 #### - Ctrl + Z : 編集内容を戻す(undo)
 #### - Ctrl + X, Ctrl + Y: __copy_current_command(現在プロンプトに入力されているコマンドをクリップボードにコピー)
-#### - Ctrl + X, Ctrl + D: __cd_selection(移動先を選択してcdで移動する)
+#### - Ctrl + X, Ctrl + M: __cd_selection(移動先を選択してcdで移動する)
+#### - Ctrl + X, Ctrl + G: gscd(gitリポジトリ配下のディレクトリを、移動先を選択してcdで移動する)
 #### - Ctrl + X, Ctrl + L: ls -la
 #### - Ctrl + X, Ctrl + T: 日付をYYYYMMDD形式で自動入力
 #### - Ctrl + X, Ctrl + E: コマンドをエディタ編集モードで編集
@@ -167,6 +168,10 @@ chpwd_functions=($chpwd_functions __cd_record)
 ## キーバインドでの処理
 zle -N __cd_selection
 bindkey '^X^M' __cd_selection
+
+# Ctrl + X, Ctrl + G で、pecoなどでGitリポジトリ配下の選択ディレクトリに移動する処理
+zle -N gscd
+bindkey '^X^G' gscd
 
 # Alt + C で、現在入力中の内容をコマンド置換にする
 zle -N __toggle_substitution_format

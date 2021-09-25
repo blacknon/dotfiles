@@ -95,16 +95,6 @@ wd() {
   cd ${today_dir}/Downloads
 }
 
-# TODO(blacknon): moreutilsの有無のチェックを追加
-# TODO(blacknon): moreutilsなしでできるようにする？
-# TODO(blacknon): sortのオプションを付与できるようにする
-# sortしてその内容をそのまま保存する
-# ※ moreutils必須
-sortsave() {
-  local file=$1
-  sort -u $file | sponge $file
-}
-
 # 上のディレクトリに移動するfunction.
 # cd(Change Directory) → ud(Up Directory)
 # ...という命名方式
@@ -117,6 +107,49 @@ ud() {
   fi
 
   eval cd $(perl -le 'print "../" x '$num)
+}
+
+# gitリポジトリのルートディレクトリに移動する
+gcd() {
+  # gitディレクトリ配下か確認する
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    cd $(pwd)/$(git rev-parse --show-cdup)
+  fi
+}
+
+# gitリポジトリ内のディレクトリを選択して移動する
+gscd() {
+  # ローカル変数の宣言
+  local selecter
+
+  # セレクトするコマンドの有無によって切り替えをする
+  # (peco>bocoの順に確認)
+  if type "peco" >/dev/null 2>&1; then
+    local selecter="peco"
+  elif type "boco" >/dev/null 2>&1; then
+    local selecter="boco"
+  fi
+
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    dir=$(
+      cd $(pwd)/$(git rev-parse --show-cdup)
+      find ./ -name .git -prune -or -type d | sort | $selecter
+    )
+
+    if [[ -n "$dir" ]]; then
+      cd "$(pwd)/$(git rev-parse --show-cdup)/$dir"
+    fi
+  fi
+}
+
+# TODO(blacknon): moreutilsの有無のチェックを追加
+# TODO(blacknon): moreutilsなしでできるようにする？
+# TODO(blacknon): sortのオプションを付与できるようにする
+# sortしてその内容をそのまま保存する
+# ※ moreutils必須
+sortsave() {
+  local file=$1
+  sort -u $file | sponge $file
 }
 
 ## ==========
