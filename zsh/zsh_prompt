@@ -30,6 +30,7 @@ TRAPALRM() {
        [ "$WIDGET" != "__history_selection" ] && \
        [ "$WIDGET" != "__history_selection_insert" ] && \
        [ "$WIDGET" != "__cd_selection" ] && \
+       [ "$WIDGET" != "gscd" ] && \
        [ "$WIDGET" != "__substitute_line" ] && \
        [ "$WIDGET" != "__pet_set" ] && \
        ;then
