@@ -33,7 +33,7 @@ TRAPALRM() {
        [ "$WIDGET" != "gscd" ] && \
        [ "$WIDGET" != "__substitute_line" ] && \
        [ "$WIDGET" != "__pet_set" ] && \
-       ;then
+       ; then
             zle .reset-prompt
     fi
 }

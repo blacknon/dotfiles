@@ -113,7 +113,7 @@ ud() {
 gcd() {
   # gitディレクトリ配下か確認する
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    cd $(pwd)/$(git rev-parse --show-cdup)
+    cd $(git rev-parse --show-toplevel)
   fi
 
   # shellに応じて処理を変える
@@ -137,12 +137,12 @@ gscd() {
 
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     dir=$(
-      cd $(pwd)/$(git rev-parse --show-cdup)
+      cd $(git rev-parse --show-toplevel)
       find ./ -name .git -prune -or -type d | sort | $selecter
     )
 
     if [[ -n "$dir" ]]; then
-      cd "$(pwd)/$(git rev-parse --show-cdup)/$dir"
+      cd "$(git rev-parse --show-toplevel)/$dir"
     fi
   fi
 
