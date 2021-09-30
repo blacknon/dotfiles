@@ -20,7 +20,6 @@
 #         $HOME/Library/Preferences/com.apple.dock.plist | \
 #       xmlstarlet ed --delete 'plist/array/dict/dict/data' | \
 #       xmlstarlet sel -B -t -c 'plist/array' 2>/dev/null
-
 #     ```
 # =============================================
 
@@ -28,6 +27,16 @@
 
 # 引数の取得(テンプレートファイルPATH)
 PLIST_TEMPLETE=("$@")
+
+# 現時点の`~/Today`ディレクトリ配下へ、バックアップファイルの配置
+backup_dir="$HOME/Today/backup"
+if [[ -z $backup_dir ]]; then
+  # バックアップ用ディレクトリを作成
+  mkdir -p ~/Today/backup
+
+  # history系のファイルをバックアップ用ディレクトリへ配置
+  tar czvf ~/Today/backup/histories.$(date +%Y%m%d -d '-1day').tar.gz ~/.zhistory ~/.bash_history ~/.cd_bash_history ~/.cd_zhistory
+fi
 
 # DIRの指定
 case "${OSTYPE}" in
