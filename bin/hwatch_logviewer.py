@@ -9,6 +9,7 @@
 # Description: [hwatch](https://github.com/blacknon/hwatch)のlogをパースして出力するスクリプト
 # =============================================
 
+import os
 import argparse
 import difflib
 import json
