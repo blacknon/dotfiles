@@ -133,8 +133,10 @@ esac
 
 # Downloadディレクトリ
 TARGET_DOWNLOAD_DIR="${HOME}/${DOWNLOAD}"
-test -L "${TARGET_DOWNLOAD_DIR}" && rm -rf "${TARGET_DOWNLOAD_DIR}"
-ln -sF "${DOWNLOAD_DIR}" "${TARGET_DOWNLOAD_DIR}"
+if [[ -L $TARGET_DOWNLOAD_DIR ]]; then
+  rm -rf "${TARGET_DOWNLOAD_DIR}"
+  ln -sF "${DOWNLOAD_DIR}" "${TARGET_DOWNLOAD_DIR}"
+fi
 
 # Todayディレクトリ
 TARGET_TODAY_DIR="${HOME}/Today"
