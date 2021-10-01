@@ -90,6 +90,8 @@ setopt nonomatch
 #### - Ctrl + G : カーソルから行頭までを切り取り
 #### - Ctrl + Y : 戻った内容を戻す(redo)
 #### - Ctrl + Z : 編集内容を戻す(undo)
+####
+#### 【Ctrlキー + Xキー】: 実行etc..系
 #### - Ctrl + X, Ctrl + Y: __copy_current_command(現在プロンプトに入力されているコマンドをクリップボードにコピー)
 #### - Ctrl + X, Ctrl + M: __cd_selection(移動先を選択してcdで移動する)
 #### - Ctrl + X, Ctrl + G: gscd(gitリポジトリ配下のディレクトリを、移動先を選択してcdで移動する)
@@ -100,6 +102,12 @@ setopt nonomatch
 #### - Ctrl + X, Ctrl + P: Petの内容をペースト(現在のカーソル位置に差し込み)
 #### - Ctrl + X, Ctrl + S: コマンドの置換
 #### - Ctrl + X, Ctrl + X, Ctrl + L: lssh
+#### - Ctrl + D, Ctrl + W: Workディレクトリへの移動
+####
+#### 【Ctrlキー + Dキー】: Work Directory系
+#### - Ctrl + D, Ctrl + D: ww(当日のWorkディレクトリに移動する)
+#### - Ctrl + D, Ctrl + P: yw(前日のWorkディレクトリに移動する)
+#### - Ctrl + D, Ctrl + N: tw(翌日のWorkディレクトリに移動する)
 ####
 #### 【Altキー】
 #### - Alt + 矢印キー: 単語での移動(Ctrl + B,Fについてはこれで代用)
@@ -208,11 +216,23 @@ bindkey '^X^Y' __copy_current_command
 zle -N __zsh_lssh
 bindkey '^X^X^L' __zsh_lssh
 
-### Setup Other
-# インクリメンタルからの検索
+# Ctrl + X, Ctrl + R で、インクリメンタルからの検索
 zle -N __history_selection
 bindkey '^R' __history_selection
 
+# Ctrl + D, Ctrl + D で、当日のWorkDirectoryに移動
+zle -N __ww
+bindkey '^D^D' __ww
+
+# Ctrl + D, Ctrl + D で、当日のWorkDirectoryに移動
+zle -N __yw
+bindkey '^D^P' __yw
+
+# Ctrl + D, Ctrl + D で、当日のWorkDirectoryに移動
+zle -N __tw
+bindkey '^D^N' __tw
+
+### Setup Other
 # コマンド候補を選択できるようにする
 zstyle ':completion:*:default' menu select=1
 

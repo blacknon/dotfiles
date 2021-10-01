@@ -111,7 +111,6 @@ alias ll='ls -la'
 alias lh='ls -lahS'
 alias sl='ls'
 alias clr='clear'
-alias ww='Work'         # Work Dirの作成・移動関数のalias
 alias dig='dig +short ' # shortでの出力を基本にする
 
 which hwatch 2>/dev/null >/dev/null

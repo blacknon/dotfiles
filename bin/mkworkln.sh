@@ -25,17 +25,28 @@
 
 # TODO(blacknon): 1時間単位で実行しても問題ないように作る(~/Work/YYYYMM/YYYYMMDDが存在しない場合にキックするようにすればいいかも？)
 
+case "${OSTYPE}" in
+darwin*)
+  date="gdate"
+  find="gfind"
+  ;;
+linux*)
+  date="date"
+  find="find"
+  ;;
+esac
+
 # 引数の取得(テンプレートファイルPATH)
 PLIST_TEMPLETE=("$@")
 
 # 現時点の`~/Today`ディレクトリ配下へ、バックアップファイルの配置
 backup_dir="$HOME/Today/backup"
-if [[ -z $backup_dir ]]; then
+if [[ ! -d $backup_dir ]]; then
   # バックアップ用ディレクトリを作成
-  mkdir -p ~/Today/backup
+  mkdir -p $HOME/Today/backup
 
   # history系のファイルをバックアップ用ディレクトリへ配置
-  tar czvf ~/Today/backup/histories.$(date +%Y%m%d -d '-1day').tar.gz ~/.zhistory ~/.bash_history ~/.cd_bash_history ~/.cd_zhistory
+  tar czvf $HOME/Today/backup/histories.$(${date} +%Y%m%d -d '-1day').tar.gz ~/.zhistory ~/.bash_history ~/.cd_bash_history ~/.cd_zhistory
 fi
 
 # DIRの指定
@@ -53,7 +64,7 @@ linux*)
   DOWNLOAD="Download"
   ;;
 esac
-WORKDIR=$(date "+${HOME}/Work/%Y%m/%Y%m%d")
+WORKDIR=$(${date} "+${HOME}/Work/%Y%m/%Y%m%d")
 DOWNLOAD_DIR="${WORKDIR}/${DOWNLOAD}/"
 
 # `~/Work/YYYYMM/YYYYMMDD/$DOWNLOAD_DIR`を作成する
@@ -133,17 +144,6 @@ if [ -L "${TARGET_TODAY_DIR}" ]; then
 fi
 
 # もし前日のディレクトリを利用していなかった場合、削除する
-case "${OSTYPE}" in
-darwin*)
-  date="gdate"
-  find="gfind"
-  ;;
-linux*)
-  date="date"
-  find="find"
-  ;;
-esac
-
 YESTERDAY_DIR=$("${date}" "+${HOME}/Work/%Y%m/%Y%m%d" -d "-1 day")
 if [ -d "${YESTERDAY_DIR}" ]; then
   YESTERDAY_SIZE=$("${find}" "${YESTERDAY_DIR}" -type f -not -name ".DS_Store" -printf "%s\n" | awk '{sum=sum+$0}END{print sum}')

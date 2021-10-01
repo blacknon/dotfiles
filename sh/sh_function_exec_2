@@ -59,7 +59,7 @@ url2json() {
 ## ==========
 
 # Workディレクトリの作成・移動
-Work() {
+ww() {
   # local変数を定義
   local today_dir="$HOME/Work/$(date +%Y%m)/$(date +%Y%m%d)"
 
@@ -93,6 +93,48 @@ Work() {
 wd() {
   local today_dir="$HOME/Work/$(date +%Y%m)/$(date +%Y%m%d)"
   cd ${today_dir}/Downloads
+}
+
+# 現在いるWorkディレクトリを識別し、その前日のディレクトリへ移動する
+yw() {
+  # 変数の宣言
+  local target_day
+
+  # 現在いるディレクトリがWorkディレクトリの場合
+  if [[ $PWD =~ $HOME/Work/[0-9]{6}/[0-9]{8} ]]; then
+    local directory_day=$(echo $PWD | sed -r "s,$HOME/Work/[0-9]{6}/,,")
+    local target_day=$(date +%Y-%m-%d -d "$directory_day -1day")
+  else
+    # 現在ディレクトリがWorkディレクトリでない場合、昨日ディレクトリを直接指定
+    local target_day=$(date +%Y-%m-%d -d '-1day')
+  fi
+
+  local yesterday_dir="$HOME/Work/$(date +%Y%m -d ${target_day})/$(date +%Y%m%d -d ${target_day})"
+  if [[ -d ${yesterday_dir} ]]; then
+    cd ${yesterday_dir}
+    echo ${yesterday_dir}
+  fi
+}
+
+# 現在いるWorkディレクトリを識別し、その翌日のディレクトリへ移動する
+tw() {
+  # 変数の宣言
+  local target_day
+
+  # 現在いるディレクトリがWorkディレクトリの場合
+  if [[ $PWD =~ $HOME/Work/[0-9]{6}/[0-9]{8} ]]; then
+    local directory_day=$(echo $PWD | sed -r "s,$HOME/Work/[0-9]{6}/,,")
+    local target_day=$(date +%Y-%m-%d -d "$directory_day +1day")
+  else
+    # 現在ディレクトリがWorkディレクトリでない場合、翌日ディレクトリを直接指定
+    local target_day=$(date +%Y-%m-%d -d '+1day')
+  fi
+
+  local tomorrow_dir="$HOME/Work/$(date +%Y%m -d ${target_day})/$(date +%Y%m%d -d ${target_day})"
+  if [[ -d ${tomorrow_dir} ]]; then
+    cd ${tomorrow_dir}
+    echo ${tomorrow_dir}
+  fi
 }
 
 # 上のディレクトリに移動するfunction.

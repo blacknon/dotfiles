@@ -204,3 +204,28 @@ __toggle_singlequote_format() {
 __toggle_doublequote_format() {
   ____toggle_surround_format \" \"
 }
+
+
+# wwをkeybindで実行する
+__ww() {
+  ww
+  case $(basename ${SHELL}) in
+  zsh*) zle .accept-line ;;
+  esac
+}
+
+# ywをkeybindで実行する
+__yw() {
+  yw
+  case $(basename ${SHELL}) in
+  zsh*) zle .accept-line ;;
+  esac
+}
+
+# twをkeybindで実行する
+__tw() {
+  tw
+  case $(basename ${SHELL}) in
+  zsh*) zle .accept-line ;;
+  esac
+}
