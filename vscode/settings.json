@@ -84,8 +84,8 @@
     "go.useLanguageServer": true,
     // Rust
     "rust.mode": "legacy",
-    "rust.rustup": "~/.cargo/bin/rustup",
-    "rust.rustfmtPath": "~/.cargo/bin/rustfmt",
+    "rust.rustup": "${env:HOME}/.cargo/bin/rustup",
+    "rust.rustfmtPath": "${env:HOME}/.cargo/bin/rustfmt",
     // PHP
     "phpcs.standard": "PSR12",
     // 拡張子別設定
