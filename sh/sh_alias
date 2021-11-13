@@ -72,6 +72,10 @@ darwin*)
   which gsort 2>&1 >/dev/null
   [ $? -eq 0 ] && alias sort='gsort'
 
+  # head(gnu)
+  which ghead 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias head='ghead'
+
   # tail(gnu)
   which gtail 2>&1 >/dev/null
   [ $? -eq 0 ] && alias tail='gtail'
