@@ -105,5 +105,6 @@
             "user": "{{put-username-here}}",
             "password": ""
         }
-    ]
+    ],
+    "workbench.startupEditor": "none"
 }
