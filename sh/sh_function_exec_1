@@ -54,7 +54,7 @@ joinby() {
 
 # あいまいgrepをするfunction
 # (1文字違う文字列(abc=>{.bc,a.c,ab.})と、1文字ずつずらした文字列(abc=>{abc,bac,acb})でgrepをする(typoも発見できる))
-agrep() {
+aigrep() {
   unset GETOPT_COMPATIBLE
   while [ $# -gt 0 ]; do
     case $1 in

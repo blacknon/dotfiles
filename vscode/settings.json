@@ -1,6 +1,5 @@
 {
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // フルパス表示
-    "window.zoomLevel": -1, // 表示サイズを指定
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // 表示サイズを指定
     // エディター設定
     // ===============
     "editor.fontSize": 14, // エディターの文字サイズ
@@ -106,5 +105,6 @@
             "password": ""
         }
     ],
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "window.zoomLevel": -1
 }
