@@ -23,12 +23,13 @@ def main():
     if args.all:
         text = sys.stdin.read()
         for _c in text:
-            print('\\u%04x' % ord(_c))
+            print('\\u%04x' % ord(_c), end="")
     else:
         for line in sys.stdin:
             line = line.strip()
             for _c in line:
-                print('\\u%04x' % ord(_c))
+                print('\\u%04x' % ord(_c), end="")
+            print()
 
 
 if __name__ == '__main__':
