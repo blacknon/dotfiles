@@ -61,6 +61,7 @@ darwin*)
   PATH_LIST+=("/usr/local/opt/ncurses/bin")
   PATH_LIST+=("/usr/local/opt/mysql-client/bin")
   PATH_LIST+=("/usr/local/opt/openssl@1.1/bin")
+  PATH_LIST+=("/usr/local/opt/icu4c/bin")
 
   # LIBRARY_PATH
   export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/ncurses/lib/"
