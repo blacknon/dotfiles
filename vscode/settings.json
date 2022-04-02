@@ -84,11 +84,16 @@
     // Rust
     "rust.mode": "legacy",
     "rust.rustup": "${env:HOME}/.cargo/bin/rustup",
+    "rust.rustup.toolchain": "stable-x86_64-apple-darwin",
     "rust.rustfmtPath": "${env:HOME}/.cargo/bin/rustfmt",
     // PHP
     "phpcs.standard": "PSR12",
     // 拡張子別設定
     // ===============
+    // rust
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust"
+    },
     // dockerfiles
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
