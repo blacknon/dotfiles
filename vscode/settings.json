@@ -111,5 +111,6 @@
         }
     ],
     "workbench.startupEditor": "none",
-    "window.zoomLevel": -1
+    "window.zoomLevel": -1,
+    "redhat.telemetry.enabled": true
 }
