@@ -32,7 +32,7 @@ TRAPALRM() {
        [ "$WIDGET" != "__cd_selection" ] && \
        [ "$WIDGET" != "gscd" ] && \
        [ "$WIDGET" != "__substitute_line" ] && \
-       [ "$WIDGET" != "__pet_set" ] && \
+       [ "$WIDGET" != "__pet_set" ] \
        ; then
             zle .reset-prompt
     fi
@@ -121,7 +121,7 @@ precmd_prompt() {
 
     # battery functionがあれば実行する
     if typeset -f battery > /dev/null ;then
-        BATTERY="$(battery|sed 's/%/&&/g')"
+        BATTERY="$(battery|$SED 's/%/&&/g')"
         if [[ ${#BATTERY} -eq 0 ]];then
             BATTERY="NONE"
         fi
@@ -143,7 +143,7 @@ precmd_prompt() {
     local PAD_WIDTH="$(($COLUMNS - ($L_WIDTH + $R_WIDTH) % $COLUMNS))"
 
     # $TOP_LPROMPTおよび$TOP_RPROMPTに全角文字が含まれている場合、その文字数分PADからマイナスする
-    local ZENKAKU=$(print -P "${TOP_LPROMPT}${TOP_RPROMPT}"|$GREP -o -P '[^\x00-\x7F]'| wc -l)
+    local ZENKAKU=$(print -P "${TOP_LPROMPT}${TOP_RPROMPT}"|$GREP -o -P '[^\x00-\x7F]'| wc -l | tr -d ' ')
     if [ ${ZENKAKU} -ne 0 ];then
         local PAD_WIDTH=$(($PAD_WIDTH - $ZENKAKU))
     fi
