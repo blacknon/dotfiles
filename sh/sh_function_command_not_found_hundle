@@ -11,7 +11,7 @@ function __command_not_found_animation() {
 # コマンドが無い場合に実行される処理の定義
 function __command_not_found() {
     # compopt(bashの補完用コマンド)の場合、コマンドは無いものとして処理
-    if [ $1 == "compopt" ]; then
+    if [ "$1" == "compopt" ]; then
         return 127
     fi
 
@@ -21,7 +21,7 @@ function __command_not_found() {
         return 127
         ;;
     linux*)
-        if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-not-found ]; then
+        if [ -x /usr/lib/command-not-found ] || [ -x /usr/share/command-not-found/command-not-found ]; then
             if [ -x /usr/lib/command-not-found ]; then
                 /usr/lib/command-not-found -- "$1"
                 __command_not_found_animation "$1"
@@ -40,7 +40,7 @@ function __command_not_found() {
 }
 
 # command_not_found_handle(zshの場合はcommand_not_found_handler)の定義
-case $(basename ${SHELL}) in
+case $(basename "${SHELL}") in
 zsh*)
     function command_not_found_handler() {
         trap '' 1 2 3 15

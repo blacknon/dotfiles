@@ -112,5 +112,8 @@
     ],
     "workbench.startupEditor": "none",
     "window.zoomLevel": -1,
-    "redhat.telemetry.enabled": true
+    "redhat.telemetry.enabled": true,
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    }
 }

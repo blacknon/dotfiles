@@ -86,12 +86,13 @@ PATH_LIST+=("$HOME/.composer/vendor/bin")  # php(composer)用のPATH
 PATH_LIST+=("$HOME/.gem/ruby/bin")         # Ruby gem用PATH
 PATH_LIST+=("$HOME/.nodebrew/current/bin") # NodeJS用PATH
 PATH_LIST+=("$HOME/.local/bin")            # Python(pip)用PATH
+PATH_LIST+=("$HOME/.nimble/bin")           # Nim用PATH
 PATH_LIST+=("$HOME/bin")                   # 自作スクリプト群の配置用ディレクトリPATH
 PATH_LIST+=("$HOME/dotfiles/bin")          # 自作スクリプト群の配置用ディレクトリPATH
 PATH_LIST+=("/user/local/bin")             # 上書きするため
 
 # PATHを一気に追加
-for p in ${PATH_LIST[@]}; do
+for p in "${PATH_LIST[@]}"; do
   if [ -d "$p" ]; then
     export PATH="$PATH:$p"
   fi
