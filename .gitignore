@@ -1,2 +1,7 @@
 .gitattributes
+
+# mac向け
 .DS_Store
+
+# pydork用
+geckodriver.log

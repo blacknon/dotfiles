@@ -3,6 +3,11 @@
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
+# XDG_HOME
+if [ -z "${XDG_CONFIG_HOME}" ]; then
+  export XDG_CONFIG_HOME="${HOME}/.config"
+fi
+
 # python encode
 export PYTHONIOENCODING='UTF-8'
 
