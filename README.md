@@ -12,23 +12,23 @@
 
 ## ディレクトリ・ファイル構成
 
-| PATH                                                                                     | 概要                                                                               |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [.zshrc](.zshrc)                                                                         | zsh用のrcファイル。小分けにしたファイル郡をsourceするだけ。                        |
-| [.bashrc](.bashrc)                                                                       | bash用のrcファイル。小分けにしたファイル郡をsourceするだけ。                       |
-| [.vimrc](.vimrc)                                                                         | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。    |
-| [.tmux.conf](.tmux.conf)                                                                 | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。    |
-| [sh](sh)                                                                                 | bash/zshで共通の設定・関数を格納するディレクトリ。                                 |
-| [sh/sh_alias](sh/sh_alias)                                                               | aliasの設定ファイル                                                                |
-| [sh/sh_export](sh/sh_export)                                                             | export周りの処理を記述しているファイル                                             |
-| [sh/sh/sh_function_command_not_found_hundle](sh/sh/sh_function_command_not_found_hundle) | aliasの設定ファイル                                                                |
-| [sh/sh_function_common](sh/sh_function_common)                                           | shell関数内で利用している関数を記述しているファイル                                |
-| [sh/sh_function_exec_1](sh/sh_function_exec_1)                                           | インタラクティブシェルから実行する関数1(ssh先に持っていくもの)                     |
-| [sh/sh_function_exec_2](sh/sh_function_exec_2)                                           | インタラクティブシェルから実行する関数2(ssh先に持っていかない・利用頻度の低いもの) |
-| [sh/sh_function_iterm2](sh/sh_function_iterm2)                                           | iTerm2で利用する関数                                                               |
-| [sh/sh_function_keybind](sh/sh_function_keybind)                                         | Keybindで使用する関数                                                              |
-| [sh/sh_function_replace](sh/sh_function_replace)                                         | 既存のコマンドからaliasで置き換える関数                                            |
-| [sh/sh_other](sh/sh_other)                                                               | その他                                                                             |
+| PATH                                                                               | 概要                                                                               |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [.zshrc](.zshrc)                                                                   | zsh用のrcファイル。小分けにしたファイル郡をsourceするだけ。                        |
+| [.bashrc](.bashrc)                                                                 | bash用のrcファイル。小分けにしたファイル郡をsourceするだけ。                       |
+| [.vimrc](.vimrc)                                                                   | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。    |
+| [.tmux.conf](.tmux.conf)                                                           | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。    |
+| [sh](sh)                                                                           | bash/zshで共通の設定・関数を格納するディレクトリ。                                 |
+| [sh/sh_alias](sh/sh_alias)                                                         | aliasの設定ファイル                                                                |
+| [sh/sh_export](sh/sh_export)                                                       | export周りの処理を記述しているファイル                                             |
+| [sh/sh_function_command_not_found_hundle](sh/sh_function_command_not_found_hundle) | aliasの設定ファイル                                                                |
+| [sh/sh_function_common](sh/sh_function_common)                                     | shell関数内で利用している関数を記述しているファイル                                |
+| [sh/sh_function_exec_1](sh/sh_function_exec_1)                                     | インタラクティブシェルから実行する関数1(ssh先に持っていくもの)                     |
+| [sh/sh_function_exec_2](sh/sh_function_exec_2)                                     | インタラクティブシェルから実行する関数2(ssh先に持っていかない・利用頻度の低いもの) |
+| [sh/sh_function_iterm2](sh/sh_function_iterm2)                                     | iTerm2で利用する関数                                                               |
+| [sh/sh_function_keybind](sh/sh_function_keybind)                                   | Keybindで使用する関数                                                              |
+| [sh/sh_function_replace](sh/sh_function_replace)                                   | 既存のコマンドからaliasで置き換える関数                                            |
+| [sh/sh_other](sh/sh_other)                                                         | その他                                                                             |
 
 ## 実行コマンド・関数
 

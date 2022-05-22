@@ -121,7 +121,7 @@ export LESS_TERMCAP_mb="${COLOR_LRED}"
 export LESS_TERMCAP_md="${COLOR_PURPLE}"
 export LESS_TERMCAP_me="${COLOR_NONE}"
 export LESS_TERMCAP_se="${COLOR_NONE}"
-export LESS_TERMCAP_so="$'\E[01;44;32m'"
+export LESS_TERMCAP_so=$'\E[01;44;32m'
 export LESS_TERMCAP_ue="${COLOR_NONE}"
 export LESS_TERMCAP_us="${COLOR_YELLOW}"
 
