@@ -5,8 +5,14 @@
 
 # ヒストリー件数を定義
 export HISTSIZE=50000000
-export HISTFILE="${XDG_STATE_HOME}/bash/bash_history"
-export CDHISTFILE="${XDG_STATE_HOME}/bash/bash_cd_history"
+
+if [[ "${XDG_STATE_HOME}" == "${HOME}" ]]; then
+  export HISTFILE="${HOME}/.bash_history"
+  export CDHISTFILE="${HOME}/.bash_cd_history"
+else
+  export HISTFILE="${XDG_STATE_HOME}/bash/bash_history"
+  export CDHISTFILE="${XDG_STATE_HOME}/bash/bash_cd_history"
+fi
 
 # 重複した履歴を保存しない
 export HISTCONTROL="ignoredups"

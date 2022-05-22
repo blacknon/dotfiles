@@ -7,22 +7,39 @@
 # =======================================================
 # ユーザー個別の設定が書き込まれるディレクトリ (/etc と類似).
 if [ -z "${XDG_CONFIG_HOME}" ]; then
-  export XDG_CONFIG_HOME="${HOME}/.config"
+  if [ -z "${SSH_CLIENT}" ]; then
+    export XDG_CONFIG_HOME="${HOME}/.config"
+  else
+    export XDG_CONFIG_HOME="${HOME}"
+  fi
 fi
 
 # ユーザー個別の重要でない (キャッシュ) データが書き込まれるディレクトリ (/var/cache と類似).
 if [ -z "${XDG_CACHE_HOME}" ]; then
-  export XDG_CACHE_HOME="${HOME}/.cache"
+  if [ -z "${SSH_CLIENT}" ]; then
+    export XDG_CACHE_HOME="${HOME}/.cache"
+  else
+    export XDG_CACHE_HOME="${HOME}"
+  fi
+
 fi
 
 # ユーザー個別のデータファイルが書き込まれるディレクトリ (/usr/share と類似).
 if [ -z "${XDG_DATA_HOME}" ]; then
-  export XDG_DATA_HOME="${HOME}/.local/share"
+  if [ -z "${SSH_CLIENT}" ]; then
+    export XDG_DATA_HOME="${HOME}/.local/share"
+  else
+    export XDG_DATA_HOME="${HOME}"
+  fi
 fi
 
 # ユーザー個別の状態ファイルをが書き込まれるディレクトリ (/var/lib と類似).
 if [ -z "${XDG_STATE_HOME}" ]; then
-  export XDG_STATE_HOME="${HOME}/.local/state"
+  if [ -z "${SSH_CLIENT}" ]; then
+    export XDG_STATE_HOME="${HOME}/.local/state"
+  else
+    export XDG_STATE_HOME="${HOME}"
+  fi
 fi
 
 # XDG Base Directoryの設定に伴うPATH指定処理
@@ -164,21 +181,6 @@ for p in "${PATH_LIST[@]}"; do
     export PATH="$PATH:$p"
   fi
 done
-
-# command
-# =======================================================
-# Dockerコンテナ接続前後に実行するコマンド(`docker_runin`や`docker_login`で使う)
-case ${OSTYPE} in
-darwin*)
-  export EXEC_BEFORE_DOCKER_IN='printf "\033]50;SetProfile=docker\a"'
-  export EXEC_AFTER_DOCKER_IN='printf "\033]50;SetProfile=Default\a"'
-  ;;
-linux*)
-  # TODO: Linux用のOSCエスケープシーケンスに書き換える
-  export EXEC_BEFORE_DOCKER_IN='echo -ne "\e]10;#C0C0C0\a\e]11;#431030\a"'
-  export EXEC_AFTER_DOCKER_IN='echo -ne "\e]10;#C0C0C0\a\e]11;#202020\a"'
-  ;;
-esac
 
 # historys
 # =======================================================

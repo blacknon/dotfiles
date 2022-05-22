@@ -33,7 +33,7 @@ FILES=(
     ~/_env/sh_export   # 環境に依存したファイル
     ~/dotfiles_private/bashrc
 )
-for i in ${FILES[@]}; do
+for i in "${FILES[@]}"; do
     if [ -f "$i" ]; then
         source "$i"
     fi
