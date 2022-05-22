@@ -4,6 +4,7 @@
 # that can be found in the LICENSE file.
 
 # XDG Base Directoryの定義を行う
+# =======================================================
 # ユーザー個別の設定が書き込まれるディレクトリ (/etc と類似).
 if [ -z "${XDG_CONFIG_HOME}" ]; then
   export XDG_CONFIG_HOME="${HOME}/.config"
@@ -24,13 +25,62 @@ if [ -z "${XDG_STATE_HOME}" ]; then
   export XDG_STATE_HOME="${HOME}/.local/state"
 fi
 
-# python encode
-export PYTHONIOENCODING='UTF-8'
+# XDG Base Directoryの設定に伴うPATH指定処理
+# =======================================================
+# aws-cli
+export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
+export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 
-# editor
-export EDITOR='vim'
+# azure-cli
+export AZURE_CONFIG_DIR="${XDG_DATA_HOME}/azure"
+
+# docker
+export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+
+# rust cargo
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+
+# rust rustup
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+
+# python
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/.pythonstartup"
+
+# Ruby gem
+export GEM_HOME="${XDG_DATA_HOME}/gem"
+export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
+
+# GnuPG
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+
+# Packer
+export PACKER_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/packer"
+export PACKER_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/packer"
+
+# PostgreSQL
+export PSQLRC="${XDG_CONFIG_HOME}/pg/psqlrc"
+export PSQL_HISTORY="${XDG_CACHE_HOME}/pg/psql_history"
+export PGPASSFILE="${XDG_CONFIG_HOME}/pg/pgpass"
+export PGSERVICEFILE="${XDG_CONFIG_HOME}/pg/pg_service.conf"
+
+# NodeJS
+export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node_repl_history"
+
+# npm
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+
+# wget
+export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
+
+# X Window System(x11)
+case ${OSTYPE} in
+darwin*)
+  export XAUTHORITY="$XDG_CACHE_HOME/Xauthority"
+  ;;
+esac
 
 # color code
+# =======================================================
 export COLOR_RED=$'\E[0;31m'
 export COLOR_GREEN=$'\E[0;32m'
 export COLOR_ORANGE=$'\E[0;33m'
@@ -49,6 +99,7 @@ export COLOR_WHITE=$'\E[1;37m'
 export COLOR_NONE=$'\E[0m'
 
 # set less color(manで見るときのcolor code)
+# =======================================================
 export LESS_TERMCAP_mb="${COLOR_LRED}"
 export LESS_TERMCAP_md="${COLOR_PURPLE}"
 export LESS_TERMCAP_me="${COLOR_NONE}"
@@ -57,16 +108,11 @@ export LESS_TERMCAP_so="$'\E[01;44;32m'"
 export LESS_TERMCAP_ue="${COLOR_NONE}"
 export LESS_TERMCAP_us="${COLOR_YELLOW}"
 
-# less
-export LESS="-R" # lessでスクロールが効くようにする
-
-# bat
-export BAT_PAGER="less -RF" # batのpagerを設定
-
+# PATH
+# =======================================================
 # GOPATH(PATHより前に定義)
 export GOPATH="${HOME}/_go"
 
-# PATH
 # 最後に存在チェックして突っ込んでくPATHリスト
 PATH_LIST=()
 
@@ -102,9 +148,9 @@ linux*)
   ;;
 esac
 
-PATH_LIST+=("${HOME}/.cargo/bin")            # Rust(Cargo)用PATH
-PATH_LIST+=("${HOME}/.composer/vendor/bin")  # php(composer)用のPATH
-PATH_LIST+=("${HOME}/.gem/ruby/bin")         # Ruby gem用PATH
+PATH_LIST+=("${CARGO_HOME}/bin")             # Rust(Cargo)用PATH
+PATH_LIST+=("${XDG_CONFIG_HOME}/vendor/bin") # php(composer)用のPATH
+PATH_LIST+=("${GEM_HOME}/ruby/bin")          # Ruby gem用PATH
 PATH_LIST+=("${HOME}/.nodebrew/current/bin") # NodeJS用PATH
 PATH_LIST+=("${HOME}/.local/bin")            # Python(pip)用PATH
 PATH_LIST+=("${HOME}/.nimble/bin")           # Nim用PATH
@@ -119,11 +165,8 @@ for p in "${PATH_LIST[@]}"; do
   fi
 done
 
-# ssh agent用のsockファイル
-if [ -z "${SSH_CLIENT}" ]; then
-  export SSH_AUTH_SOCK=~/.agent # ssh-agentのSOCK用PATH
-fi
-
+# command
+# =======================================================
 # Dockerコンテナ接続前後に実行するコマンド(`docker_runin`や`docker_login`で使う)
 case ${OSTYPE} in
 darwin*)
@@ -136,3 +179,33 @@ linux*)
   export EXEC_AFTER_DOCKER_IN='echo -ne "\e]10;#C0C0C0\a\e]11;#202020\a"'
   ;;
 esac
+
+# historys
+# =======================================================
+# docker history
+export DOCKER_HISTORY="${XDG_STATE_HOME}/docker/docker_history"
+
+# mysql history
+export MYSQL_HISTFILE="${XDG_STATE_HOME}/mysql/mysql_history"
+
+# less history
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
+
+# その他
+# =======================================================
+# less
+export LESS="-R" # lessでスクロールが効くようにする
+
+# bat
+export BAT_PAGER="less -RF" # batのpagerを設定
+
+# python encode
+export PYTHONIOENCODING='UTF-8'
+
+# editor
+export EDITOR='vim'
+
+# ssh agent用のsockファイル
+if [ -z "${SSH_CLIENT}" ]; then
+  export SSH_AUTH_SOCK="$XDG_CACHE_HOME/ssh/agent" # ssh-agentのSOCK用PATH
+fi

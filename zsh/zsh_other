@@ -252,7 +252,7 @@ zstyle ':completion:*:sudo:*' command-path \
     /bin
 
 # killコマンド時のプロセス補完をカスタマイズ(実行ターミナル以外で起動したプロセスも対象にする)
-zstyle ':completion:*:processes' command "ps -u $USER"
+zstyle ':completion:*:processes' command "ps -u ${USER}"
 
 # history検索でコマンド入力途中から検索できるようにする
 autoload history-search-end
@@ -277,14 +277,14 @@ zstyle ':zle:*' word-style unspecified
 # プロンプトカラー等を有効にする
 autoload -U promptinit
 promptinit
-if [ -z $TMUX ]; then
+if [ -z "${TMUX}" ]; then
     if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
         source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     fi
 fi
 
 # historyからオートサジェストをさせる
-if [ -z $TMUX ]; then
+if [ -z "${TMUX}" ]; then
     if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
         source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
     fi
@@ -313,8 +313,8 @@ if [ -f /usr/local/bin/aws_completer ]; then
 fi
 
 # 履歴ファイルの保存先
-export HISTFILE=${HOME}/.zhistory
-export CDHISTFILE=${HOME}/.cd_zhistory
+export HISTFILE="${XDG_STATE_HOME}/zsh/zhistory"
+export CDHISTFILE="${XDG_STATE_HOME}/zsh/cd_zhistory"
 
 # メモリに保存される履歴の件数
 export HISTSIZE=1000000000

@@ -46,7 +46,12 @@ if [[ ! -d $backup_dir ]]; then
   mkdir -p $HOME/Today/backup
 
   # history系のファイルをバックアップ用ディレクトリへ配置
-  tar czvf $HOME/Today/backup/histories.$(${date} +%Y%m%d -d '-1day').tar.gz ~/.zhistory ~/.bash_history ~/.cd_bash_history ~/.cd_zhistory
+  tar czvf $HOME/Today/backup/histories.$(${date} +%Y%m%d -d '-1day').tar.gz \
+    ~/.zhistory \
+    ~/.cd_zhistory \
+    "${XDG_STATE_HOME}/bash/bash_history" \
+    "${XDG_STATE_HOME}/bash/bash_cd_history"
+
 fi
 
 # DIRの指定
@@ -91,7 +96,7 @@ darwin*)
 
   # テンプレートファイルを読み込んでpersistent-othersの配列を追加
   i=0
-  for e in ${PLIST_TEMPLETE[@]}; do
+  for e in "${PLIST_TEMPLETE[@]}"; do
     # テンプレートファイルを読んで変数相当の箇所を置換
     #   - ${DOWNLOAD_DIR} ... ダウンロードディレクトリ
     DATA=$(sed "s,\${DOWNLOAD_DIR},${DOWNLOAD_DIR},g" "${e}")
