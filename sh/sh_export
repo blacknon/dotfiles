@@ -3,9 +3,25 @@
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
-# XDG_HOME
+# XDG Base Directoryの定義を行う
+# ユーザー個別の設定が書き込まれるディレクトリ (/etc と類似).
 if [ -z "${XDG_CONFIG_HOME}" ]; then
   export XDG_CONFIG_HOME="${HOME}/.config"
+fi
+
+# ユーザー個別の重要でない (キャッシュ) データが書き込まれるディレクトリ (/var/cache と類似).
+if [ -z "${XDG_CACHE_HOME}" ]; then
+  export XDG_CACHE_HOME="${HOME}/.cache"
+fi
+
+# ユーザー個別のデータファイルが書き込まれるディレクトリ (/usr/share と類似).
+if [ -z "${XDG_DATA_HOME}" ]; then
+  export XDG_DATA_HOME="${HOME}/.local/share"
+fi
+
+# ユーザー個別の状態ファイルをが書き込まれるディレクトリ (/var/lib と類似).
+if [ -z "${XDG_STATE_HOME}" ]; then
+  export XDG_STATE_HOME="${HOME}/.local/state"
 fi
 
 # python encode
@@ -32,23 +48,23 @@ export COLOR_LCYAN=$'\E[1;36m'
 export COLOR_WHITE=$'\E[1;37m'
 export COLOR_NONE=$'\E[0m'
 
-# man set color
-export LESS_TERMCAP_mb=${COLOR_LRED}
-export LESS_TERMCAP_md=${COLOR_PURPLE}
-export LESS_TERMCAP_me=${COLOR_NONE}
-export LESS_TERMCAP_se=${COLOR_NONE}
-export LESS_TERMCAP_so=$'\E[01;44;32m'
-export LESS_TERMCAP_ue=${COLOR_NONE}
-export LESS_TERMCAP_us=${COLOR_YELLOW}
+# set less color(manで見るときのcolor code)
+export LESS_TERMCAP_mb="${COLOR_LRED}"
+export LESS_TERMCAP_md="${COLOR_PURPLE}"
+export LESS_TERMCAP_me="${COLOR_NONE}"
+export LESS_TERMCAP_se="${COLOR_NONE}"
+export LESS_TERMCAP_so="$'\E[01;44;32m'"
+export LESS_TERMCAP_ue="${COLOR_NONE}"
+export LESS_TERMCAP_us="${COLOR_YELLOW}"
 
 # less
-export LESS=-R # lessでスクロールが効くようにする
+export LESS="-R" # lessでスクロールが効くようにする
 
 # bat
 export BAT_PAGER="less -RF" # batのpagerを設定
 
 # GOPATH(PATHより前に定義)
-export GOPATH=~/_go
+export GOPATH="${HOME}/_go"
 
 # PATH
 # 最後に存在チェックして突っ込んでくPATHリスト
@@ -60,41 +76,41 @@ darwin*)
   export GOROOT=/usr/local/opt/go/libexec
 
   # PATH
-  PATH_LIST+=("$GOROOT/bin")
-  PATH_LIST+=("$GOPATH/bin")
-  PATH_LIST+=("$HOME/dotfiles/AppleScripts")
+  PATH_LIST+=("${GOROOT}/bin")
+  PATH_LIST+=("${GOPATH}/bin")
+  PATH_LIST+=("${HOME}/dotfiles/AppleScripts")
   PATH_LIST+=("/usr/local/opt/ncurses/bin")
   PATH_LIST+=("/usr/local/opt/mysql-client/bin")
   PATH_LIST+=("/usr/local/opt/openssl@1.1/bin")
   PATH_LIST+=("/usr/local/opt/icu4c/bin")
 
   # LIBRARY_PATH
-  export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/opt/ncurses/lib/"
+  export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/opt/ncurses/lib/"
 
   # LDFLAGS
   export LDFLAGS=" -L/usr/local/opt/ncurses/lib"
-  export LDFLAGS=$LDFLAGS" -L/usr/local/opt/openssl@1.1/lib"
+  export LDFLAGS=${LDFLAGS}" -L/usr/local/opt/openssl@1.1/lib"
 
   # CPPFLAGS
   export CPPFLAGS=" -I/usr/local/opt/ncurses/include"
-  export CPPFLAGS=$CPPFLAGS" -I/usr/local/opt/openssl@0.1/include"
+  export CPPFLAGS=${CPPFLAGS}" -I/usr/local/opt/openssl@0.1/include"
   ;;
 linux*)
   # PATH
-  PATH_LIST+=("$GOPATH/bin")
+  PATH_LIST+=("${GOPATH}/bin")
   PATH_LIST+=("/usr/local/go/bin")
   ;;
 esac
 
-PATH_LIST+=("$HOME/.cargo/bin")            # Rust(Cargo)用PATH
-PATH_LIST+=("$HOME/.composer/vendor/bin")  # php(composer)用のPATH
-PATH_LIST+=("$HOME/.gem/ruby/bin")         # Ruby gem用PATH
-PATH_LIST+=("$HOME/.nodebrew/current/bin") # NodeJS用PATH
-PATH_LIST+=("$HOME/.local/bin")            # Python(pip)用PATH
-PATH_LIST+=("$HOME/.nimble/bin")           # Nim用PATH
-PATH_LIST+=("$HOME/bin")                   # 自作スクリプト群の配置用ディレクトリPATH
-PATH_LIST+=("$HOME/dotfiles/bin")          # 自作スクリプト群の配置用ディレクトリPATH
-PATH_LIST+=("/user/local/bin")             # 上書きするため
+PATH_LIST+=("${HOME}/.cargo/bin")            # Rust(Cargo)用PATH
+PATH_LIST+=("${HOME}/.composer/vendor/bin")  # php(composer)用のPATH
+PATH_LIST+=("${HOME}/.gem/ruby/bin")         # Ruby gem用PATH
+PATH_LIST+=("${HOME}/.nodebrew/current/bin") # NodeJS用PATH
+PATH_LIST+=("${HOME}/.local/bin")            # Python(pip)用PATH
+PATH_LIST+=("${HOME}/.nimble/bin")           # Nim用PATH
+PATH_LIST+=("${HOME}/bin")                   # 自作スクリプト群の配置用ディレクトリPATH
+PATH_LIST+=("${HOME}/dotfiles/bin")          # 自作スクリプト群の配置用ディレクトリPATH
+PATH_LIST+=("/user/local/bin")               # 上書きするため
 
 # PATHを一気に追加
 for p in "${PATH_LIST[@]}"; do

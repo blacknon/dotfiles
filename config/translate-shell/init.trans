@@ -1,0 +1,12 @@
+{
+  :translate-shell            "0.9.0"
+  :verbose                    true
+  :tl                         "ja"
+  :show-dictionary            false
+  :show-languages             false
+  :show-prompt-message        false
+  :show-original              false
+  :show-original-phonetics    false
+  :show-translation           false
+  :show-translation-phonetics false
+}
