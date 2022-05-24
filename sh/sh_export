@@ -21,7 +21,6 @@ if [ -z "${XDG_CACHE_HOME}" ]; then
   else
     export XDG_CACHE_HOME="${HOME}"
   fi
-
 fi
 
 # ユーザー個別のデータファイルが書き込まれるディレクトリ (/usr/share と類似).
