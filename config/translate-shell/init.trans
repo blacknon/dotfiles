@@ -1,7 +1,6 @@
 {
   :translate-shell            "0.9.0"
   :verbose                    true
-  :tl                         "ja"
   :show-dictionary            false
   :show-languages             false
   :show-prompt-message        false
