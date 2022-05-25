@@ -78,15 +78,15 @@ ww() {
       esac
     else
       # ssh接続をしている場合
-      mkdir -p $today_dir && cd $today_dir
-      if [[ ! -f $today_dir/today_memo.txt ]]; then
-        touch $today_dir/today_memo.txt
+      mkdir -p "${today_dir}" && cd "${today_dir}"
+      if [[ ! -f "${today_dir}/today_memo.md" ]]; then
+        touch "${today_dir}/today_memo.md"
       fi
     fi
   fi
 
-  cd ${today_dir}
-  echo ${today_dir}
+  cd "${today_dir}"
+  echo "${today_dir}"
 }
 
 # 本日のDownloadディレクトリへの遷移用function
