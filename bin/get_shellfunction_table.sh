@@ -6,8 +6,40 @@
 # Description: シェル関数とその説明を`sh_function*`ファイルから取得してtableにするスクリプト
 # =============================================
 
+# usage
+function usage() {
+    cat <<_EOT_
+Usage:
+  $0 [dir]
+
+Description:
+  指定されたdotfilesディレクトリ配下にあるsh/配下のfunctionをリストアップしてmarkdown tableとして表示する
+
+_EOT_
+    exit 1
+}
+
+# option check
+while getopts h OPT; do
+    case $OPT in
+    h)
+        echo "h option. display help"
+        usage
+        exit 0
+        ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
 # ~/dotfilesに移動
-cd ~/dotfiles
+if [ -z $1 ]; then
+    dir=~/dotfiles
+else
+    dir=$1
+fi
+
+cd "$dir" || exit 1
 
 # sh_functionファイルの一覧を取得する
 files=$(ls -1 ./{sh,bash,zsh}/*sh_function* 2>/dev/null)

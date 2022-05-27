@@ -413,6 +413,16 @@ set iskeyword-=-_()
 
 " swapfileのエラーがうるさいため、swapfileやbackupfileを作成しないことにする(Manjaro対応)
 set noswapfile
-set backupdir=$HOME/.vimbackup
+if !empty($XDG_CACHE_HOME)
+  set backupdir=$XDG_CACHE_HOME/vim
+else
+  set backupdir=$HOME/.vimbackup
+endif
 set nobackup
 
+" viminfoのpathを指定する
+if !empty($XDG_STATE_HOME)
+  set viminfo+=n$XDG_STATE_HOME/vim/viminfo
+else
+  set viminfo+=$HOME/.viminfo
+endif

@@ -24,7 +24,7 @@ _EOT_
 }
 
 # option check
-while getopts abf:h OPT; do
+while getopts h OPT; do
   case $OPT in
   h)
     echo "h option. display help"
@@ -33,6 +33,7 @@ while getopts abf:h OPT; do
     ;;
   esac
 done
+shift $((OPTIND - 1))
 
 uri="socks5://"$(curl -s http://pubproxy.com/api/proxy?type=socks5 | jq -r '.data[].ipPort')
 echo $uri
