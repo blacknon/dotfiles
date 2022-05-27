@@ -23,9 +23,8 @@ FILES=(
     $ZSHRC_DIR/zsh/zsh_other
     ~/_shell/boco/sh_function_boco
     ~/_shell/substitute_line/sh_function_substitute_line
-    ~/_env/env_shell_function
-    ~/_env/sh_export
     ~/dotfiles_private/zshrc
+    ~/_env/zshrc
 )
 for i in ${FILES}; do
     if [ -f "$i" ]; then

@@ -29,9 +29,8 @@ FILES=(
     $BASHRC_DIR/bash/bash_local # ローカルにしか無い設定ファイル
     ~/_shell/boco/sh_function_boco
     ~/_shell/substitute_line/sh_function_substitute_line
-    ~/_env/env_shell_* # 環境に依存したファイル群
-    ~/_env/sh_export   # 環境に依存したファイル
     ~/dotfiles_private/bashrc
+    ~/_env/bashrc # 環境に依存したファイル群
 )
 for i in "${FILES[@]}"; do
     if [ -f "$i" ]; then

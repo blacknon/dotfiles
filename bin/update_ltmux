@@ -45,4 +45,4 @@ function ltmux() {
     fi
     \\\\tmux -L ${USER}_localrc -f <(cat <(echo "$TMUX_CONF"|base64 -d) <(echo \$BASHCMD|base64 -d)) \$@ ;
 }
-alias tmux=ltmux\n" >~/_env/sh_function_ltmux
+alias tmux=ltmux\n" >~/_env/sh/sh_function_ltmux
