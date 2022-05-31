@@ -110,10 +110,10 @@
         }
     ],
     "workbench.startupEditor": "none",
-    "window.zoomLevel": -1,
     "redhat.telemetry.enabled": true,
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "editor.guides.indentation": true
+    "editor.guides.indentation": true,
+    "window.zoomLevel": -1
 }
