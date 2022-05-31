@@ -19,7 +19,7 @@ esac
 # bashrcの内容を取得
 # ※ 容量削減のため、コメントアウトの行は除外している
 BASHRC=$(
-    cat ~/dotfiles/{bash/*,/sh/sh_function_{common,exec_1,imgview,keybind,replace},sh/sh_alias,sh/sh_export} |
+    cat ~/dotfiles/{bash/*,/sh/functions/{common,exec_1,iterm2,keybind,replace}.sh,sh/alias.sh,sh/export.sh} |
         grep -v -e '^ *#' |
         gzip -fc - |
         eval ${BASE64}
@@ -45,4 +45,4 @@ function ltmux() {
     fi
     \\\\tmux -L ${USER}_localrc -f <(cat <(echo "$TMUX_CONF"|base64 -d) <(echo \$BASHCMD|base64 -d)) \$@ ;
 }
-alias tmux=ltmux\n" >~/_env/sh/sh_function_ltmux
+alias tmux=ltmux\n" >~/_env/sh/functions/ltmux.sh

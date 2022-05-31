@@ -231,8 +231,8 @@ def command_list(args):
             output_json[i] = pj_json
         else:
             output_data = pj_start.strftime('%Y-%m-%d') + "〜" + \
-                pj_end.strftime('%Y-%m-%d') + ':' + ' ' + \
-                '[' + pj_name + ']' + ' ' + pj_desc + ' ' + str(p)
+                pj_end.strftime('%Y-%m-%d') + ':' + '\t' + \
+                '[' + pj_name + ']' + '\t' + pj_desc + '\t' + str(p)
 
             print(output_data)
 

@@ -481,3 +481,33 @@ mkinst() {
 # TODO: 作る。なお、対象のプロセスを補完で処理できるように考慮する
 # 参考: https://unix.stackexchange.com/questions/2107/how-to-suspend-and-resume-processes
 # p_resume() {}
+
+## ==========
+# プロジェクト関係用function
+## ==========
+
+# my-pjのwrapper用関数. functionとして動かすcd/archiveをサブコマンドとして置き換えて使用するためのもの.
+my-pj() {
+  case $1 in
+  # my-pjのディレクトリへcdする
+  cd)
+    shift
+    local dir="$(command my-pj list $@ | peco | awk -F $'\t' '{print $NF}')"
+
+    # $dirがない場合、カレントディレクトリを指定する
+    if [[ "${dir}" == "" ]]; then
+      dir="$(pwd)"
+    fi
+
+    echo "${dir}"
+    cd "${dir}" || echo "cd error: Not found :${dir}"
+    ;;
+
+  # 引数をそのままmy-pjへ渡す
+  *)
+    command my-pj "$@"
+
+    ;;
+
+  esac
+}

@@ -41,6 +41,13 @@ if [ -z "${XDG_STATE_HOME}" ]; then
   fi
 fi
 
+# ユーザー個別の状態ファイルをが書き込まれるディレクトリ (/var/lib と類似).
+if [ -z "${XDG_RUNTIME_DIR}" ]; then
+  if [ -z "${SSH_CLIENT}" ]; then
+    export XDG_RUNTIME_DIR="${HOME}/.run"
+  fi
+fi
+
 # XDG Base Directoryの設定に伴うPATH指定処理
 # =======================================================
 # aws-cli
@@ -54,7 +61,8 @@ export AZURE_CONFIG_DIR="${XDG_DATA_HOME}/azure"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 
 # rust cargo
-export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+# export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export CARGO_HOME="${HOME}/.cargo"
 
 # rust rustup
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"

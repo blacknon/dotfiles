@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # Copyright(c) 2021 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
@@ -8,26 +8,27 @@ ZSHRC_DIR=$(dirname $(realpath "${(%):-%N}")) # このファイル本体のあ�
 
 ### 読み込みファイルを個別に指定してREAD(読み込む順番があるので個別指定)
 FILES=(
-    $ZSHRC_DIR/zsh/zsh_prompt
-    $ZSHRC_DIR/sh/sh_function_common
-    $ZSHRC_DIR/sh/sh_function_replace
-    $ZSHRC_DIR/sh/sh_function_keybind
-    $ZSHRC_DIR/sh/sh_function_exec_1
-    $ZSHRC_DIR/sh/sh_function_exec_2
-    $ZSHRC_DIR/sh/sh_function_command_not_found_hundle
-    $ZSHRC_DIR/zsh/zsh_function
-    $ZSHRC_DIR/sh/sh_function_iterm2
-    $ZSHRC_DIR/sh/sh_export
-    $ZSHRC_DIR/sh/sh_alias
-    $ZSHRC_DIR/sh/sh_other
-    $ZSHRC_DIR/zsh/zsh_other
-    ~/_shell/boco/sh_function_boco
-    ~/_shell/substitute_line/sh_function_substitute_line
+    $ZSHRC_DIR/zsh/prompt.zsh
+    $ZSHRC_DIR/sh/functions/common.sh
+    $ZSHRC_DIR/sh/functions/replace.sh
+    $ZSHRC_DIR/sh/functions/keybind.sh
+    $ZSHRC_DIR/sh/functions/exec_1.sh
+    $ZSHRC_DIR/sh/functions/exec_2.sh
+    $ZSHRC_DIR/sh/functions/command_not_found_hundle.sh
+    $ZSHRC_DIR/zsh/function.zsh
+    $ZSHRC_DIR/sh/functions/iterm2.sh
+    $ZSHRC_DIR/sh/export.sh
+    $ZSHRC_DIR/sh/alias.sh
+    $ZSHRC_DIR/zsh/alias.zsh
+    $ZSHRC_DIR/sh/other.sh
+    $ZSHRC_DIR/zsh/other.zsh
+    ~/_shell/boco/boco.bash
+    ~/_shell/substitute_line/substitute_line.bash
     ~/dotfiles_private/zshrc
     ~/_env/zshrc
 )
 for i in ${FILES}; do
     if [ -f "$i" ]; then
-        source "$i"
+        source "$i" || echo "not found: $i"
     fi
 done

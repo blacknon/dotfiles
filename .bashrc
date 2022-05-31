@@ -4,7 +4,7 @@
 # that can be found in the LICENSE file.
 
 ### Setup var
-BASHRC_DIR=$(dirname $(realpath $BASH_SOURCE))
+BASHRC_DIR="$(dirname $(realpath $BASH_SOURCE))"
 
 ### 読み込みファイルを個別に指定してREAD(読み込む順番があるので個別指定)
 FILES=(
@@ -12,28 +12,28 @@ FILES=(
     /etc/bashrc
     /var/run/motd.dynamic
     /etc/motd
-    $BASHRC_DIR/bash/bash_prompt
-    $BASHRC_DIR/sh/sh_function_common
-    $BASHRC_DIR/sh/sh_function_replace
-    $BASHRC_DIR/sh/sh_function_keybind
-    $BASHRC_DIR/sh/sh_function_exec_1
-    $BASHRC_DIR/sh/sh_function_exec_2
-    $BASHRC_DIR/sh/sh_function_command_not_found_hundle
-    $BASHRC_DIR/sh/sh_function_iterm2 # iterm2用のfunctionファイル
-    $BASHRC_DIR/sh/sh_export
-    $BASHRC_DIR/sh/sh_alias
-    $BASHRC_DIR/sh/sh_keybind
-    $BASHRC_DIR/bash/bash_keybind
-    $BASHRC_DIR/bash/bash_other
-    $BASHRC_DIR/sh/sh_other
-    $BASHRC_DIR/bash/bash_local # ローカルにしか無い設定ファイル
-    ~/_shell/boco/sh_function_boco
-    ~/_shell/substitute_line/sh_function_substitute_line
+    "${BASHRC_DIR}"/bash/prompt.bash
+    "${BASHRC_DIR}"/sh/functions/common.sh
+    "${BASHRC_DIR}"/sh/functions/replace.sh
+    "${BASHRC_DIR}"/sh/functions/keybind.sh
+    "${BASHRC_DIR}"/sh/functions/exec_1.sh
+    "${BASHRC_DIR}"/sh/functions/exec_2.sh
+    "${BASHRC_DIR}"/sh/functions/command_not_found_hundle.sh
+    "${BASHRC_DIR}"/sh/functions/iterm2.sh # iterm2用のfunctionファイル
+    "${BASHRC_DIR}"/sh/export.sh
+    "${BASHRC_DIR}"/sh/alias.sh
+    "${BASHRC_DIR}"/sh/keybind.sh
+    "${BASHRC_DIR}"/bash/keybind.bash
+    "${BASHRC_DIR}"/bash/other.bash
+    "${BASHRC_DIR}"/sh/other.sh
+    "${BASHRC_DIR}"/bash/local.bash # ローカルにしか無い設定ファイル
+    ~/_shell/boco/boco.bash
+    ~/_shell/substitute_line/substitute_line.bash
     ~/dotfiles_private/bashrc
     ~/_env/bashrc # 環境に依存したファイル群
 )
 for i in "${FILES[@]}"; do
     if [ -f "$i" ]; then
-        source "$i"
+        source "$i" || echo "not found $i"
     fi
 done

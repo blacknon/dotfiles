@@ -8,7 +8,7 @@
     "editor.folding": true, // コードの折りたたみを許可
     "editor.wordWrap": "on", // 行の右端での折返しを有効にする
     "editor.wrappingIndent": "same", // 行を折り返した際のインデントを合わせる
-    "editor.matchBrackets": true, // 対応する括弧の強調表示をオンにする
+    "editor.matchBrackets": "always", // 対応する括弧の強調表示をオンにする
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~? 　、。",
     "editor.formatOnType": true, // 入力時に自動整形
     "editor.formatOnPaste": true, // ペースト時に自動整形
@@ -16,8 +16,7 @@
     "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
     "editor.snippetSuggestions": "top", // スニペット候補を優先表示
     "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace", // 使用するフォント
-    "editor.fontLigatures": null,
-    "editor.renderIndentGuides": true, // インデントガイド(インデントに沿って縦線を表示)を有効
+    "editor.fontLigatures": null, // インデントガイド(インデントに沿って縦線を表示)を有効
     "editor.renderLineHighlight": "all", // 選択行の行番号ハイライト
     "editor.renderWhitespace": "all", // ホワイトスペース（半角スペース等）の表示
     "editor.renderControlCharacters": true, // 制御文字表示
@@ -111,9 +110,10 @@
         }
     ],
     "workbench.startupEditor": "none",
-    "window.zoomLevel": -1,
+    "window.zoomLevel": -2,
     "redhat.telemetry.enabled": true,
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
-    }
+    },
+    "editor.guides.indentation": true
 }

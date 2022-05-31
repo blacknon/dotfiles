@@ -21,4 +21,4 @@ echo -ne "
 function lvim() {
     \\\\vim -u <(echo " $(cat ~/.vimrc | gzip -fc - | eval ${BASE64}) "|base64 -d|gzip -dc -) \$@ ;
 }
-alias vim=lvim\n" >~/_env/sh/sh_function_lvim
+alias vim=lvim\n" >~/_env/sh/functions/lvim.sh

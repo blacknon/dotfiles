@@ -305,7 +305,7 @@ compinit -u
 
 
 # Azure-CLI用のfunctionを読み込ませる(azコマンドの自動補完用)
-source $(dirname $(realpath "${(%):-%N}"))/zsh_complete_function_az
+source $(dirname $(realpath "${(%):-%N}"))/completion_az.zsh
 
 # aws_completerがある場合、読み込ませる(awsコマンドの自動補完用)
 if [ -f /usr/local/bin/aws_completer ]; then
