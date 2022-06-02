@@ -15,7 +15,7 @@ FILES=(
     $ZSHRC_DIR/sh/functions/exec_1.sh
     $ZSHRC_DIR/sh/functions/exec_2.sh
     $ZSHRC_DIR/sh/functions/command_not_found_hundle.sh
-    $ZSHRC_DIR/zsh/function.zsh
+    $ZSHRC_DIR/zsh/functions/function.zsh
     $ZSHRC_DIR/sh/functions/iterm2.sh
     $ZSHRC_DIR/sh/export.sh
     $ZSHRC_DIR/sh/alias.sh

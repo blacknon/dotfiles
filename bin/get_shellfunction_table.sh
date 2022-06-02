@@ -42,7 +42,7 @@ fi
 cd "$dir" || exit 1
 
 # sh_functionファイルの一覧を取得する
-files=$(ls -1 ./{sh,bash,zsh}/*sh_function* 2>/dev/null)
+files=$(ls -1 ./{sh,bash,zsh}/functions/* 2>/dev/null)
 
 echo "| File | 関数名 | 概要 |"
 echo "| ---- | ----- | --- |"
