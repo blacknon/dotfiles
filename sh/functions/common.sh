@@ -107,7 +107,7 @@ ____get_rcdata() {
   # dotfilesとboco、substitute_lineを読み込ませる
   # TODO(blacknon): いないファイルは読ませないように書き換え
   # TODO(blacknon): iterm2のファイルは、環境変数の値に応じて読み込ませるかどうかを分岐させる
-  cat ~/dotfiles/{sh/sh_{alias,export,other,function_{common,exec_1,exec_2,keybind,replace,iterm2}},bash/{bash_prompt,bash_other,bash_keybind}} \
+  cat ~/dotfiles/{sh/{alias.sh,export.sh,other.sh,functions/{common.sh,exec_1.sh,exec_2.sh,keybind.sh,replace.sh,iterm2.sh}},bash/{prompt.bash,other.bash,keybind.bash}} \
     ~/_shell/{boco/sh_function_boco,substitute_line/sh_function_substitute_line} \
     ~/_env/sh_function_lvim |
     eval $BASE64_CMD

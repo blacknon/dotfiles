@@ -7,6 +7,17 @@
 alias mkdir='__mkdirfunc'
 alias ping='__pingfunc'
 
+# shellの種類に応じて使用するオプションを変更する
+case $(basename ${SHELL}) in
+zsh*)
+  ALIAS_OPTION="-g"
+  ;;
+
+bash*)
+  ALIAS_OPTION=""
+  ;;
+esac
+
 # ssh接続先かどうかによる分岐
 if [ -z "${SSH_CLIENT}" ]; then
   # ローカルの場合
@@ -22,82 +33,82 @@ case ${OSTYPE} in
 darwin*)
   # ls(gnu)
   which gls 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias ls='gls --color=auto' lsc='gls --color=always' || alias ls='ls -G'
+  [ $? -eq 0 ] && alias ls='gls --color=auto' lsc='gls --color=always' || alias "${ALIAS_OPTION}" ls='ls -G'
 
   # grep(gnu)
   which ggrep 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias grep='ggrep --color=auto' || alias grep='grep --color=auto'
+  [ $? -eq 0 ] && alias grep='ggrep --color=auto' || alias "${ALIAS_OPTION}" grep='grep --color=auto'
 
   # find(gnu)
   which gfind 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias find='gfind'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" find='gfind'
 
   # sed(gnu)
   which gsed 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias sed='gsed'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" sed='gsed'
 
   # date(gnu)
   which gdate 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias date='gdate'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" date='gdate'
 
   # du(gnu)
   which gdu 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias du='gdu'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" du='gdu'
 
   # cat(gnu)
   which gcat 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias cat='gcat'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" cat='gcat'
 
   # cut(gnu)
   which gcut 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias cut='gcut'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" cut='gcut'
 
   # shuf(gnu)
   which gshuf 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias shuf='gshuf'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" shuf='gshuf'
 
   # join(gnu)
   which gjoin 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias join='gjoin'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" join='gjoin'
 
   # paste(gnu)
   which gpaste 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias paste='gpaste'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" paste='gpaste'
 
   # numfmt(gnu)
   which gnumfmt 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias numfmt='gnumfmt'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" numfmt='gnumfmt'
 
   # sort(gnu)
   which gsort 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias sort='gsort'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" sort='gsort'
 
   # head(gnu)
   which ghead 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias head='ghead'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" head='ghead'
 
   # tail(gnu)
   which gtail 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias tail='gtail'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" tail='gtail'
 
   # tar(gnu)
   which gtar 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias tar='gtar'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" tar='gtar'
 
   # xargs(gnu)
   which gxargs 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias xargs='gxargs'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" xargs='gxargs'
 
   ;;
 linux*)
-  alias ls='ls --color=auto'
-  alias lsc='ls --color=always'
-  alias grep='grep --color=auto '
+  alias "${ALIAS_OPTION}" ls='ls --color=auto'
+  alias "${ALIAS_OPTION}" lsc='ls --color=always'
+  alias "${ALIAS_OPTION}" grep='grep --color=auto '
   ;;
 esac
 
 # 共通
-alias script='script -f '
+alias "${ALIAS_OPTION}" script='script -f '
 
 # 上書きの有無を確認させる
 alias rm='rm -i'
@@ -105,17 +116,17 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # Python2/3関係
-alias pip='pip3'
-alias python='python3'
+alias "${ALIAS_OPTION}" pip='pip3'
+alias "${ALIAS_OPTION}" python='python3'
 
 # その他
-alias man='man -P less'
-alias l='ls'
-alias ll='ls -la'
-alias lh='ls -lahS'
-alias sl='ls'
-alias clr='clear'
-alias dig='dig +short ' # shortでの出力を基本にする
+alias "${ALIAS_OPTION}" man='man -P less'
+alias "${ALIAS_OPTION}" l='ls'
+alias "${ALIAS_OPTION}" ll='ls -la'
+alias "${ALIAS_OPTION}" lh='ls -lahS'
+alias "${ALIAS_OPTION}" sl='ls'
+alias "${ALIAS_OPTION}" clr='clear'
+alias "${ALIAS_OPTION}" dig='dig +short ' # shortでの出力を基本にする
 
 # その他主要ツールのalias
 # hwatch
