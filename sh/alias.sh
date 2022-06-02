@@ -8,7 +8,7 @@ alias mkdir='__mkdirfunc'
 alias ping='__pingfunc'
 
 # shellの種類に応じて使用するオプションを変更する
-case $(basename ${SHELL}) in
+case $(basename $SHELL) in
 zsh*)
   ALIAS_OPTION="-g"
   ;;
@@ -33,82 +33,82 @@ case ${OSTYPE} in
 darwin*)
   # ls(gnu)
   which gls 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias ls='gls --color=auto' lsc='gls --color=always' || alias "${ALIAS_OPTION}" ls='ls -G'
+  [ $? -eq 0 ] && alias ls='gls --color=auto' lsc='gls --color=always' || alias "${ALIAS_OPTION}" ls='ls -G' 2>/dev/null || alias ls='ls -G'
 
   # grep(gnu)
   which ggrep 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias grep='ggrep --color=auto' || alias "${ALIAS_OPTION}" grep='grep --color=auto'
+  [ $? -eq 0 ] && alias grep='ggrep --color=auto' || alias "${ALIAS_OPTION}" grep='grep --color=auto' 2>/dev/null || alias grep='grep --color=auto'
 
   # find(gnu)
   which gfind 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" find='gfind'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" find='gfind' 2>/dev/null || alias find='gfind'
 
   # sed(gnu)
   which gsed 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" sed='gsed'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" sed='gsed' 2>/dev/null || alias sed='gsed'
 
   # date(gnu)
   which gdate 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" date='gdate'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" date='gdate' 2>/dev/null || alias date='gdate'
 
   # du(gnu)
   which gdu 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" du='gdu'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" du='gdu' 2>/dev/null || alias du='gdu'
 
   # cat(gnu)
   which gcat 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" cat='gcat'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" cat='gcat' 2>/dev/null || alias cat='gcat'
 
   # cut(gnu)
   which gcut 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" cut='gcut'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" cut='gcut' 2>/dev/null || alias cut='gcut'
 
   # shuf(gnu)
   which gshuf 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" shuf='gshuf'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" shuf='gshuf' 2>/dev/null || alias shuf='gshuf'
 
   # join(gnu)
   which gjoin 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" join='gjoin'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" join='gjoin' 2>/dev/null || alias join='gjoin'
 
   # paste(gnu)
   which gpaste 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" paste='gpaste'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" paste='gpaste' 2>/dev/null || alias paste='gpaste'
 
   # numfmt(gnu)
   which gnumfmt 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" numfmt='gnumfmt'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" numfmt='gnumfmt' 2>/dev/null || alias numfmt='gnumfmt'
 
   # sort(gnu)
   which gsort 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" sort='gsort'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" sort='gsort' 2>/dev/null || alias sort='gsort'
 
   # head(gnu)
   which ghead 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" head='ghead'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" head='ghead' 2>/dev/null || alias head='ghead'
 
   # tail(gnu)
   which gtail 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" tail='gtail'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" tail='gtail' 2>/dev/null || alias tail='gtail'
 
   # tar(gnu)
   which gtar 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" tar='gtar'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" tar='gtar' 2>/dev/null || alias tar='gtar'
 
   # xargs(gnu)
   which gxargs 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" xargs='gxargs'
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" xargs='gxargs' 2>/dev/null || alias xargs='gxargs'
 
   ;;
 linux*)
-  alias "${ALIAS_OPTION}" ls='ls --color=auto'
-  alias "${ALIAS_OPTION}" lsc='ls --color=always'
-  alias "${ALIAS_OPTION}" grep='grep --color=auto '
+  alias "${ALIAS_OPTION}" ls='ls --color=auto ' 2>/dev/null || alias ls='ls --color=auto '
+  alias "${ALIAS_OPTION}" lsc='ls --color=always ' 2>/dev/null || alias lsc='ls --color=always '
+  alias "${ALIAS_OPTION}" grep='grep --color=auto ' 2>/dev/null || alias grep='grep --color=auto '
   ;;
 esac
 
 # 共通
-alias "${ALIAS_OPTION}" script='script -f '
+alias "${ALIAS_OPTION}" script='script -f ' 2>/dev/null || alias script='script -f '
 
 # 上書きの有無を確認させる
 alias rm='rm -i'
@@ -116,17 +116,17 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # Python2/3関係
-alias "${ALIAS_OPTION}" pip='pip3'
-alias "${ALIAS_OPTION}" python='python3'
+alias "${ALIAS_OPTION}" pip='pip3' 2>/dev/null || alias pip='pip3'
+alias "${ALIAS_OPTION}" python='python3' 2>/dev/null || alias python='python3'
 
 # その他
-alias "${ALIAS_OPTION}" man='man -P less'
-alias "${ALIAS_OPTION}" l='ls'
-alias "${ALIAS_OPTION}" ll='ls -la'
-alias "${ALIAS_OPTION}" lh='ls -lahS'
-alias "${ALIAS_OPTION}" sl='ls'
-alias "${ALIAS_OPTION}" clr='clear'
-alias "${ALIAS_OPTION}" dig='dig +short ' # shortでの出力を基本にする
+alias "${ALIAS_OPTION}" man='man -P less' 2>/dev/null || alias man='man -P less'
+alias "${ALIAS_OPTION}" l='ls' 2>/dev/null || alias l='ls'
+alias "${ALIAS_OPTION}" ll='ls -la' 2>/dev/null || alias ll='ls -la'
+alias "${ALIAS_OPTION}" lh='ls -lahS' 2>/dev/null || alias lh='ls -lahS'
+alias "${ALIAS_OPTION}" sl='ls' 2>/dev/null || alias sl='ls'
+alias "${ALIAS_OPTION}" clr='clear' 2>/dev/null || alias clr='clear'
+alias "${ALIAS_OPTION}" dig='dig +short ' 2>/dev/null || alias dig='dig +short ' # shortでの出力を基本にする
 
 # その他主要ツールのalias
 # hwatch
