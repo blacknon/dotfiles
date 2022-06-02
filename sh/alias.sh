@@ -3,6 +3,8 @@
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
+# TODO: 流石に雑すぎだろ…と思うので、いい感じにforで回すように変更する。。。そのうち。
+
 # 一部のコマンドをfunctionに置き換え
 alias mkdir='__mkdirfunc'
 alias ping='__pingfunc'
