@@ -57,8 +57,6 @@
 | [bin/update_ltmux](bin/update_ltmux)                             | ssh先に持っていくtmux設定付きfunctionの作成スクリプト                                          |
 | [bin/update_lvim](bin/update_lvim)                               | ssh先に持っていくvim設定付きfunctionの作成スクリプト                                           |
 
-
-
 ### シェル関数
 
 | File                                                   | 関数名                                                                | 概要                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |

@@ -131,10 +131,6 @@ alias "${ALIAS_OPTION}" clr='clear' 2>/dev/null || alias clr='clear'
 alias "${ALIAS_OPTION}" dig='dig +short ' 2>/dev/null || alias dig='dig +short ' # shortでの出力を基本にする
 
 # その他主要ツールのalias
-# hwatch
-which hwatch 2>/dev/null >/dev/null
-[ $? -eq 0 ] && alias hwatch='hwatch -l $HOME/Today/log/hwatch/hwatch_$(date +%Y%m%d_%H%M%S)_hwatch.log '
-
 # bat
 which bat 2>/dev/null >/dev/null
 [ $? -eq 0 ] && alias bat='bat -n' bcat='BAT_PAGER="cat" \bat -p'
