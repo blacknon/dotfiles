@@ -61,8 +61,7 @@ export AZURE_CONFIG_DIR="${XDG_DATA_HOME}/azure"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 
 # rust cargo
-# export CARGO_HOME="${XDG_DATA_HOME}/cargo"
-export CARGO_HOME="${HOME}/.cargo"
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 
 # rust rustup
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
