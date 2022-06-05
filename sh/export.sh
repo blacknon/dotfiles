@@ -97,11 +97,7 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
 
 # X Window System(x11)
-case ${OSTYPE} in
-darwin*)
-  export XAUTHORITY="$XDG_CACHE_HOME/Xauthority"
-  ;;
-esac
+export XAUTHORITY="$XDG_CACHE_HOME/Xauthority"
 
 # color code
 # =======================================================
