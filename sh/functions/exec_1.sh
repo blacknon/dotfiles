@@ -75,22 +75,22 @@ aigrep() {
 
   case ${OSTYPE} in
   darwin*)
-    local grep=("ggrep" "--color=auto")
+    grep=("ggrep" "--color=auto")
     ;;
   linux*)
-    local grep=("grep" "--color=auto")
+    grep=("grep" "--color=auto")
     ;;
   esac
 
   if [ -p /dev/stdin ]; then
     cat - | ${grep[@]} ${grep_option[@]} -f <(
-      IFS=$'\n'
-      echo "${str_list[*]}"
+      IFS=$'\n';
+      echo "${str_list[*]}";
     )
   else
     ${grep[@]} ${grep_option[@]} -f <(
-      IFS=$'\n'
-      echo "${str_list[*]}"
+      IFS=$'\n';
+      echo "${str_list[*]}";:
     ) ${@:2}
   fi
 }
@@ -285,12 +285,13 @@ todaydir() {
 # tarファイル内のデータをlist表示するfunction。
 tarls() {
   # optionをパース
-  local opt
+  local opt flag_l
   while getopts l opt; do
     case $opt in
-    l) local flg_l=1 ;;
+      "l") flag_l=1 ;;
     esac
   done
+
   shift $((OPTIND - 1))
 
   if [[ $flg_l -eq 1 ]]; then
@@ -302,12 +303,12 @@ tarls() {
 
 # TODO(blacknon): tarファイル内部の補完処理の追加(peco等で処理をさせる)
 # TODO(blacknon): エラーチェックの追加
-# tarファイル内のファイルを指定して標準出力に書き出すfunction。
+# tarファイル内のファイルを指定して標準出lflg_l力に書き出すfunction。
 tarcat() {
-  : ----------
-  : usage:
-  : tarcat "<tarfile_path>" "<path(in_tarfile)>"
-  : ----------
+  # ----------
+  # usage:
+  # tarcat "<tarfile_path>" "<path(in_tarfile)>"
+  # ----------
   tar xfO- "${1}" "${2}"
 }
 
@@ -317,10 +318,10 @@ tarcat() {
 # awkを利用する。 ※ GNU tarでないと動作しないので注意
 targrep() {
   # usageを残しておく
-  : ----------
-  : usage:
-  : targrep "<string>" "<filepath>"
-  : ----------
+  # ----------
+  # usage:
+  # targrep "<string>" "<filepath>"
+  # ----------
 
   # local変数の宣言
   local file_name   # tarファイル内のファイル名
@@ -380,7 +381,7 @@ zipls() {
   local opt
   while getopts l opt; do
     case $opt in
-    l) local flg_l=1 ;;
+    "l") local flg_l=1 ;;
     esac
   done
   shift $((OPTIND - 1))
@@ -406,7 +407,7 @@ rarls() {
   local opt
   while getopts l opt; do
     case $opt in
-    l) local flg_l=1 ;;
+    "l") local flg_l=1 ;;
     esac
   done
   shift $((OPTIND - 1))

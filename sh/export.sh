@@ -68,6 +68,7 @@ export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 
 # python
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/.pythonstartup"
+export PYLINTHOME="${XDG_CACHE_HOME}/pylint"
 
 # Ruby gem
 export GEM_HOME="${XDG_DATA_HOME}/gem"
@@ -95,12 +96,12 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 # wget
 export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
 
+# Gradle
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+
 # X Window System(x11)
-case ${OSTYPE} in
-darwin*)
-  export XAUTHORITY="$XDG_CACHE_HOME/Xauthority"
-  ;;
-esac
+export XAUTHORITY="${XDG_CACHE_HOME}/Xauthority"
+export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
 
 # color code
 # =======================================================
