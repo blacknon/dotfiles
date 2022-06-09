@@ -47,8 +47,8 @@ if [[ ! -d $backup_dir ]]; then
 
   # history系のファイルをバックアップ用ディレクトリへ配置
   tar czvf $HOME/Today/backup/histories.$(${date} +%Y%m%d -d '-1day').tar.gz \
-    ~/.zhistory \
-    ~/.cd_zhistory \
+    "${XDG_STATE_HOME}/zsh/zhistory" \
+    "${XDG_STATE_HOME}/zsh/cd_zhistory" \
     "${XDG_STATE_HOME}/bash/bash_history" \
     "${XDG_STATE_HOME}/bash/bash_cd_history"
 
