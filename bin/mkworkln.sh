@@ -24,7 +24,6 @@
 # =============================================
 
 # TODO(blacknon): 1時間単位で実行しても問題ないように作る(~/Work/YYYYMM/YYYYMMDDが存在しない場合にキックするようにすればいいかも？)
-
 case "${OSTYPE}" in
 darwin*)
   date="gdate"
@@ -45,8 +44,13 @@ if [[ ! -d $backup_dir ]]; then
   # バックアップ用ディレクトリを作成
   mkdir -p $HOME/Today/backup
 
+  # export
+  source "../sh/export.sh" || exit 1
+
   # history系のファイルをバックアップ用ディレクトリへ配置
   tar czvf $HOME/Today/backup/histories.$(${date} +%Y%m%d -d '-1day').tar.gz \
+    "${HOME}/.zhistory" \
+    "${HOME}/.bash_history" \
     "${XDG_STATE_HOME}/zsh/zhistory" \
     "${XDG_STATE_HOME}/zsh/cd_zhistory" \
     "${XDG_STATE_HOME}/bash/bash_history" \

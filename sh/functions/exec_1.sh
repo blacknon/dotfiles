@@ -84,13 +84,14 @@ aigrep() {
 
   if [ -p /dev/stdin ]; then
     cat - | ${grep[@]} ${grep_option[@]} -f <(
-      IFS=$'\n';
-      echo "${str_list[*]}";
+      IFS=$'\n'
+      echo "${str_list[*]}"
     )
   else
     ${grep[@]} ${grep_option[@]} -f <(
-      IFS=$'\n';
-      echo "${str_list[*]}";:
+      IFS=$'\n'
+      echo "${str_list[*]}"
+      :
     ) ${@:2}
   fi
 }
@@ -285,20 +286,28 @@ todaydir() {
 # tarファイル内のデータをlist表示するfunction。
 tarls() {
   # optionをパース
-  local opt flag_l
-  while getopts l opt; do
+  local opt flag_l flag_z taropt
+
+  while getopts "lz" opt; do
     case $opt in
-      "l") flag_l=1 ;;
+    "l") flag_l=1 ;;
+    "z") flag_z=1 ;;
     esac
   done
 
   shift $((OPTIND - 1))
 
-  if [[ $flg_l -eq 1 ]]; then
-    tar tvf "${@}"
-  else
-    tar tv "${@}"
+  taropt="tf"
+
+  if [[ ${flag_l} -eq 1 ]]; then
+    taropt="${taropt}v"
   fi
+
+  if [[ ${flag_z} -eq 1 ]]; then
+    taropt="${taropt}z"
+  fi
+
+  tar "${taropt}" "${@}"
 }
 
 # TODO(blacknon): tarファイル内部の補完処理の追加(peco等で処理をさせる)
