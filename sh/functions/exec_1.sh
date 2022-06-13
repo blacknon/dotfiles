@@ -285,13 +285,15 @@ todaydir() {
 
 # tarファイル内のデータをlist表示するfunction。
 tarls() {
-  # optionをパース
+  # ローカル変数を宣言
   local opt flag_l flag_z taropt
 
+  # optionをパース
   while getopts "lz" opt; do
     case $opt in
     "l") flag_l=1 ;;
     "z") flag_z=1 ;;
+    "*") return 1 ;;
     esac
   done
 
@@ -316,9 +318,25 @@ tarls() {
 tarcat() {
   # ----------
   # usage:
-  # tarcat "<tarfile_path>" "<path(in_tarfile)>"
+  # tarcat "<path(tarfile)>"
   # ----------
-  tar xfO- "${1}" "${2}"
+  # ローカル変数の宣言
+  local selecter target_archive_file target_file
+
+  # 対象ファイルの取得
+  target_archive_file="${1}"
+
+  # セレクトするコマンドの有無によって切り替えをする
+  # (peco>bocoの順に確認)
+  if type "peco" >/dev/null 2>&1; then
+    selecter="peco"
+  elif type "boco" >/dev/null 2>&1; then
+    selecter="boco"
+  fi
+
+  target_file="$(tarls ${target_archive_file} | ${selecter})"
+
+  tar xfO- "${target_archive_file}" "${target_file}"
 }
 
 # TODO(blacknon): 検索対象とするファイル名をワイルドカード指定できるようにする
@@ -386,25 +404,46 @@ targrep() {
 
 # zipファイル内のデータをlist表示するfunction。
 zipls() {
+  # ローカル変数を宣言
+  local opt zipopt
+
   # optionをパース
-  local opt
   while getopts l opt; do
     case $opt in
     "l") local flg_l=1 ;;
+    "*") return 1 ;;
     esac
   done
   shift $((OPTIND - 1))
 
   if [[ $flg_l -eq 1 ]]; then
-    unzip -Zs "${@}"
+    zipopt="-Zs"
   else
-    unzip -Z1 "${@}"
+    zipopt="-Z1"
   fi
+
+  unzip "${zipopt}" "${@}"
 }
 
 # zipファイル内のファイルを指定して標準出力に書き出すfunction。
 zipcat() {
-  unzip -p $1 $2
+  # ローカル変数の宣言
+  local selecter target_archive_file target_file
+
+  # 対象ファイルの取得
+  target_archive_file="${1}"
+
+  # セレクトするコマンドの有無によって切り替えをする
+  # (peco>bocoの順に確認)
+  if type "peco" >/dev/null 2>&1; then
+    selecter="peco"
+  elif type "boco" >/dev/null 2>&1; then
+    selecter="boco"
+  fi
+
+  target_file="$(zipls ${target_archive_file} | ${selecter})"
+
+  unzip -p ${target_archive_file} ${target_file}
 }
 
 # zipファイル内のデータに対してgrep(相当の処理)を行うfunction。
