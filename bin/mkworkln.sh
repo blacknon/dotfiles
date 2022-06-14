@@ -45,7 +45,7 @@ if [[ ! -d $backup_dir ]]; then
   mkdir -p $HOME/Today/backup
 
   # export
-  source "../sh/export.sh" || exit 1
+  source "$(realpath $(dirname $0)/../sh/export.sh)" || echo "note exit $$"
 
   # history系のファイルをバックアップ用ディレクトリへ配置
   tar czvf $HOME/Today/backup/histories.$(${date} +%Y%m%d -d '-1day').tar.gz \
@@ -55,7 +55,6 @@ if [[ ! -d $backup_dir ]]; then
     "${XDG_STATE_HOME}/zsh/cd_zhistory" \
     "${XDG_STATE_HOME}/bash/bash_history" \
     "${XDG_STATE_HOME}/bash/bash_cd_history"
-
 fi
 
 # DIRの指定
