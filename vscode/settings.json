@@ -89,6 +89,12 @@
     "phpcs.standard": "PSR12",
     // 拡張子別設定
     // ===============
+    // c
+    "[c]": {
+        "editor.formatOnType": false, // 入力時に自動整形
+        "editor.formatOnPaste": false, // ペースト時に自動整形
+        "editor.formatOnSave": false, // 保存時に自動整形
+    },
     // rust
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust"
