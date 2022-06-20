@@ -313,8 +313,13 @@ if [ -f /usr/local/bin/aws_completer ]; then
 fi
 
 # 履歴ファイルの保存先
-export HISTFILE="${XDG_STATE_HOME}/zsh/zhistory"
-export CDHISTFILE="${XDG_STATE_HOME}/zsh/cd_zhistory"
+if [[ -d "${XDG_STATE_HOME}/zsh/" ]];then
+    export HISTFILE="${XDG_STATE_HOME}/zsh/zhistory"
+    export CDHISTFILE="${XDG_STATE_HOME}/zsh/cd_zhistory"
+else
+    export HISTFILE="${HOME}/zsh/zhistory"
+    export CDHISTFILE="${HOME}/zsh/cd_zhistory"
+fi
 
 # メモリに保存される履歴の件数
 export HISTSIZE=1000000000
