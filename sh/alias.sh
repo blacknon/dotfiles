@@ -101,6 +101,10 @@ darwin*)
   which gxargs 2>&1 >/dev/null
   [ $? -eq 0 ] && alias "${ALIAS_OPTION}" xargs='gxargs' 2>/dev/null || alias xargs='gxargs'
 
+  # tree
+  which tree 2>&1 >/dev/null
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" xargs='tree -N ' 2>/dev/null
+
   ;;
 linux*)
   alias "${ALIAS_OPTION}" ls='ls --color=auto ' 2>/dev/null || alias ls='ls --color=auto '
