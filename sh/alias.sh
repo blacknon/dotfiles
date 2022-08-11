@@ -103,7 +103,7 @@ darwin*)
 
   # tree
   which tree 2>&1 >/dev/null
-  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" xargs='tree -N ' 2>/dev/null
+  [ $? -eq 0 ] && alias "${ALIAS_OPTION}" tree='tree -N ' 2>/dev/null
 
   ;;
 linux*)
