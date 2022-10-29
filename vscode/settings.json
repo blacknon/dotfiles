@@ -4,7 +4,11 @@
     // ===============
     "editor.fontSize": 14, // エディターの文字サイズ
     "editor.lineNumbers": "on", // 行番号の有効
-    "editor.quickSuggestions": true, // 入力補完を表示
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on",
+        "other": "on"
+    }, // 入力補完を表示
     "editor.folding": true, // コードの折りたたみを許可
     "editor.wordWrap": "on", // 行の右端での折返しを有効にする
     "editor.wrappingIndent": "same", // 行を折り返した際のインデントを合わせる
@@ -127,5 +131,6 @@
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "editor.guides.indentation": true,
-    "window.zoomLevel": -1
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Default High Contrast Light"
 }

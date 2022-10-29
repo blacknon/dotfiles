@@ -142,11 +142,10 @@ PATH_LIST=()
 
 case ${OSTYPE} in
 darwin*)
-  # GOROOT
-  export GOROOT=/usr/local/opt/go/libexec
+  # homebrew
+  PATH_LIST+=("/opt/homebrew/bin")
 
   # PATH
-  PATH_LIST+=("${GOROOT}/bin")
   PATH_LIST+=("${GOPATH}/bin")
   PATH_LIST+=("${HOME}/dotfiles/AppleScripts")
   PATH_LIST+=("/usr/local/opt/ncurses/bin")
@@ -181,6 +180,14 @@ PATH_LIST+=("${HOME}/.nimble/bin")           # Nim用PATH
 PATH_LIST+=("${HOME}/bin")                   # 自作スクリプト群の配置用ディレクトリPATH
 PATH_LIST+=("${HOME}/dotfiles/bin")          # 自作スクリプト群の配置用ディレクトリPATH
 PATH_LIST+=("/user/local/bin")               # 上書きするため
+
+# homebrewを上書き
+# case ${OSTYPE} in
+# darwin*)
+#   # homebrew
+#   PATH_LIST+=("/opt/homebrew/bin")
+#   ;;
+# esac
 
 # PATHを一気に追加
 for p in "${PATH_LIST[@]}"; do
