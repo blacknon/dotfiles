@@ -181,14 +181,6 @@ PATH_LIST+=("${HOME}/bin")                   # 自作スクリプト群の配置
 PATH_LIST+=("${HOME}/dotfiles/bin")          # 自作スクリプト群の配置用ディレクトリPATH
 PATH_LIST+=("/user/local/bin")               # 上書きするため
 
-# homebrewを上書き
-# case ${OSTYPE} in
-# darwin*)
-#   # homebrew
-#   PATH_LIST+=("/opt/homebrew/bin")
-#   ;;
-# esac
-
 # PATHを一気に追加
 for p in "${PATH_LIST[@]}"; do
   if [ -d "$p" ]; then
