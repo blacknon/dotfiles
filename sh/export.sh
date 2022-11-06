@@ -142,9 +142,6 @@ PATH_LIST=()
 
 case ${OSTYPE} in
 darwin*)
-  # homebrew
-  PATH_LIST+=("/opt/homebrew/bin")
-
   # PATH
   PATH_LIST+=("${GOPATH}/bin")
   PATH_LIST+=("${HOME}/dotfiles/AppleScripts")
@@ -181,10 +178,19 @@ PATH_LIST+=("${HOME}/bin")                   # 自作スクリプト群の配置
 PATH_LIST+=("${HOME}/dotfiles/bin")          # 自作スクリプト群の配置用ディレクトリPATH
 PATH_LIST+=("/user/local/bin")               # 上書きするため
 
+# OSXの場合
+case ${OSTYPE} in
+darwin*)
+  # PATH
+  # homebrew
+  PATH_LIST+=("/opt/homebrew/bin")
+  ;;
+esac
+
 # PATHを一気に追加
 for p in "${PATH_LIST[@]}"; do
   if [ -d "$p" ]; then
-    export PATH="$PATH:$p"
+    export PATH="$p:$PATH"
   fi
 done
 
