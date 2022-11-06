@@ -37,3 +37,4 @@ for i in "${FILES[@]}"; do
         source "$i" || echo "not found $i"
     fi
 done
+. "/Users/uesugi/.local/share/cargo/env"
