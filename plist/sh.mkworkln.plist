@@ -17,8 +17,8 @@
   <key>ProgramArguments</key>
   <array>
     <string>bash</string>
-    <string>/Users/blacknon/dotfiles/bin/mkworkln.sh</string>
-    <string>/Users/blacknon/dotfiles/lib/docktemplete_downloads.txt</string>
+    <string>-c</string>
+    <string>/Users/blacknon/dotfiles/bin/mkworkln.sh /Users/blacknon/dotfiles/lib/docktemplete_downloads.txt</string>
   </array>
 
   <!-- launchctl loadしたタイミングで実行するか -->
