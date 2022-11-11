@@ -89,7 +89,7 @@
     // Rust
     "rust.mode": "legacy",
     "rust.rustup": "${env:HOME}/.cargo/bin/rustup",
-    "rust.rustup.toolchain": "stable-aarch64-apple-darwin",
+    "rust.rustup.toolchain": "stable-aarch64-apple-darwin", // 仮設定(OSごとに変えられないため、一旦Mac OSX)
     "rust.rustfmtPath": "${env:HOME}/.cargo/bin/rustfmt",
     // PHP
     "phpcs.standard": "PSR12",
