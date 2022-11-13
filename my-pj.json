@@ -8,13 +8,13 @@
             "execute": ""
         },
         "webpen": {
-            "path": "~/Work/ProjectTemplete/webpen",
-            "description": "Web系のペンテストプロジェクト",
+            "path": "~/Work/ProjectTemplete/web",
+            "description": "Web系のプロジェクト",
             "execute": ""
         },
         "nwpen": {
-            "path": "~/Work/ProjectTemplete/nwpen",
-            "description": "NW系のペンテストプロジェクト",
+            "path": "~/Work/ProjectTemplete/nw",
+            "description": "NW系のプロジェクト",
             "execute": ""
         }
     }
