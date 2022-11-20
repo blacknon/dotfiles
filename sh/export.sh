@@ -182,8 +182,10 @@ PATH_LIST+=("/user/local/bin")               # 上書きするため
 case ${OSTYPE} in
 darwin*)
   # PATH
-  # homebrew
-  PATH_LIST+=("/opt/homebrew/bin")
+  # arm64版のMacだった場合、homebrewのディレクトリが/opt/homebrew/binに変わっているためPATHに追加
+  if [[ "$(uname -m)" == "arm64" ]]; then
+    PATH_LIST+=("/opt/homebrew/bin")
+  fi
   ;;
 esac
 
