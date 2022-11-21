@@ -57,9 +57,11 @@
     "debug.console.fontSize": 14, // Debugコンソールの文字サイズ
     // Terminal
     // ===============
-    "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.rendererType": "canvas",
+    // OSX用設定
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.shell.osx": "/opt/homebrew/bin/zsh",
     "terminal.integrated.macOptionIsMeta": true,
     // git
     // ===============
@@ -87,7 +89,7 @@
     // Rust
     "rust.mode": "legacy",
     "rust.rustup": "${env:HOME}/.cargo/bin/rustup",
-    "rust.rustup.toolchain": "stable-x86_64-apple-darwin",
+    "rust.rustup.toolchain": "stable-aarch64-apple-darwin", // 仮設定(OSごとに変えられないため、一旦Mac OSX)
     "rust.rustfmtPath": "${env:HOME}/.cargo/bin/rustfmt",
     // PHP
     "phpcs.standard": "PSR12",
@@ -131,5 +133,6 @@
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "editor.guides.indentation": true,
-    "window.zoomLevel": -1
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "Visual Studio Dark"
 }

@@ -26,7 +26,7 @@ __cd_selection() {
   # セレクトするコマンドの有無によって切り替えをする
   # (peco>bocoの順に確認)
   if type "peco" > /dev/null 2>&1;then
-    selecter="peco"
+    selecter="peco --prompt 'DIR>'"
   elif type "boco" > /dev/null 2>&1;then
     selecter="boco -p" # printfを出力させないオプションを付与する
   fi
@@ -110,9 +110,9 @@ __history_selection() {
   # (peco>bocoの順に確認)
   if type "peco" > /dev/null 2>&1;then
     if [[ $flg_x -eq 1 ]];then
-      local selecter="peco"
+      local selecter="peco --prompt 'HISTORY>'"
     else
-      local selecter="peco --query \"${data}\""
+      local selecter="peco --prompt 'HISTORY>' --query \"${data}\""
     fi
   elif type "boco" > /dev/null 2>&1;then
     if [[ $flg_x -eq 1 ]];then

@@ -1,0 +1,10 @@
+{
+    "Prompt": ">",
+    "Style": {
+        "Query": [
+            "yellow",
+            "bold"
+        ]
+    },
+    "Use256Color": true
+}

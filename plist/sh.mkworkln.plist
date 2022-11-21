@@ -9,7 +9,7 @@
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>/usr/local/opt/openssl@1.1/bin:/usr/local/opt/ncurses/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/opt/X11/bin:/Applications/Wireshark.app/Contents/MacOS:/usr/local/opt/go/libexec/bin:/Users/blacknon/_go/bin:/Users/blacknon/bin:/Users/blacknon/.cargo/bin:/Users/blacknon/.gem/ruby/bin:/Users/blacknon/.nodebrew/current/bin:/Users/blacknon/.local/bin
+    <string>/usr/local/opt/openssl@1.1/bin:/usr/local/opt/ncurses/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/opt/X11/bin:/Applications/Wireshark.app/Contents/MacOS:/usr/local/opt/go/libexec/bin:${HOME}/_go/bin:${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.gem/ruby/bin:${HOME}/.nodebrew/current/bin:${HOME}/.local/bin:/opt/homebrew/bin
 </string>
   </dict>
 
@@ -17,8 +17,8 @@
   <key>ProgramArguments</key>
   <array>
     <string>bash</string>
-    <string>/Users/blacknon/dotfiles/bin/mkworkln.sh</string>
-    <string>/Users/blacknon/dotfiles/lib/docktemplete_downloads.txt</string>
+    <string>-c</string>
+    <string>${HOME}/dotfiles/bin/mkworkln.sh ${HOME}/dotfiles/lib/docktemplete_downloads.txt</string>
   </array>
 
   <!-- launchctl loadしたタイミングで実行するか -->
@@ -36,9 +36,9 @@
 
   <!-- ログの指定 -->
   <key>StandardErrorPath</key>
-  <string>/Users/blacknon/log/cron/mkworkln.log</string>
+  <string>${HOME}/log/cron/mkworkln.log</string>
   <key>StandardOutPath</key>
-  <string>/Users/blacknon/log/cron/mkworkln.log</string>
+  <string>${HOME}/log/cron/mkworkln.log</string>
 
 </dict>
 </plist>

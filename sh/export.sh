@@ -142,11 +142,7 @@ PATH_LIST=()
 
 case ${OSTYPE} in
 darwin*)
-  # GOROOT
-  export GOROOT=/usr/local/opt/go/libexec
-
   # PATH
-  PATH_LIST+=("${GOROOT}/bin")
   PATH_LIST+=("${GOPATH}/bin")
   PATH_LIST+=("${HOME}/dotfiles/AppleScripts")
   PATH_LIST+=("/usr/local/opt/ncurses/bin")
@@ -182,10 +178,21 @@ PATH_LIST+=("${HOME}/bin")                   # 自作スクリプト群の配置
 PATH_LIST+=("${HOME}/dotfiles/bin")          # 自作スクリプト群の配置用ディレクトリPATH
 PATH_LIST+=("/user/local/bin")               # 上書きするため
 
+# OSXの場合
+case ${OSTYPE} in
+darwin*)
+  # PATH
+  # arm64版のMacだった場合、homebrewのディレクトリが/opt/homebrew/binに変わっているためPATHに追加
+  if [[ "$(uname -m)" == "arm64" ]]; then
+    PATH_LIST+=("/opt/homebrew/bin")
+  fi
+  ;;
+esac
+
 # PATHを一気に追加
 for p in "${PATH_LIST[@]}"; do
   if [ -d "$p" ]; then
-    export PATH="$PATH:$p"
+    export PATH="$p:$PATH"
   fi
 done
 
