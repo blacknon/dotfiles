@@ -77,7 +77,7 @@ for file in ${files[@]}; do
         esac
 
         # 関数のいる行を取得する(Lつける処理が雑だけどいいや…)
-        func_line_range=$(awk "/^${func_name}()/,/^}/{print NR}" ${file} | tee >(head -n1) >(tail -n1) >/dev/null)
+        func_line_range=$(awk "/^${func_name}/,/^}/{print NR}" ${file} | tee >(head -n1) >(tail -n1) >/dev/null)
         func_line_tag=$(echo "${func_line_range}" | sort | tr \\n - | sed "s/-$//;s/-/-L/")
 
         # テーブルデータの出力

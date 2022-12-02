@@ -136,6 +136,7 @@
 | [./sh/functions/replace.sh](./sh/functions/replace.sh) | [__mkdirfunc()](./sh/functions/replace.sh#L63-L69) | mkdirで、単体のディレクトリが指定された場合はそこにそのまま移動させるためのfunction |
 | [./sh/functions/replace.sh](./sh/functions/replace.sh) | [__sudofunc()](./sh/functions/replace.sh#L16-L60) | sudoでfunctionで定義した内容が使えるようにするためのfunction |
 
+
 ## Note
 
 ### 実行ファイル・関数テーブル作成用コマンド
