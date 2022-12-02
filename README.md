@@ -65,21 +65,21 @@
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____get_envdata()](./sh/functions/common.sh#L118-L150) | 現在使っているfunctionや環境変数、aliasをbase64にして返す関数<br/>setでfunction/envを、aliasでエイリアスを取得させる |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____get_rcdata()](./sh/functions/common.sh#L101-L114) | ローカルマシンで使用しているbashrcやvimrcのfunctionを読み込んで<br/>base64にして返す関数 |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____toggle_surround_format()](./sh/functions/common.sh#L57-L97) | 入力中の内容を引数で指定された文字列で囲む(カーソル位置〜行末) |
-| [./sh/functions/common.sh](./sh/functions/common.sh) | [____get_escape()](./sh/functions/common.sh#L48-L97) | エスケープした文字を返す |
+| [./sh/functions/common.sh](./sh/functions/common.sh) | [____get_escape()](./sh/functions/common.sh#L48-L54) | エスケープした文字を返す |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____1char2dotchar()](./sh/functions/common.sh#L33-L45) | 各文字を1文字だけドット(.)にした文字列の一覧を出力する(agrepで使用) |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____shift1chars()](./sh/functions/common.sh#L14-L30) | 各文字を1文字ずつずらした文字列を出力する(agrepで使用) |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ttmux()](./sh/functions/exec_1.sh#L666-L671) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [check_cert()](./sh/functions/exec_1.sh#L634-L638) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_globalip()](./sh/functions/exec_1.sh#L629-L631) | Get Global ip address |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_ip()](./sh/functions/exec_1.sh#L595-L626) | ipアドレスとinterfaceの組み合わせをシンプルなリストにして出力する |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [pping()](./sh/functions/exec_1.sh#L516-L592) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ddig()](./sh/functions/exec_1.sh#L481-L512) | スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1} |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [pping()](./sh/functions/exec_1.sh#L518-L592) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ddig()](./sh/functions/exec_1.sh#L486-L512) | スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1} |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [rarls()](./sh/functions/exec_1.sh#L453-L468) | rarファイル内のデータをlist表示するfunction。 |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [zipcat()](./sh/functions/exec_1.sh#L429-L447) | zipファイル内のファイルを指定して標準出力に書き出すfunction。 |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [zipls()](./sh/functions/exec_1.sh#L406-L447) | zipファイル内のデータをlist表示するfunction。 |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [zipls()](./sh/functions/exec_1.sh#L406-L426) | zipファイル内のデータをlist表示するfunction。 |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [targrep()](./sh/functions/exec_1.sh#L346-L403) | tarファイル内のファイルに対してgrep(相当の処理)を行うfunction。<br/>awkを利用する。 ※ GNU tarでないと動作しないので注意 |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [tarcat()](./sh/functions/exec_1.sh#L318-L340) | tarファイル内のファイルを指定して標準出lflg_l力に書き出すfunction。 |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [tarls()](./sh/functions/exec_1.sh#L287-L340) | tarファイル内のデータをlist表示するfunction。 |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [tarls()](./sh/functions/exec_1.sh#L287-L313) | tarファイル内のデータをlist表示するfunction。 |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [todaydir()](./sh/functions/exec_1.sh#L280-L284) | make today dir |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [find_bigfile()](./sh/functions/exec_1.sh#L257-L277) | サイズの大きいファイルをサーチする |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [sw()](./sh/functions/exec_1.sh#L249-L254) | ファイルの入れ替え(スイッチ) |
@@ -92,34 +92,34 @@
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [enc_url()](./sh/functions/exec_1.sh#L115-L157) | 標準入力から取得した値をパーセントエンコーディングする<br/>    -n ... nkfを使用してパーセントエンコーディングする(-a,-zは無効化)<br/>    -a ... ascii文字含め全部をパーセントエンコーディングする(-nのときは無効)<br/>    -z ... Null区切りにして改行もパーセントエンコーディング対象とする |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [aigrep()](./sh/functions/exec_1.sh#L57-L97) | あいまいgrepをするfunction<br/>(1文字違う文字列(abc=>{.bc,a.c,ab.})と、1文字ずつずらした文字列(abc=>{abc,bac,acb})でgrepをする(typoも発見できる)) |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [joinby()](./sh/functions/exec_1.sh#L49-L53) | Join array |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ts()](./sh/functions/exec_1.sh#L2-L592) | 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ts()](./sh/functions/exec_1.sh#L28-L43) | 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [mkinst()](./sh/functions/exec_2.sh#L469-L471) | make install を一気に行うためのfunction |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [scx()](./sh/functions/exec_2.sh#L460-L462) | 完全にlocalで実行する用のscのラッパーfunction。<br/>bashrcをsourceした状態で引数のコマンドを実行させるので、functionも実行できるようにする。 |
-| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [sc()](./sh/functions/exec_2.sh#L11-L462) | scriptコマンドで/Work配下にターミナルログを記録する |
+| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [sc()](./sh/functions/exec_2.sh#L399-L462) | scriptコマンドで/Work配下にターミナルログを記録する |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [battery()](./sh/functions/exec_2.sh#L380-L389) | バッテリー残量を取得 |
-| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [pe()](./sh/functions/exec_2.sh#L151-L513) | petからsnippetを実行する(実行後はhistoryに登録) |
+| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [pe()](./sh/functions/exec_2.sh#L369-L373) | petからsnippetを実行する(実行後はhistoryに登録) |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [prev()](./sh/functions/exec_2.sh#L363-L366) | 直前に実行したコマンドをpetに登録する |
-| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [docker_login()](./sh/functions/exec_2.sh#L294-L356) | 起動中のdockerコンテナにログインするためのfunction。<br/>usage:<br/>    docker_login コンテナ名<br/>    docker_login -e コンテナ名 # 現在のfunctionを利用してログイン<br/>    docker_login -r コンテナ名 # rcファイルを利用してログイン |
-| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [docker_runin()](./sh/functions/exec_2.sh#L214-L288) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_runin コンテナ名<br/>    docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン<br/>    docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン<br/>    docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可)<br/>NOTE: docker-machine環境下でvolume mountがうまくいかなくなった場合、とりあえずアップグレードすることで直る場合がある。まずはそれをやってみること。 |
+| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [docker_login()](./sh/functions/exec_2.sh#L297-L356) | 起動中のdockerコンテナにログインするためのfunction。<br/>usage:<br/>    docker_login コンテナ名<br/>    docker_login -e コンテナ名 # 現在のfunctionを利用してログイン<br/>    docker_login -r コンテナ名 # rcファイルを利用してログイン |
+| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [docker_runin()](./sh/functions/exec_2.sh#L219-L288) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_runin コンテナ名<br/>    docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン<br/>    docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン<br/>    docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可)<br/>NOTE: docker-machine環境下でvolume mountがうまくいかなくなった場合、とりあえずアップグレードすることで直る場合がある。まずはそれをやってみること。 |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [sortsave()](./sh/functions/exec_2.sh#L202-L205) | sortしてその内容をそのまま保存する<br/>※ moreutils必須 |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [gscd()](./sh/functions/exec_2.sh#L168-L195) | gitリポジトリ内のディレクトリを選択して移動する |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [gcd()](./sh/functions/exec_2.sh#L155-L165) | gitリポジトリのルートディレクトリに移動する |
-| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [ud()](./sh/functions/exec_2.sh#L141-L471) | 上のディレクトリに移動するfunction.<br/>cd(Change Directory) → ud(Up Directory)<br/>...という命名方式 |
+| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [ud()](./sh/functions/exec_2.sh#L143-L152) | 上のディレクトリに移動するfunction.<br/>cd(Change Directory) → ud(Up Directory)<br/>...という命名方式 |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [tw()](./sh/functions/exec_2.sh#L120-L138) | 現在いるWorkディレクトリを識別し、その翌日のディレクトリへ移動する |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [yw()](./sh/functions/exec_2.sh#L117-L99) | 現在いるWorkディレクトリを識別し、その前日のディレクトリへ移動する |
-| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [wd()](./sh/functions/exec_2.sh#L513-L93) | 本日のDownloadディレクトリへの遷移用function |
+| [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [wd()](./sh/functions/exec_2.sh#L93-L96) | 本日のDownloadディレクトリへの遷移用function |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [ww()](./sh/functions/exec_2.sh#L62-L90) | Workディレクトリの作成・移動 |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [url2json()](./sh/functions/exec_2.sh#L41-L55) | パイプから受け付けたurl encodeされたパラメータをjsonにして出力するfunction(要php) |
 | [./sh/functions/exec_2.sh](./sh/functions/exec_2.sh) | [json2url()](./sh/functions/exec_2.sh#L20-L38) | パイプから受け付けたjsonをurlencodeして出力するfunction(要php) |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgls()](./sh/functions/iterm2.sh#L223-L89) | imgls():<br/>  about:<br/>    iTerm2上で画像ファイルをls状に表示するfunction<br/>  origin:<br/>    https://www.iterm2.com/utilities/imgls<br/>  require:<br/>    - php |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgview()](./sh/functions/iterm2.sh#L197-L42) | imgview():<br/>  about:<br/>    iTerm2上で画像ファイルを表示するfunction<br/>  origin:<br/>     https://www.iterm2.com/utilities/imgcat |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_imgls_list_file()](./sh/functions/iterm2.sh#L223-L89) | ____show_imgls_list_file():<br/>  about:<br/>    imglsの結果を出力するfunction |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_imgview_help()](./sh/functions/iterm2.sh#L197-L80) | ____show_imgview_help():<br/>  about:<br/>    imgview用のhelpを出力するためのfunction |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_error()](./sh/functions/iterm2.sh#L197-L73) | ____show_error():<br/>  about:<br/>    エラーメッセージを出力するfunction |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____print_image()](./sh/functions/iterm2.sh#L197-L40) | ____print_image():<br/>  about:<br/>    iTerm2にイメージを出力するimgview用のfunction |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____check_dependency()](./sh/functions/iterm2.sh#L223-L30) | ____check_dependency():<br/>  about:<br/>    コマンドの有無を確認するfunction。 |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____print_st()](./sh/functions/iterm2.sh#L121-L17) | ____print_st():<br/>  about:<br/>    More of the tmux workaround described above. |
-| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____print_osc()](./sh/functions/iterm2.sh#L121-L6) | ____print_osc():<br/>  about:<br/>    tmuxなどの場合にOSCエスケープシーケンスを出力するためのfunction。 |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgls()](./sh/functions/iterm2.sh#L208-L223) | imgls():<br/>  about:<br/>    iTerm2上で画像ファイルをls状に表示するfunction<br/>  origin:<br/>    https://www.iterm2.com/utilities/imgls<br/>  require:<br/>    - php |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgview()](./sh/functions/iterm2.sh#L129-L197) | imgview():<br/>  about:<br/>    iTerm2上で画像ファイルを表示するfunction<br/>  origin:<br/>     https://www.iterm2.com/utilities/imgcat |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_imgls_list_file()](./sh/functions/iterm2.sh#L121-L92) | ____show_imgls_list_file():<br/>  about:<br/>    imglsの結果を出力するfunction |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_imgview_help()](./sh/functions/iterm2.sh#L83-L87) | ____show_imgview_help():<br/>  about:<br/>    imgview用のhelpを出力するためのfunction |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_error()](./sh/functions/iterm2.sh#L76-L78) | ____show_error():<br/>  about:<br/>    エラーメッセージを出力するfunction |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____print_image()](./sh/functions/iterm2.sh#L43-L71) | ____print_image():<br/>  about:<br/>    iTerm2にイメージを出力するimgview用のfunction |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____check_dependency()](./sh/functions/iterm2.sh#L33-L38) | ____check_dependency():<br/>  about:<br/>    コマンドの有無を確認するfunction。 |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____print_st()](./sh/functions/iterm2.sh#L20-L28) | ____print_st():<br/>  about:<br/>    More of the tmux workaround described above. |
+| [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____print_osc()](./sh/functions/iterm2.sh#L15-L9) | ____print_osc():<br/>  about:<br/>    tmuxなどの場合にOSCエスケープシーケンスを出力するためのfunction。 |
 | [./sh/functions/keybind.sh](./sh/functions/keybind.sh) | [__tw()](./sh/functions/keybind.sh#L226-L231) | twをkeybindで実行する |
 | [./sh/functions/keybind.sh](./sh/functions/keybind.sh) | [__yw()](./sh/functions/keybind.sh#L218-L223) | ywをkeybindで実行する |
 | [./sh/functions/keybind.sh](./sh/functions/keybind.sh) | [__ww()](./sh/functions/keybind.sh#L210-L215) | wwをkeybindで実行する |
