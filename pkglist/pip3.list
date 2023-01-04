@@ -17,6 +17,7 @@ PyDispatcher
 PyGObject
 PyGithub
 PyJWT
+PyMySQL
 PyNaCl
 PyQt5
 PyQt5-sip
@@ -32,10 +33,12 @@ Scrapy
 Sphinx
 Twisted
 TwoCaptcha
+WebSearch
 adal
 aiosignal
 alabaster
 ansible
+ansible-core
 antlr4-python3-runtime
 anyio
 anytree
@@ -47,6 +50,7 @@ argcomplete
 ashape
 asn1crypto
 astroid
+asttokens
 async
 async-generator
 async-timeout
@@ -67,6 +71,7 @@ azure-core
 azure-cosmos
 azure-cosmosdb-nspkg
 azure-cosmosdb-table
+azure-data-tables
 azure-datalake-store
 azure-eventgrid
 azure-functions-devops-build
@@ -149,6 +154,7 @@ azure-mgmt-security
 azure-mgmt-servicebus
 azure-mgmt-servicefabric
 azure-mgmt-servicefabricmanagedclusters
+azure-mgmt-servicelinker
 azure-mgmt-signalr
 azure-mgmt-sql
 azure-mgmt-sqlvirtualmachine
@@ -200,6 +206,7 @@ chromedriver-binary
 click
 colorama
 colorlog
+commonmark
 compoundfiles
 compressed-rtf
 constantly
@@ -212,10 +219,12 @@ cryptography
 cssselect
 cupshelpers
 curtsies
+cwcwidth
 datetime
 dateutils
 decorator
 demjson
+dill
 distlib
 distro
 docker
@@ -226,6 +235,8 @@ docopt
 docutils
 duckduckpy
 entrypoints
+exceptiongroup
+executing
 fabric
 fake-useragent
 fake_useragent
@@ -243,6 +254,8 @@ gen-commonpw
 genzshcomp
 geographiclib
 geopy
+get-chrome-driver
+get-gecko-driver
 gobject
 google
 googleimages
@@ -273,6 +286,7 @@ isodate
 isort
 itemadapter
 itemloaders
+jaraco.classes
 javaproperties
 jedi
 jmespath
@@ -287,6 +301,7 @@ leetutils
 lensfun
 libvirt-python
 lightdm-gtk-greeter-settings
+livereload
 lockfile
 louis
 lxml
@@ -326,6 +341,7 @@ pickleshare
 pingtop
 pip
 pkginfo
+platformdirs
 pluggy
 ply
 portalocker
@@ -340,6 +356,7 @@ psycopg2-pool
 ptpython
 ptview
 ptyprocess
+pure-eval
 pwquality
 py2exe
 pyOpenSSL
@@ -362,6 +379,7 @@ pyrsistent
 pyscard
 python-dateutil
 python-distutils-extra
+python-dotenv
 python-editor
 python-jsonrpc-server
 python-language-server
@@ -383,9 +401,11 @@ requests
 requests-file
 requests-oauthlib
 requests-toolbelt
+resolvelib
 retrying
 rfc3986
 rgw
+rich
 robin
 rsa
 ruamel.yaml
@@ -402,6 +422,7 @@ service-identity
 setuptools
 shiboken2
 six
+slackweb
 slip
 slip.dbus
 sniffio
@@ -409,6 +430,7 @@ snowballstemmer
 socks
 sortedcontainers
 soupsieve
+sphinx-autobuild
 sphinx-rtd-theme
 sphinxcontrib-applehelp
 sphinxcontrib-devhelp
@@ -418,6 +440,7 @@ sphinxcontrib-qthelp
 sphinxcontrib-serializinghtml
 sre-yield
 sshtunnel
+stack-data
 tabulate
 tb
 team
@@ -427,17 +450,24 @@ texttable
 tldextract
 toml
 tomli
+tomlkit
+tornado
 tqdm
 traitlets
 trio
 trio-websocket
 twine
 typed-ast
+typer
 typing
+typing_extensions
 udiskie
 ufw
+ujson
 urllib3
+urllib3-secure-extra
 urwid
+urwid-readline
 urwid-utils
 vsts
 w3lib
@@ -451,6 +481,7 @@ whaaaaat
 wheel
 wrapt
 wsproto
+xlsx2csv
 xlwt
 xmltodict
 yapf
