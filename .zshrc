@@ -26,6 +26,7 @@ FILES=(
     ~/_shell/substitute_line/substitute_line.bash
     ~/dotfiles_private/zshrc
     ~/_env/zshrc
+    ~/.local/share/cargo/env
 )
 for i in ${FILES}; do
     if [ -f "$i" ]; then
