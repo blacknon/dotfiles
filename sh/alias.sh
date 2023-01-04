@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright(c) 2021 Blacknon. All rights reserved.
+# Copyright(c) 2023 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
@@ -138,3 +138,7 @@ alias "${ALIAS_OPTION}" dig='dig +short ' 2>/dev/null || alias dig='dig +short '
 # bat
 which bat 2>/dev/null >/dev/null
 [ $? -eq 0 ] && alias bat='bat -n' bcat='BAT_PAGER="cat" \bat -p'
+
+# hwatch
+which hwatch 2>/dev/null >/dev/null
+[ $? -eq 0 ] && alias hwatch='hwatch -l $HOME/Today/log/hwatch/hwatch_$(date +%Y%m%d_%H%M%S)_hwatch.log '
