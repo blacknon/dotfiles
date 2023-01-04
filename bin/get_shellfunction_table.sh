@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright(c) 2021 Blacknon. All rights reserved.
+# Copyright(c) 2023 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 #
@@ -77,7 +77,7 @@ for file in ${files[@]}; do
         esac
 
         # 関数のいる行を取得する(Lつける処理が雑だけどいいや…)
-        func_line_range=$(awk "/${func_name}/,/^}/{print NR}" ${file} | tee >(head -n1) >(tail -n1) >/dev/null)
+        func_line_range=$(awk "/^${func_name}/,/^}/{print NR}" ${file} | tee >(head -n1) >(tail -n1) >/dev/null)
         func_line_tag=$(echo "${func_line_range}" | sort | tr \\n - | sed "s/-$//;s/-/-L/")
 
         # テーブルデータの出力

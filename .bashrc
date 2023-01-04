@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright(c) 2021 Blacknon. All rights reserved.
+# Copyright(c) 2023 Blacknon. All rights reserved.
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
@@ -31,10 +31,10 @@ FILES=(
     ~/_shell/substitute_line/substitute_line.bash
     ~/dotfiles_private/bashrc # プライベートdotfiles用ファイル群
     ~/_env/bashrc             # 環境に依存したファイル群
+    ~/.local/share/cargo/env
 )
 for i in "${FILES[@]}"; do
     if [ -f "$i" ]; then
         source "$i" || echo "not found $i"
     fi
 done
-. "/Users/uesugi/.local/share/cargo/env"
