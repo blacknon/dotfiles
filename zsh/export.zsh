@@ -4,4 +4,4 @@
 # that can be found in the LICENSE file.
 
 # hwatch
-export HWATCH="-s 'zsh -c \"source ~/.zshrc; {COMMAND}\"'"
+export HWATCH="$HWATCH -s 'zsh -c \"source ~/.zshrc; {COMMAND}\"'"
