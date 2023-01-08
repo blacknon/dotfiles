@@ -21,7 +21,6 @@
 #         cat xyz.csv | awk -v FPAT=$ENVVALUE_AWK_CSVSEP -v OFS="---" '{print $1,$2}'
 #         ```
 
-
 # XDG Base Directoryの定義を行う
 # =======================================================
 # ユーザー個別の設定が書き込まれるディレクトリ (/etc と類似).

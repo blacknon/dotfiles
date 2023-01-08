@@ -14,6 +14,24 @@ set today_month to text -2 thru -1 of ("0" & today_month) -- 01
 set today_day to day of (current date) -- 3
 set today_day to text -2 thru -1 of ("0" & today_day) -- 03
 
+-- ANSI Color Codeを指定
+set ansi_fg_color_red to system attribute "COLOR_RED"
+set ansi_fg_color_green to system attribute "COLOR_GREEN"
+set ansi_fg_color_orange to system attribute "COLOR_ORANGE"
+set ansi_fg_color_blue to system attribute "COLOR_BLUE"
+set ansi_fg_color_purple to system attribute "COLOR_PURPLE"
+set ansi_fg_color_cyan to system attribute "COLOR_CYAN"
+set ansi_fg_color_lgray to system attribute "COLOR_LGRAY"
+set ansi_fg_color_dgray to system attribute "COLOR_DGRAY"
+set ansi_fg_color_lred to system attribute "COLOR_LRED"
+set ansi_fg_color_lgreen to system attribute "COLOR_LGREEN"
+set ansi_fg_color_yellow to system attribute "COLOR_YELLOW"
+set ansi_fg_color_lblue to system attribute "COLOR_LBLUE"
+set ansi_fg_color_lpurple to system attribute "COLOR_LPURPLE"
+set ansi_fg_color_lcyan to system attribute "COLOR_LCYAN"
+set ansi_fg_color_white to system attribute "COLOR_WHITE"
+set ansi_color_none to system attribute "COLOR_NONE"
+
 -- iTunesを呼び出す
 tell application "Music"
     -- 現在選択中のトラックを取得する
@@ -53,7 +71,7 @@ tell application "Music"
                 -- 新タイトルを取得
                 set new_name to item i of replace_list
 
-                set show_text to old_name & "=>" & new_name
+                set show_text to ansi_fg_color_purple & old_name & ansi_color_none & "=>" & ansi_fg_color_cyan & new_name & ansi_color_none
                 log show_text
 
                 set name of entry to new_name
