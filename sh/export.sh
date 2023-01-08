@@ -3,6 +3,24 @@
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 
+# TODO: awkのfunctionとかを環境変数につっこんでおく
+# TODO: awkのaliasで↑の環境変数を読み込ませておく
+#       ex.)
+#         ```bash
+#         export HOGE="function abc(x){return x\"と\"x}"
+#         seq 1 3 | awk -f <(echo $HOGE) --source '{print abc($1)}'
+#         ```
+# TODO: awkで使える区切り文字等の正規表現系の値を↓のような感じで整理してexportしておく
+#       ex.) 設定例
+#         ```bash
+#         export ENVVALUE_AWK_CSVSEP=""'"[^"]*"|[^,]*'
+#         ```
+#
+#       ex.) 使用例
+#         ```bash
+#         cat xyz.csv | awk -v FPAT=$ENVVALUE_AWK_CSVSEP -v OFS="---" '{print $1,$2}'
+#         ```
+
 # XDG Base Directoryの定義を行う
 # =======================================================
 # ユーザー個別の設定が書き込まれるディレクトリ (/etc と類似).
