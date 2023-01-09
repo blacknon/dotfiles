@@ -20,6 +20,7 @@
 #         ```bash
 #         cat xyz.csv | awk -v FPAT=$ENVVALUE_AWK_CSVSEP -v OFS="---" '{print $1,$2}'
 #         ```
+# TODO: awkやsedのワンライナーでよく使うコードとかを環境変数に入れておいて、差し込みをするような使い方について模索してみる
 
 # XDG Base Directoryの定義を行う
 # =======================================================

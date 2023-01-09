@@ -20,13 +20,23 @@
     "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
     "editor.snippetSuggestions": "top", // スニペット候補を優先表示
     "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace", // 使用するフォント
-    "editor.fontLigatures": null, // インデントガイド(インデントに沿って縦線を表示)を有効
+    "editor.fontLigatures": false, // 合字を有効化
     "editor.renderLineHighlight": "all", // 選択行の行番号ハイライト
     "editor.renderWhitespace": "all", // ホワイトスペース（半角スペース等）の表示
     "editor.renderControlCharacters": true, // 制御文字表示
+    "editor.suggestSelection": "first", // サジェスト一覧の初期表示項目設定
+    "editor.cursorBlinking": "smooth", // カーソルが滑らかに点滅するように
+    "editor.cursorSmoothCaretAnimation": "on", // カーソルの点滅をアニメーション表示する
+    "editor.bracketPairColorization.enabled": true, // 括弧の対応を色付ける
     // editor.minimap
     "editor.minimap.showSlider": "always", // ミニマップ表示領域をハイライト
     "editor.minimap.renderCharacters": false, // ミニマップの文字をブロック表示
+    // パンくずリスト表示
+    // ===============
+    "breadcrumbs.enabled": true, // ファイルのパンくずリストを表示する
+    "breadcrumbs.filePath": "on",
+    "breadcrumbs.symbolPath": "off",
+    "breadcrumbs.symbolSortOrder": "position",
     // ファイル設定
     // ===============
     "files.insertFinalNewline": true, // 保存時に末尾を空行にする
@@ -99,7 +109,7 @@
     "[c]": {
         "editor.formatOnType": false, // 入力時に自動整形
         "editor.formatOnPaste": false, // ペースト時に自動整形
-        "editor.formatOnSave": false, // 保存時に自動整形
+        "editor.formatOnSave": false // 保存時に自動整形
     },
     // rust
     "[rust]": {
@@ -109,7 +119,7 @@
     "[zsh]": {
         "editor.formatOnType": true, // 入力時に自動整形
         "editor.formatOnPaste": true, // ペースト時に自動整形
-        "editor.formatOnSave": true, // 保存時に自動整形
+        "editor.formatOnSave": true // 保存時に自動整形
     },
     // dockerfiles
     "[dockerfile]": {
@@ -117,16 +127,8 @@
     },
     // AppleScript
     "[applescript]": {
-        "files.encoding": "shiftjis",
+        "files.encoding": "shiftjis"
     },
-    "mssql.connections": [
-        {
-            "server": "{{put-server-name-here}}",
-            "database": "{{put-database-name-here}}",
-            "user": "{{put-username-here}}",
-            "password": ""
-        }
-    ],
     "workbench.startupEditor": "none",
     "redhat.telemetry.enabled": true,
     "[shellscript]": {
