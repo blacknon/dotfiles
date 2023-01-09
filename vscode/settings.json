@@ -4,8 +4,7 @@
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // Windowタイトルの指定
     "window.zoomLevel": -1, // 表示サイズを指定
     "workbench.colorTheme": "Visual Studio Dark", // デフォルトテーマの指定
-    "workbench.startupEditor": "newUntitledFile", // 新規ファイルはUntitledでファイル作成
-    "editor.renderIndentGuides": false,
+    "workbench.startupEditor": "newUntitledFile",
     // エディター設定
     // ===============
     "editor.fontSize": 14, // エディターの文字サイズ
@@ -142,5 +141,6 @@
     // shell script
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
-    }
+    },
+    "editor.guides.indentation": false
 }
