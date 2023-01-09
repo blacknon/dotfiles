@@ -1,14 +1,20 @@
 {
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // 表示サイズを指定
+    // 全体設定
+    // ===============
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // Windowタイトルの指定
+    "window.zoomLevel": -1, // 表示サイズを指定
+    "workbench.colorTheme": "Visual Studio Dark", // デフォルトテーマの指定
+    "workbench.startupEditor": "newUntitledFile", // 新規ファイルはUntitledでファイル作成
+    "editor.renderIndentGuides": false,
     // エディター設定
     // ===============
     "editor.fontSize": 14, // エディターの文字サイズ
     "editor.lineNumbers": "on", // 行番号の有効
-    "editor.quickSuggestions": {
+    "editor.quickSuggestions": { // 入力補完を表示
         "comments": "on",
         "strings": "on",
         "other": "on"
-    }, // 入力補完を表示
+    },
     "editor.folding": true, // コードの折りたたみを許可
     "editor.wordWrap": "on", // 行の右端での折返しを有効にする
     "editor.wrappingIndent": "same", // 行を折り返した際のインデントを合わせる
@@ -56,6 +62,10 @@
         "**/GoogleDrive/**": true,
         "**/Dropbox/**": true,
         "**/Pictures/**": true
+    },
+    "files.associations": { // 指定したファイル形式と言語の紐付け
+        "*.txt": "markdown",
+        "*.json.txt": "json"
     },
     // エクスプローラー
     // ===============
@@ -129,12 +139,8 @@
     "[applescript]": {
         "files.encoding": "shiftjis"
     },
-    "workbench.startupEditor": "none",
-    "redhat.telemetry.enabled": true,
+    // shell script
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
-    },
-    "editor.guides.indentation": true,
-    "window.zoomLevel": -1,
-    "workbench.colorTheme": "Visual Studio Dark"
+    }
 }
