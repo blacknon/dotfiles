@@ -613,7 +613,7 @@ get_ip() {
     # interfaceごとのipアドレスを出力
     echo "$interface" |
       xargs -I{} bash -c "echo \"$COLOR_RED{}$COLOR_NONE\": \$(ip a show dev {} | awk '/inet/{print \$2}' | $sed -z 's/\n/, /g')" |
-      sed 's/,$//g'
+      sed 's/,$//g' | sort
   else
     # interfaceの一覧を取得
     interface=$(ifconfig | grep -oE '^[^ '$'\t''][^:]+')
@@ -621,7 +621,7 @@ get_ip() {
     # interfaceごとのipアドレスを出力
     echo "$interface" |
       xargs -I{} bash -c "echo \"$COLOR_RED{}$COLOR_NONE\": \$(ifconfig {} | awk '/inet/{print \$2}' | $sed -z 's/\n/, /g')" |
-      $sed 's/,$//g'
+      $sed 's/,$//g' | sort
   fi
 }
 
