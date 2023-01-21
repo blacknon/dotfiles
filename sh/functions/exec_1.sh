@@ -354,7 +354,7 @@ targrep() {
   local file_name   # tarファイル内のファイル名
   local target_file # 検索対象とするtarファイルの名称を指定(ワイルドカードに対応させる)
   local string      # 検索キーワード
-  local cmd         # tarコマンドから実行するコマンドの生成
+  local port_get_cmd         # tarコマンドから実行するコマンドの生成
 
   # optionをパース
   local opt
@@ -625,9 +625,35 @@ get_ip() {
   fi
 }
 
-# Get Global ip address
+# `httpbin.org`に接続してグローバルIPを取得する
+# TODO: 取得する際のインターフェイスやプロキシを指定できるようにしたいお気持ち
 get_globalip() {
   curl -s httpbin.org/ip | jq -r '.origin'
+}
+
+# 開いてるポートとそれに対応するプロセスのコマンドを一覧で表示する
+get_open_ports() {
+  # osに応じて実行する処理を切り替え
+  case ${OSTYPE} in
+  darwin*)
+    # 公開ポート番号を取得するコマンドを実行
+    netstat -anvp tcp |
+      awk -v OFS="," \
+          -F$' ' \
+          'BEGIN{
+            print "echo \"port,command\""
+           }
+           $6=="LISTEN"{
+            print "echo "$4,"\$(ps -o command= -p "$9")"
+           }
+      ' 2>/dev/null |
+      bash
+
+    ;;
+  linux*)
+    :
+    ;;
+  esac
 }
 
 # OpenSSLでの、リモートの証明書の期限をチェックするための関数
