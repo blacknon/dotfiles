@@ -257,6 +257,7 @@ sw() {
 find_bigfile() {
   local target="$1"
   local max="$2"
+  local data
 
   # OS別での使用コマンドの識別
   case ${OSTYPE} in
@@ -267,9 +268,9 @@ find_bigfile() {
   # numfmtが入ってる場合、サイズ表示を人間が読みやすいよう変更
   which $numfmt 2>/dev/null 1>/dev/null
   if [ $? -eq 0 ]; then
-    local data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}" | ${numfmt} --to=iec --field=7)
+    data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}" | ${numfmt} --to=iec --field=7 )
   else
-    local data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}")
+    data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}")
   fi
 
   # 結果を出力
@@ -710,7 +711,7 @@ ttmux() {
 # typo対策用のfunction
 ## ==========
 
-# lsのtypo用
+# lsのtypo用function
 ls-() {
   case ${OSTYPE} in
   darwin*)
