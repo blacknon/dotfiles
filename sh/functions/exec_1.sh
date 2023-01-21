@@ -351,10 +351,10 @@ targrep() {
   # ----------
 
   # local変数の宣言
-  local file_name   # tarファイル内のファイル名
-  local target_file # 検索対象とするtarファイルの名称を指定(ワイルドカードに対応させる)
-  local string      # 検索キーワード
-  local port_get_cmd         # tarコマンドから実行するコマンドの生成
+  local file_name    # tarファイル内のファイル名
+  local target_file  # 検索対象とするtarファイルの名称を指定(ワイルドカードに対応させる)
+  local string       # 検索キーワード
+  local port_get_cmd # tarコマンドから実行するコマンドの生成
 
   # optionをパース
   local opt
@@ -639,8 +639,8 @@ get_open_ports() {
     # 公開ポート番号を取得するコマンドを実行
     netstat -anvp tcp |
       awk -v OFS="," \
-          -F$' ' \
-          'BEGIN{
+        -F$' ' \
+        'BEGIN{
             print "echo \"port,command\""
            }
            $6=="LISTEN"{
@@ -651,7 +651,14 @@ get_open_ports() {
 
     ;;
   linux*)
-    :
+    ss -ntlp |
+      awk -v OFS="," -F$' ' 'BEGIN{
+            print "echo \"port,command\""
+           }
+           $1=="LISTEN"{
+            print "echo "$(NF-1),"\$(ps -o command= -p \$(echo \""$NF"\" | grep -m1 -Eo \"pid=[0-9]+\" | sed \"s/pid=//\") 2>/dev/null)"
+           }
+      ' 2>/dev/null | bash
     ;;
   esac
 }
