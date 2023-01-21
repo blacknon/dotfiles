@@ -634,11 +634,12 @@ get_globalip() {
 # 開いてるポートとそれに対応するプロセスのコマンドを一覧で表示する
 get_open_ports() {
   # osに応じて実行する処理を切り替え
+  # 公開ポート番号を取得するコマンドを実行してパース処理
   case ${OSTYPE} in
   darwin*)
-    # 公開ポート番号を取得するコマンドを実行
     netstat -anvp tcp |
-      awk -v OFS="," \
+      awk \
+        -v OFS="," \
         -F$' ' \
         'BEGIN{
             print "echo \"port,command\""
@@ -648,11 +649,13 @@ get_open_ports() {
            }
       ' 2>/dev/null |
       bash
-
     ;;
   linux*)
     ss -ntlp |
-      awk -v OFS="," -F$' ' 'BEGIN{
+      awk \
+        -v OFS="," \
+        -F$' ' \
+          'BEGIN{
             print "echo \"port,command\""
            }
            $1=="LISTEN"{
