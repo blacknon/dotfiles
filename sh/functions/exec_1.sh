@@ -20,8 +20,10 @@
 #     - (できれば)他のクライアントとも同期したい
 #     - (できれば)ssh先やdockerと同期したい
 
+# TODO(blacknon): csv2jsonとか、json2csvとかでfunctionを作る(どこでも使えるように)
+
 ## ==========
-# 文字列操作関係
+# 文字列操作系
 ## ==========
 
 # 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する
@@ -40,16 +42,6 @@ ts() {
       $t = strftime "'${COLOR_START}'%Y-%m-%d %H:%M:%S: '${COLOR_END}'", localtime;
       print($t,$_);
     '
-}
-
-# TODO(blacknon): オプションで結合文字列を指定できるようにする。
-# TODO(blacknon): 結合する配列をパイプから受け付けるようにする。
-# TODO(blacknon): parseする文字をオプションで指定できるようにする。
-# Join array
-joinby() {
-  local IFS="$1"
-  shift
-  echo "$*"
 }
 
 # あいまいgrepをするfunction
@@ -96,18 +88,11 @@ aigrep() {
   fi
 }
 
-# 指定したカラムだけを出力する(select column)
-# selc() {}
-
-# 指定したカラムを除外して出力する(delete column)
-# delc() {}
-
 ## ==========
 # エンコード/デコード関係
 ## ==========
 
 # TODO(blacknon): 2進数、8進数、16進数の変換処理をするfunctionを生成しておく(perlでいいや)
-# TODO(blacknon): オプション指定でnkfを利用するように変更する(存在チェックも入れる)
 # 標準入力から取得した値をパーセントエンコーディングする
 #     -n ... nkfを使用してパーセントエンコーディングする(-a,-zは無効化)
 #     -a ... ascii文字含め全部をパーセントエンコーディングする(-nのときは無効)
@@ -123,6 +108,13 @@ enc_url() {
     esac
   done
   shift $((OPTIND - 1))
+
+  # flag_n(use nkf)の場合、nkfがPATHにない場合エラーにする
+  which nkf 2>&1 >/dev/null
+  if [[ $? -ne 0 ]];then
+    echo "nkfコマンドがありません"
+    return 1
+  fi
 
   # 変換対象を変数に代入
   local data
