@@ -20,8 +20,10 @@
 #     - (できれば)他のクライアントとも同期したい
 #     - (できれば)ssh先やdockerと同期したい
 
+# TODO(blacknon): csv2jsonとか、json2csvとかでfunctionを作る(どこでも使えるように)
+
 ## ==========
-# 文字列操作関係
+# 文字列操作系
 ## ==========
 
 # 標準入力で受け付けた行頭にタイムスタンプ(YYYY-MM-DD HH:MM:SS: )を付与する
@@ -40,16 +42,6 @@ ts() {
       $t = strftime "'${COLOR_START}'%Y-%m-%d %H:%M:%S: '${COLOR_END}'", localtime;
       print($t,$_);
     '
-}
-
-# TODO(blacknon): オプションで結合文字列を指定できるようにする。
-# TODO(blacknon): 結合する配列をパイプから受け付けるようにする。
-# TODO(blacknon): parseする文字をオプションで指定できるようにする。
-# Join array
-joinby() {
-  local IFS="$1"
-  shift
-  echo "$*"
 }
 
 # あいまいgrepをするfunction
@@ -96,18 +88,11 @@ aigrep() {
   fi
 }
 
-# 指定したカラムだけを出力する(select column)
-# selc() {}
-
-# 指定したカラムを除外して出力する(delete column)
-# delc() {}
-
 ## ==========
 # エンコード/デコード関係
 ## ==========
 
 # TODO(blacknon): 2進数、8進数、16進数の変換処理をするfunctionを生成しておく(perlでいいや)
-# TODO(blacknon): オプション指定でnkfを利用するように変更する(存在チェックも入れる)
 # 標準入力から取得した値をパーセントエンコーディングする
 #     -n ... nkfを使用してパーセントエンコーディングする(-a,-zは無効化)
 #     -a ... ascii文字含め全部をパーセントエンコーディングする(-nのときは無効)
@@ -123,6 +108,13 @@ enc_url() {
     esac
   done
   shift $((OPTIND - 1))
+
+  # flag_n(use nkf)の場合、nkfがPATHにない場合エラーにする
+  which nkf 2>&1 >/dev/null
+  if [[ $? -ne 0 ]];then
+    echo "nkfコマンドがありません"
+    return 1
+  fi
 
   # 変換対象を変数に代入
   local data
@@ -257,6 +249,7 @@ sw() {
 find_bigfile() {
   local target="$1"
   local max="$2"
+  local data
 
   # OS別での使用コマンドの識別
   case ${OSTYPE} in
@@ -267,9 +260,9 @@ find_bigfile() {
   # numfmtが入ってる場合、サイズ表示を人間が読みやすいよう変更
   which $numfmt 2>/dev/null 1>/dev/null
   if [ $? -eq 0 ]; then
-    local data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}" | ${numfmt} --to=iec --field=7)
+    data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}" | ${numfmt} --to=iec --field=7 )
   else
-    local data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}")
+    data=$(find "${target}" -type f -ls | sort -k7nr | head "-${max}")
   fi
 
   # 結果を出力
@@ -351,10 +344,10 @@ targrep() {
   # ----------
 
   # local変数の宣言
-  local file_name   # tarファイル内のファイル名
-  local target_file # 検索対象とするtarファイルの名称を指定(ワイルドカードに対応させる)
-  local string      # 検索キーワード
-  local cmd         # tarコマンドから実行するコマンドの生成
+  local file_name    # tarファイル内のファイル名
+  local target_file  # 検索対象とするtarファイルの名称を指定(ワイルドカードに対応させる)
+  local string       # 検索キーワード
+  local port_get_cmd # tarコマンドから実行するコマンドの生成
 
   # optionをパース
   local opt
@@ -613,7 +606,7 @@ get_ip() {
     # interfaceごとのipアドレスを出力
     echo "$interface" |
       xargs -I{} bash -c "echo \"$COLOR_RED{}$COLOR_NONE\": \$(ip a show dev {} | awk '/inet/{print \$2}' | $sed -z 's/\n/, /g')" |
-      sed 's/,$//g'
+      sed 's/,$//g' | sort
   else
     # interfaceの一覧を取得
     interface=$(ifconfig | grep -oE '^[^ '$'\t''][^:]+')
@@ -621,13 +614,49 @@ get_ip() {
     # interfaceごとのipアドレスを出力
     echo "$interface" |
       xargs -I{} bash -c "echo \"$COLOR_RED{}$COLOR_NONE\": \$(ifconfig {} | awk '/inet/{print \$2}' | $sed -z 's/\n/, /g')" |
-      $sed 's/,$//g'
+      $sed 's/,$//g' | sort
   fi
 }
 
-# Get Global ip address
+# `httpbin.org`に接続してグローバルIPを取得する
+# TODO: 取得する際のインターフェイスやプロキシを指定できるようにしたいお気持ち
 get_globalip() {
   curl -s httpbin.org/ip | jq -r '.origin'
+}
+
+# 開いてるポートとそれに対応するプロセスのコマンドを一覧で表示する
+get_open_ports() {
+  # osに応じて実行する処理を切り替え
+  # 公開ポート番号を取得するコマンドを実行してパース処理
+  case ${OSTYPE} in
+  darwin*)
+    netstat -anvp tcp |
+      awk \
+        -v OFS="," \
+        -F$' ' \
+        'BEGIN{
+            print "echo \"port,command\""
+           }
+           $6=="LISTEN"{
+            print "echo "$4,"\$(ps -o command= -p "$9")"
+           }
+      ' 2>/dev/null |
+      bash
+    ;;
+  linux*)
+    ss -ntlp |
+      awk \
+        -v OFS="," \
+        -F$' ' \
+          'BEGIN{
+            print "echo \"port,command\""
+           }
+           $1=="LISTEN"{
+            print "echo "$(NF-1),"\$(ps -o command= -p \$(echo \""$NF"\" | grep -m1 -Eo \"pid=[0-9]+\" | sed \"s/pid=//\") 2>/dev/null)"
+           }
+      ' 2>/dev/null | bash
+    ;;
+  esac
 }
 
 # OpenSSLでの、リモートの証明書の期限をチェックするための関数
@@ -674,7 +703,7 @@ ttmux() {
 # typo対策用のfunction
 ## ==========
 
-# lsのtypo用
+# lsのtypo用function
 ls-() {
   case ${OSTYPE} in
   darwin*)

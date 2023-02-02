@@ -84,6 +84,7 @@ mkdir -p "${WORKDIR}/log/hwatch/"
 
 # today_memo.txtを生成する
 touch "${WORKDIR}/today_memo.txt"
+echo -e "today memo\n===" >> "${WORKDIR}/today_memo.txt"
 
 # MacOSの場合、以下の処理も行う
 #   - `${DOWNLOAD_DIR}/.localized`を作成

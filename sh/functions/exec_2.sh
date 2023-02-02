@@ -13,9 +13,29 @@
 #                    とはいえ、もしかしたら最初からpythonでjsonのdiffをするscriptを作ったほうがいいのかも…
 
 ## ==========
-# エンコード/デコード関係
+# 文字列操作系
 ## ==========
 
+# TODO(blacknon): オプションで結合文字列を指定できるようにする。
+# TODO(blacknon): 結合する配列をパイプから受け付けるようにする。
+# TODO(blacknon): parseする文字をオプションで指定できるようにする。
+# Join array
+joinby() {
+  #
+  local IFS="$1"
+  shift
+  echo "$*"
+}
+
+# 指定したカラムだけを出力する(select column)
+# selc() {}
+
+# 指定したカラムを除外して出力する(delete column)
+# delc() {}
+
+## ==========
+# エンコード/デコード関係
+## ==========
 # パイプから受け付けたjsonをurlencodeして出力するfunction(要php)
 json2url() {
   # optionをパース
@@ -391,7 +411,6 @@ battery() {
 ## ==========
 # ターミナルログ関係
 ## ==========
-
 # TODO(blacknon): コマンドの実行をするオプションを追加する(引数にする)
 # TODO(blacknon): 引数で出力先を指定させる(-fオプション)
 # TODO(blacknon): オプションでタイムスタンプの付与を指定する(-tオプション)

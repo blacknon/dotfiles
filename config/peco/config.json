@@ -6,5 +6,19 @@
             "bold"
         ]
     },
-    "Use256Color": true
+    "Use256Color": true,
+    "Action": {
+        "selectAllAndFinish": [
+            "peco.SelectAll",
+            "peco.Finish"
+        ],
+        "toggleSelectionAndNext": [
+            "peco.ToggleSelection",
+            "peco.SelectDown"
+        ]
+    },
+    "Keymap": {
+        "C-a": "peco.SelectAll",
+        "Tab": "toggleSelectionAndNext"
+    }
 }

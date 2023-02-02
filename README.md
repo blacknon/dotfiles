@@ -68,9 +68,10 @@
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____get_escape()](./sh/functions/common.sh#L48-L54) | エスケープした文字を返す |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____1char2dotchar()](./sh/functions/common.sh#L33-L45) | 各文字を1文字だけドット(.)にした文字列の一覧を出力する(agrepで使用) |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____shift1chars()](./sh/functions/common.sh#L14-L30) | 各文字を1文字ずつずらした文字列を出力する(agrepで使用) |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ttmux()](./sh/functions/exec_1.sh#L666-L671) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [check_cert()](./sh/functions/exec_1.sh#L634-L638) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_globalip()](./sh/functions/exec_1.sh#L629-L631) | Get Global ip address |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ttmux()](./sh/functions/exec_1.sh#L692-L697) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [check_cert()](./sh/functions/exec_1.sh#L660-L664) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_open_ports()](./sh/functions/exec_1.sh#L635-L657) | 開いてるポートとそれに対応するプロセスのコマンドを一覧で表示する |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_globalip()](./sh/functions/exec_1.sh#L630-L632) | `httpbin.org`に接続してグローバルIPを取得する |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_ip()](./sh/functions/exec_1.sh#L595-L626) | ipアドレスとinterfaceの組み合わせをシンプルなリストにして出力する |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [pping()](./sh/functions/exec_1.sh#L518-L592) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ddig()](./sh/functions/exec_1.sh#L486-L512) | スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1} |

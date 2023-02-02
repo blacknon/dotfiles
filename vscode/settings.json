@@ -1,14 +1,19 @@
 {
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // 表示サイズを指定
+    // 全体設定
+    // ===============
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // Windowタイトルの指定
+    "window.zoomLevel": -1, // 表示サイズを指定
+    "workbench.colorTheme": "Visual Studio Dark", // デフォルトテーマの指定
+    "workbench.startupEditor": "newUntitledFile",
     // エディター設定
     // ===============
     "editor.fontSize": 14, // エディターの文字サイズ
     "editor.lineNumbers": "on", // 行番号の有効
-    "editor.quickSuggestions": {
+    "editor.quickSuggestions": { // 入力補完を表示
         "comments": "on",
         "strings": "on",
         "other": "on"
-    }, // 入力補完を表示
+    },
     "editor.folding": true, // コードの折りたたみを許可
     "editor.wordWrap": "on", // 行の右端での折返しを有効にする
     "editor.wrappingIndent": "same", // 行を折り返した際のインデントを合わせる
@@ -20,13 +25,23 @@
     "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
     "editor.snippetSuggestions": "top", // スニペット候補を優先表示
     "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace", // 使用するフォント
-    "editor.fontLigatures": null, // インデントガイド(インデントに沿って縦線を表示)を有効
+    "editor.fontLigatures": false, // 合字を有効化
     "editor.renderLineHighlight": "all", // 選択行の行番号ハイライト
     "editor.renderWhitespace": "all", // ホワイトスペース（半角スペース等）の表示
     "editor.renderControlCharacters": true, // 制御文字表示
+    "editor.suggestSelection": "first", // サジェスト一覧の初期表示項目設定
+    "editor.cursorBlinking": "smooth", // カーソルが滑らかに点滅するように
+    "editor.cursorSmoothCaretAnimation": "on", // カーソルの点滅をアニメーション表示する
+    "editor.bracketPairColorization.enabled": true, // 括弧の対応を色付ける
     // editor.minimap
     "editor.minimap.showSlider": "always", // ミニマップ表示領域をハイライト
     "editor.minimap.renderCharacters": false, // ミニマップの文字をブロック表示
+    // パンくずリスト表示
+    // ===============
+    "breadcrumbs.enabled": true, // ファイルのパンくずリストを表示する
+    "breadcrumbs.filePath": "on",
+    "breadcrumbs.symbolPath": "off",
+    "breadcrumbs.symbolSortOrder": "position",
     // ファイル設定
     // ===============
     "files.insertFinalNewline": true, // 保存時に末尾を空行にする
@@ -46,6 +61,10 @@
         "**/GoogleDrive/**": true,
         "**/Dropbox/**": true,
         "**/Pictures/**": true
+    },
+    "files.associations": { // 指定したファイル形式と言語の紐付け
+        "*.txt": "markdown",
+        "*.json.txt": "json"
     },
     // エクスプローラー
     // ===============
@@ -99,7 +118,7 @@
     "[c]": {
         "editor.formatOnType": false, // 入力時に自動整形
         "editor.formatOnPaste": false, // ペースト時に自動整形
-        "editor.formatOnSave": false, // 保存時に自動整形
+        "editor.formatOnSave": false // 保存時に自動整形
     },
     // rust
     "[rust]": {
@@ -109,7 +128,7 @@
     "[zsh]": {
         "editor.formatOnType": true, // 入力時に自動整形
         "editor.formatOnPaste": true, // ペースト時に自動整形
-        "editor.formatOnSave": true, // 保存時に自動整形
+        "editor.formatOnSave": true // 保存時に自動整形
     },
     // dockerfiles
     "[dockerfile]": {
@@ -117,22 +136,11 @@
     },
     // AppleScript
     "[applescript]": {
-        "files.encoding": "shiftjis",
+        "files.encoding": "shiftjis"
     },
-    "mssql.connections": [
-        {
-            "server": "{{put-server-name-here}}",
-            "database": "{{put-database-name-here}}",
-            "user": "{{put-username-here}}",
-            "password": ""
-        }
-    ],
-    "workbench.startupEditor": "none",
-    "redhat.telemetry.enabled": true,
+    // shell script
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "editor.guides.indentation": true,
-    "window.zoomLevel": -1,
-    "workbench.colorTheme": "Visual Studio Dark"
+    "editor.guides.indentation": false
 }
