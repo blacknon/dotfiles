@@ -1,8 +1,7 @@
 {
     // 全体設定
     // ===============
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // Windowタイトルの指定
-    "window.zoomLevel": -1, // 表示サイズを指定
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}", // 表示サイズを指定
     "workbench.colorTheme": "Visual Studio Dark", // デフォルトテーマの指定
     "workbench.startupEditor": "newUntitledFile",
     // エディター設定
@@ -142,5 +141,15 @@
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "editor.guides.indentation": false
+    "editor.guides.indentation": false,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "window.zoomLevel": -1,
+    "python.autoComplete.extraPaths": [
+        "/opt/homebrew/lib/python3.10/site-packages/"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/homebrew/lib/python3.10/site-packages/"
+    ]
 }
