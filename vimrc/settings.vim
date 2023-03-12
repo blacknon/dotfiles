@@ -31,26 +31,42 @@ set listchars=tab:▸-        " タブを「▸-」と表示させる
 
 " ファイル処理関連
 " ====================
-set autoread                                  " 編集中のファイルが変更されたら自動で読み直す
-set hidden                                    " バッファが編集中でもその他のファイルを開けるようにする
-autocmd BufWritePre * call __retab()          " ファイル保存時(バッファ全体をファイルに書き込むとき)にretabを実行する
-autocmd BufWritePost * call __setExecPerm()   " ファイル保存時、条件に合致する場合実行権限を付与する
-autocmd SwapExists * let v:swapchoice = 'o'   " swapファイルが見つかった場合は読み取り専用で開く
-autocmd BufRead * __restore_cursor_position   " ファイルを開いた際、前回開いてたカーソルの位置に移動する
+set autoread                                    " 編集中のファイルが変更されたら自動で読み直す
+set hidden                                      " バッファが編集中でもその他のファイルを開けるようにする
+autocmd BufWritePre * call __retab()            " ファイル保存時(バッファ全体をファイルに書き込むとき)にretabを実行する
+autocmd BufWritePost * call __setExecPerm()     " ファイル保存時、条件に合致する場合実行権限を付与する
+autocmd SwapExists * let v:swapchoice = 'o'     " swapファイルが見つかった場合は読み取り専用で開く
+autocmd BufRead * call __restore_cursor_position()   " ファイルを開いた際、前回開いてたカーソルの位置に移動する
 
 " vimのbackupファイルの生成先を指定
+let b:backupdir=''
 if !empty($XDG_CACHE_HOME)
-  set backupdir=$XDG_CACHE_HOME/vim
+  if "$XDG_CACHE_HOME" == "$HOME"
+    let b:backupdir="$HOME/.vimbackup"
+  else
+    let b:backupdir="$XDG_CACHE_HOME/vim"
+  endif
 else
-  set backupdir=$HOME/.vimbackup
+  let b:backupdir="$HOME/.vimbackup"
 endif
+call mkdir(expand(b:backupdir),"p")
+execute "set backupdir=" . b:backupdir
+execute "set undodir=" . b:backupdir
 
 " viminfoのpathを指定する
+let b:viminfo=''
 if !empty($XDG_STATE_HOME)
-  set viminfo+=n$XDG_STATE_HOME/vim/viminfo
+  if "$XDG_STATE_HOME" == "$HOME"
+    let b:viminfo="$HOME/.viminfo"
+  else
+    let b:viminfo="$XDG_STATE_HOME/vim/viminfo"
+  endif
 else
-  set viminfo+=$HOME/.viminfo
+  let b:viminfo="$HOME/.viminfo"
 endif
+let b:viminfo_dir = fnamemodify(expand(b:viminfo), ':p:h')
+call mkdir(b:viminfo_dir,"p")
+execute "set viminfo+=n" . expand(b:viminfo)
 
 " swapfileのエラーがうるさいため、swapfileやbackupfileを作成しないことにする(Manjaro対応)
 set noswapfile

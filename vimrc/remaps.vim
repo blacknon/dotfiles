@@ -150,6 +150,6 @@ endif
 
 " 自動補完
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-    exec "inoremap " . k . " " . k . "<C-N><C-P>"
+    exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
-inoremap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
+imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"

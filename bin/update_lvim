@@ -19,6 +19,6 @@ esac
 # sh_function_lvimを生成(上書き)
 echo -ne "
 function lvim() {
-    \\\\vim -u <(echo " $(cat ~/.vimrc | gzip -fc - | eval ${BASE64}) "|base64 -d|gzip -dc -) \$@ ;
+    \\\\vim -u <(echo " $(cat ~/dotfiles/vimrc/{functions,settings,remaps,syntax}.vim | gzip -fc - | eval ${BASE64}) "|base64 -d|gzip -dc -) \$@ ;
 }
 alias vim=lvim\n" >~/_env/sh/functions/lvim.sh

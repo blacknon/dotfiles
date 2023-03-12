@@ -25,14 +25,15 @@ endfunction
 
 
 " StatusLineのハイライト切り替えを行うfunction
+let b:slhlcmd = ''
 function! __statusLine(mode)
   let l:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkgreen gui=none ctermfg=blue ctermbg=green cterm=none'
   if a:mode == 'Enter'
-    silent! let l:slhlcmd = 'highlight ' . __getHighlight('StatusLine')
+    silent! let b:slhlcmd = 'highlight ' . __getHighlight('StatusLine')
     silent exec l:hi_insert
   else
     highlight clear 'StatusLine'
-    silent exec l:slhlcmd
+    silent exec b:slhlcmd
   endif
 endfunction
 
