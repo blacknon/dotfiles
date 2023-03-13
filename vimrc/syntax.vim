@@ -13,7 +13,8 @@ syntax on
 
 " ファイルタイプからの識別を有効化
 filetype on
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 
 " SyntaxHighlightの色を変更する
 highlight Comment term=bold ctermfg=Cyan guifg=#80a0ff gui=bold

@@ -54,5 +54,17 @@ set noswapfile
 set nobackup
 
 
-" Plugin関係
+" vim-plug
 " ====================
+call plug#begin('~/.vim/plugins')
+if !has('nvim')
+  Plug 'rhysd/vim-lsp-ale' " connector
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'mattn/vim-lsp-icons'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
+endif
+call plug#end()

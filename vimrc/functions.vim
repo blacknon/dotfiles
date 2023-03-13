@@ -32,7 +32,7 @@ function! __statusLine(mode)
     silent! let b:____slhlcmd = 'highlight ' . __getHighlight('StatusLine')
     silent exec l:hi_insert
   else
-    highlight clear 'StatusLine'
+    highlight clear StatusLine
     silent exec b:____slhlcmd
   endif
 endfunction
