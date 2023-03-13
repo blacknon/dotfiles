@@ -38,40 +38,6 @@ autocmd BufWritePost * call __setExecPerm()     " ファイル保存時、条件
 autocmd SwapExists * let v:swapchoice = 'o'     " swapファイルが見つかった場合は読み取り専用で開く
 autocmd BufRead * call __restore_cursor_position()   " ファイルを開いた際、前回開いてたカーソルの位置に移動する
 
-" vimのbackupファイルの生成先を指定
-let b:backupdir=''
-if !empty($XDG_CACHE_HOME)
-  if "$XDG_CACHE_HOME" == "$HOME"
-    let b:backupdir="$HOME/.vimbackup"
-  else
-    let b:backupdir="$XDG_CACHE_HOME/vim"
-  endif
-else
-  let b:backupdir="$HOME/.vimbackup"
-endif
-call mkdir(expand(b:backupdir),"p")
-execute "set backupdir=" . b:backupdir
-execute "set undodir=" . b:backupdir
-
-" viminfoのpathを指定する
-let b:viminfo=''
-if !empty($XDG_STATE_HOME)
-  if "$XDG_STATE_HOME" == "$HOME"
-    let b:viminfo="$HOME/.viminfo"
-  else
-    let b:viminfo="$XDG_STATE_HOME/vim/viminfo"
-  endif
-else
-  let b:viminfo="$HOME/.viminfo"
-endif
-let b:viminfo_dir = fnamemodify(expand(b:viminfo), ':p:h')
-call mkdir(b:viminfo_dir,"p")
-execute "set viminfo+=n" . expand(b:viminfo)
-
-" swapfileのエラーがうるさいため、swapfileやbackupfileを作成しないことにする(Manjaro対応)
-set noswapfile
-set nobackup
-
 
 " カーソル処理関連
 " ====================

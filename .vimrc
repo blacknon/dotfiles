@@ -15,6 +15,7 @@ let s:local_vimrc_files = [
   \ , s:local_vimrc_dir . '/vimrc/settings.vim'
   \ , s:local_vimrc_dir . '/vimrc/syntax.vim'
   \ , s:local_vimrc_dir . '/vimrc/remaps.vim'
+  \ , s:local_vimrc_dir . '/vimrc/local.vim'
 \]
 
 " for loopで読み込んでいく
