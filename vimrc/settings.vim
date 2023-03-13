@@ -31,11 +31,11 @@ set listchars=tab:▸-        " タブを「▸-」と表示させる
 
 " ファイル処理関連
 " ====================
-set autoread                                    " 編集中のファイルが変更されたら自動で読み直す
-set hidden                                      " バッファが編集中でもその他のファイルを開けるようにする
-autocmd BufWritePre * call __retab()            " ファイル保存時(バッファ全体をファイルに書き込むとき)にretabを実行する
-autocmd BufWritePost * call __setExecPerm()     " ファイル保存時、条件に合致する場合実行権限を付与する
-autocmd SwapExists * let v:swapchoice = 'o'     " swapファイルが見つかった場合は読み取り専用で開く
+set autoread                                       " 編集中のファイルが変更されたら自動で読み直す
+set hidden                                         " バッファが編集中でもその他のファイルを開けるようにする
+autocmd BufWritePre * call __retab()               " ファイル保存時(バッファ全体をファイルに書き込むとき)にretabを実行する
+autocmd BufWritePost * call __setExecPerm()        " ファイル保存時、条件に合致する場合実行権限を付与する
+autocmd SwapExists * let v:swapchoice = 'o'        " swapファイルが見つかった場合は読み取り専用で開く
 autocmd BufRead * call __restoreCursorPosition()   " ファイルを開いた際、前回開いてたカーソルの位置に移動する
 
 
@@ -52,6 +52,8 @@ set wildmenu                     " コマンドラインモードで<Tab>キー�
 set wildmode=longest:full,full   " コマンドラインモードでのファイル名補完の挙動を指定
 set history=5000                 " コマンドラインモードで保存するコマンド履歴の数
 set iskeyword-=-_(){}            " キーワードから記号等を削除
+set wildchar=<tab>               " コマンド補完を開始するキー
+set complete+=k                  " 補完に辞書ファイルを追加
 
 
 " タブ・インデント関連

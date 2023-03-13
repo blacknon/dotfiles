@@ -3,7 +3,8 @@
 " that can be found in the LICENSE file.
 
 " ABOUT:
-"     syntax関係の設定を指定しているファイル.
+"     syntax/completion関係の設定を指定しているファイル.
+"     ローカル・リモート共通の設定を記載している.
 " -------------------------------------------------------------
 " 基本設定
 " ====================
@@ -20,15 +21,11 @@ highlight Comment term=bold ctermfg=Cyan guifg=#80a0ff gui=bold
 " 補完時の動作について定義
 "   - menuone ... 対象が1件しかなくても常に補完ウィンドウを表示
 "   - noinsert ... 補完ウィンドウを表示時に挿入しない
-set completeopt=menuone,noinsert
+"   - preview ... プレビューウインドウに追加情報を表示(補間関数が対応している場合のみ)
+set completeopt=menuone,noinsert,preview
 
 " オムニ補完の設定（insertモードでCtrl+oで候補を出す、Ctrl+n Ctrl+pで選択、Ctrl+yで確定）
-set omnifunc=pythoncomplete#Complete         " python
-set omnifunc=javascriptcomplete#CompleteJS   " javascript
-set omnifunc=htmlcomplete#CompleteTags       " html
-set omnifunc=csscomplete#CompleteCSS         " css
-set omnifunc=xmlcomplete#CompleteTags        " xml
-set omnifunc=phpcomplete#CompletePHP         " php
+set omnifunc=syntaxcomplete#Complete
 
 " syntaxが有効な場合の処理
 if has('syntax')

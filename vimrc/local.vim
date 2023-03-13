@@ -52,3 +52,7 @@ execute "set viminfo+=n" . b:viminfo
 
 set noswapfile
 set nobackup
+
+
+" Plugin関係
+" ====================
