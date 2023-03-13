@@ -36,7 +36,7 @@ set hidden                                      " バッファが編集中でも
 autocmd BufWritePre * call __retab()            " ファイル保存時(バッファ全体をファイルに書き込むとき)にretabを実行する
 autocmd BufWritePost * call __setExecPerm()     " ファイル保存時、条件に合致する場合実行権限を付与する
 autocmd SwapExists * let v:swapchoice = 'o'     " swapファイルが見つかった場合は読み取り専用で開く
-autocmd BufRead * call __restore_cursor_position()   " ファイルを開いた際、前回開いてたカーソルの位置に移動する
+autocmd BufRead * call __restoreCursorPosition()   " ファイルを開いた際、前回開いてたカーソルの位置に移動する
 
 
 " カーソル処理関連

@@ -25,15 +25,15 @@ endfunction
 
 
 " StatusLineのハイライト切り替えを行うfunction
-let b:slhlcmd = ''
+let b:____slhlcmd = '' " __statusLine() でのみ使用する変数
 function! __statusLine(mode)
   let l:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkgreen gui=none ctermfg=blue ctermbg=green cterm=none'
   if a:mode == 'Enter'
-    silent! let b:slhlcmd = 'highlight ' . __getHighlight('StatusLine')
+    silent! let b:____slhlcmd = 'highlight ' . __getHighlight('StatusLine')
     silent exec l:hi_insert
   else
     highlight clear 'StatusLine'
-    silent exec b:slhlcmd
+    silent exec b:____slhlcmd
   endif
 endfunction
 
@@ -50,7 +50,7 @@ endfunction
 
 
 " 前回ファイルを開いた際のカーソル位置に移動するfunction
-function! __restore_cursor_position()
+function! __restoreCursorPosition()
   if line("'\"") > 0 && line("'\"") <= line("$")
     exe "normal g`\""
   endif
@@ -58,10 +58,10 @@ endfunction
 
 
 " 行頭にShebangを入力した状態で保存した場合、自動的に実行権限を付与するためのfunction
-let b:executable = 0
+let b:____executableflag = 0
 function! __setExecPerm()
-  if b:executable == 0 && getline(1)[0:1] ==# "#!"
+  if b:____executableflag == 0 && getline(1)[0:1] ==# "#!"
     :!chmod +x %
-    let b:executable = 1
+    let b:____executableflag = 1
   endif
 endfunction
