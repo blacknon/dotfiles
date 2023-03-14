@@ -58,7 +58,7 @@ set nobackup
 " ====================
 call plug#begin('~/.vim/plugins')
 if !has('nvim')
-  Plug 'rhysd/vim-lsp-ale' " connector
+  Plug 'rhysd/vim-lsp-ale'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'

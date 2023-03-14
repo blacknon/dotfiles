@@ -14,3 +14,14 @@ set backupdir=
 set noswapfile
 set nobackup
 set nowritebackup
+
+
+" 自動補完
+" ====================
+" 文字入力時に、自動的に補完処理を行わせる
+for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+    " omni補完だとvim側にfunctionちゃんと入ってないといけないので、一旦コメントアウト
+    " exec "imap " . k . " " . k . "<C-X><C-O>"
+    exec "imap " . k . " " . k . "<C-P>"
+endfor
+imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"

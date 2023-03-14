@@ -146,10 +146,3 @@ if &term =~ "xterm"
     cnoremap <special> <Esc>[200~ <nop>
     cnoremap <special> <Esc>[201~ <nop>
 endif
-
-
-" 自動補完
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-    exec "imap " . k . " " . k . "<C-N><C-P>"
-endfor
-imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
