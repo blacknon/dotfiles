@@ -24,7 +24,6 @@ base64_data=$(
         eval ${BASE64}
 )
 
-
 # sh_function_lvimを生成(上書き)
 echo -ne "
 function lvim() {
