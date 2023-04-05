@@ -113,9 +113,6 @@ linux*)
   ;;
 esac
 
-# 共通
-alias "${ALIAS_OPTION}" script='script -f ' 2>/dev/null || alias script='script -f '
-
 # 上書きの有無を確認させる
 alias rm='rm -i'
 alias cp='cp -i'

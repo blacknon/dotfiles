@@ -452,23 +452,31 @@ sc() {
     mkdir -p "${workdir}"
 
     # term_logを指定
-    local term_log="${workdir}/$(date +%Y%m%d_%H%M%S.log)"
+    term_log="${workdir}/$(date +%Y%m%d_%H%M%S.log)"
   fi
 
   # scriptコマンドはOSによって挙動が異なるので、処理を分ける
   case "${OSTYPE}" in
   darwin*)
+    if [ "${is_timestamp}" -eq "1" ]; then
+        term_log=">(gawk '{print strftime(\"%F %T \") \$0}{fflush()}' >> ${term_log})"
+    fi
+
     if [ -z "${cmd}" ]; then
-      script -aq "${term_log}"
+      eval script -aq -F ${term_log}
     else
-      script -aq "${term_log}" ${@}
+      eval script -aq -F ${term_log} ${@}
     fi
     ;;
   linux*)
+    if [ "${is_timestamp}" -eq "1" ]; then
+        term_log=">(awk '{print strftime(\"%F %T \") \$0}{fflush()}' >> ${term_log})"
+    fi
+
     if [ -z "${cmd}" ]; then
-      script -aq -f "${term_log}"
+      eval script -aq -f ${term_log}
     else
-      script -aq -f "${term_log}" -c "${@}"
+      eval script -aq -f ${term_log} -c "${@}"
     fi
     ;;
   esac
