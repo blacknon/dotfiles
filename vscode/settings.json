@@ -106,9 +106,10 @@
     "go.useLanguageServer": true,
     // Rust
     "rust.mode": "legacy",
-    "rust.rustup": "${env:HOME}/.cargo/bin/rustup",
+    "rust.rustup": "${env:HOME}/.local/share/cargo/bin/rustup",
     "rust.rustup.toolchain": "stable-aarch64-apple-darwin", // 仮設定(OSごとに変えられないため、一旦Mac OSX)
-    "rust.rustfmtPath": "${env:HOME}/.cargo/bin/rustfmt",
+    "rust.rustfmtPath": "${env:HOME}/.local/share/cargo/bin/rustfmt",
+    "rust-analyzer.rustfmt.enableRangeFormatting": true,
     // PHP
     "phpcs.standard": "PSR12",
     // 拡張子別設定
@@ -121,7 +122,10 @@
     },
     // rust
     "[rust]": {
-        "editor.defaultFormatter": "rust-lang.rust"
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
+        "editor.formatOnType": true, // 入力時に自動整形
+        "editor.formatOnPaste": true, // ペースト時に自動整形
+        "editor.formatOnSave": true // 保存時に自動整形
     },
     // c
     "[zsh]": {
@@ -151,5 +155,6 @@
     ],
     "python.analysis.extraPaths": [
         "/opt/homebrew/lib/python3.10/site-packages/"
-    ]
+    ],
+    "git.openRepositoryInParentFolders": "never",
 }
