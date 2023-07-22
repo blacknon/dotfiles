@@ -113,9 +113,6 @@ linux*)
   ;;
 esac
 
-# 共通
-alias "${ALIAS_OPTION}" script='script -f ' 2>/dev/null || alias script='script -f '
-
 # 上書きの有無を確認させる
 alias rm='rm -i'
 alias cp='cp -i'
@@ -141,4 +138,4 @@ which bat 2>/dev/null >/dev/null
 
 # hwatch
 which hwatch 2>/dev/null >/dev/null
-[ $? -eq 0 ] && alias hwatch='hwatch -l $HOME/Today/log/hwatch/hwatch_$(date +%Y%m%d_%H%M%S)_hwatch.log '
+[ $? -eq 0 ] && alias hwatch='hwatch -s '\''zsh -c "source ~/.zshrc; {COMMAND}"'\''  -l $HOME/Today/log/hwatch/hwatch_$(date +%Y%m%d_%H%M%S)_hwatch.log '

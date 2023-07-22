@@ -3,7 +3,7 @@
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 #
-# Description: ssh先に持っていくvim設定付きfunctionの作成スクリプト
+# Description: ssh先に持っていくvim設定付きfunction(`lvim`)の作成スクリプト
 # =============================================
 
 # OSに応じてbase64のコマンドを切り替え
@@ -16,9 +16,17 @@ linux*)
     ;;
 esac
 
+# lvim用のvimrcファイルを生成する
+base64_data=$(
+        cat ~/dotfiles/vimrc/{functions,settings,remaps,syntax,remote}.vim |
+        grep -v -e '^ *"' |
+        gzip -fc - |
+        eval ${BASE64}
+)
+
 # sh_function_lvimを生成(上書き)
 echo -ne "
 function lvim() {
-    \\\\vim -u <(echo " $(cat ~/.vimrc | gzip -fc - | eval ${BASE64}) "|base64 -d|gzip -dc -) \$@ ;
+    \\\\vim -u <(echo "${base64_data}" |base64 -d|gzip -dc -) \$@ ;
 }
 alias vim=lvim\n" >~/_env/sh/functions/lvim.sh

@@ -644,17 +644,18 @@ get_open_ports() {
       bash
     ;;
   linux*)
-    ss -ntlp |
-      awk \
-        -v OFS="," \
-        -F$' ' \
-          'BEGIN{
+    local ss_command='ss -ntlp'
+    if [[ "$EUID" -ne 0 ]];then
+      ss_command="sudo ${ss_command}"
+    fi
+    eval "${ss_command}" |
+      awk -v OFS="," -F' ' 'BEGIN{
             print "echo \"port,command\""
            }
            $1=="LISTEN"{
-            print "echo "$(NF-1),"\$(ps -o command= -p \$(echo \""$NF"\" | grep -m1 -Eo \"pid=[0-9]+\" | sed \"s/pid=//\") 2>/dev/null)"
+            print "echo "$(NF-2),"$(ps -o command= -p $(echo '\''"$NF"'\'' | grep -m1 -Eo \"pid=[0-9]+\" | sed \"s/pid=//\") 2>/dev/null)"
            }
-      ' 2>/dev/null | bash
+        ' 2> /dev/null | bash
     ;;
   esac
 }
