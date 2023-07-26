@@ -55,8 +55,15 @@ def main():
         update_tld_names()
         for line in fileinput.input():
             line = line.strip()
-            domain = get_fld(line, fix_protocol=True)
-            print(domain)
+            try:
+                domain = get_fld(line, fix_protocol=True)
+                print("{0} => {1}".format(line, domain), file=sys.stdout)
+            except Exception as e:
+                print(
+                    "parse error: {0}.\nError Message: \"{1}\""
+                    .format(line, e),
+                    file=sys.stderr
+                )
 
     else:
         print("ドメインを取得するサブドメインを標準入力で渡してください.", file=sys.stderr)

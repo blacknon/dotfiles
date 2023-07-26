@@ -473,7 +473,9 @@ rarls() {
 # TODO(blacknon): パラレルで実行できるようにする => 一度コマンドを作って、後でxargsでパラレル実行がいいかも
 # TODO(blacknon): ddigの結果をjsonやMarkdown table、csv風に出力できるようなオプション(or command/function)が欲しいかも？
 # TODO(blacknon): ドメイン相当の箇所が特定の文字の場合(NSやA、CNAMEなど)については、さらに処理を分割する
-# スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力する関数
+# TODO(blacknon): 引数を受け付けるオプションが動かないので、ちゃんとargparseしないとだめかも？
+#
+# スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力するdigのwrapper関数
 # ex.)
 #     ddig abc{1..10}.com @{8.8.8.8,1.1.1.1}
 ddig() {
