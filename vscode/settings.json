@@ -149,7 +149,6 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "window.zoomLevel": -1,
     "python.autoComplete.extraPaths": [
         "/opt/homebrew/lib/python3.10/site-packages/",
         "/opt/homebrew/lib/python3.11/site-packages/"
@@ -159,4 +158,5 @@
         "/opt/homebrew/lib/python3.11/site-packages/"
     ],
     "git.openRepositoryInParentFolders": "never",
+    "window.zoomLevel": -1,
 }
