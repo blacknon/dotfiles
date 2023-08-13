@@ -14,6 +14,8 @@ FILES=(
     $ZSHRC_DIR/sh/functions/keybind.sh
     $ZSHRC_DIR/sh/functions/exec_1.sh
     $ZSHRC_DIR/sh/functions/exec_2.sh
+    $ZSHRC_DIR/sh/functions/exec_ddig.sh
+    $ZSHRC_DIR/sh/functions/exec_pping.sh
     $ZSHRC_DIR/sh/functions/command_not_found_hundle.sh
     $ZSHRC_DIR/zsh/functions/function.zsh
     $ZSHRC_DIR/sh/functions/iterm2.sh
