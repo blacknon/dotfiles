@@ -18,6 +18,8 @@ FILES=(
     "${BASHRC_DIR}"/sh/functions/keybind.sh
     "${BASHRC_DIR}"/sh/functions/exec_1.sh
     "${BASHRC_DIR}"/sh/functions/exec_2.sh
+    "${BASHRC_DIR}"/sh/functions/exec_ddig.sh
+    "${BASHRC_DIR}"/sh/functions/exec_pping.sh
     "${BASHRC_DIR}"/sh/functions/command_not_found_hundle.sh
     "${BASHRC_DIR}"/sh/functions/iterm2.sh # iterm2用のfunctionファイル
     "${BASHRC_DIR}"/sh/export.sh
