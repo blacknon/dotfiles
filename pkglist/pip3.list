@@ -79,12 +79,15 @@ azure-graphrbac
 azure-identity
 azure-keyvault
 azure-keyvault-administration
+azure-keyvault-certificates
 azure-keyvault-keys
+azure-keyvault-secrets
 azure-loganalytics
 azure-mgmt
 azure-mgmt-advisor
 azure-mgmt-apimanagement
 azure-mgmt-appconfiguration
+azure-mgmt-appcontainers
 azure-mgmt-applicationinsights
 azure-mgmt-authorization
 azure-mgmt-batch
@@ -292,6 +295,7 @@ jedi
 jmespath
 jsondiff
 jsonschema
+jsonschema-specifications
 kaitaistruct
 keyring
 keyutils
@@ -305,8 +309,10 @@ livereload
 lockfile
 louis
 lxml
+markdown-it-py
 matplotlib-inline
 mccabe
+mdurl
 menulibre
 more-itertools
 msal
@@ -349,6 +355,7 @@ postgres
 prettytable
 progress
 prompt-toolkit
+protobuf
 psutil
 psycopg2
 psycopg2-binary
@@ -375,6 +382,7 @@ pyflakes
 pylint
 pyls
 pyparsing
+pyproject_hooks
 pyrsistent
 pyscard
 python-dateutil
@@ -393,8 +401,10 @@ queuelib
 raccoon
 rados
 rbd
+rdflib
 readchar
 readme-renderer
+referencing
 regex
 reportlab
 requests
@@ -407,6 +417,7 @@ rfc3986
 rgw
 rich
 robin
+rpds-py
 rsa
 ruamel.yaml
 ruamel.yaml.clib
@@ -435,6 +446,7 @@ sphinx-rtd-theme
 sphinxcontrib-applehelp
 sphinxcontrib-devhelp
 sphinxcontrib-htmlhelp
+sphinxcontrib-jquery
 sphinxcontrib-jsmath
 sphinxcontrib-qthelp
 sphinxcontrib-serializinghtml
@@ -447,6 +459,7 @@ team
 termcolor
 text-unidecode
 texttable
+tld
 tldextract
 toml
 tomli

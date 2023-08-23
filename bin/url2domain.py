@@ -4,24 +4,20 @@
 # Use of this source code is governed by an MIT license
 # that can be found in the LICENSE file.
 #
-# Description: 標準入力で受け付けたサブドメインからドメインを返すスクリプト.
+# Description: 標準入力で受け付けたURLからドメインを返すスクリプト.
 # =============================================
 
 """subdomain2domain.py
 
-標準入力で受け付けたサブドメインからドメインを返すスクリプト.
+標準入力で受け付けたURLからドメインを返すスクリプト.
 
 Example:
     ```shell
-    $ echo "hoge.com\nfuga.hoge.com\nunko.sitai.co.jp"
-    hoge.com
-    fuga.hoge.com
-    unko.sitai.co.jp
+    $ echo "https://hogehoge.orebibou.com/path/to/page"
+    https://hogehoge.orebibou.com/path/to/page
 
-    $ echo "hoge.com\nfuga.hoge.com\nunko.sitai.co.jp" | subdomain2domain.py
-    hoge.com => hoge.com
-    fuga.hoge.com => hoge.com
-    unko.sitai.co.jp => sitai.co.jp
+    $ echo "https://hogehoge.orebibou.com/path/to/page" | url2domain.py
+    https://hogehoge.orebibou.com/path/to/page => hogehoge.orebibou.com
     ```
 """
 
@@ -29,8 +25,7 @@ import argparse
 import sys
 import select
 import fileinput
-from tld import get_fld
-from tld.utils import update_tld_names
+from urllib.parse import urlparse
 
 
 def is_pipe() -> bool:
@@ -44,7 +39,7 @@ def is_pipe() -> bool:
 
 def main():
     parser = argparse.ArgumentParser(
-        description='標準入力で受け付けたサブドメインからドメインを返すスクリプト.'
+        description='標準入力で受け付けたURLからドメイン部分を返すスクリプト.'
     )
 
     # 引数を取得
@@ -52,12 +47,12 @@ def main():
 
     # pipeか否かで処理を切り替え
     if is_pipe():
-        update_tld_names()
         for line in fileinput.input():
             line = line.strip()
             try:
-                domain = get_fld(line, fix_protocol=True)
-                print("{0} => {1}".format(line, domain), file=sys.stdout)
+                parsed_url = urlparse(line)
+                print("{0} => {1}".format(
+                    line, parsed_url.netloc), file=sys.stdout)
             except Exception as e:
                 print(
                     "parse error: {0}.\nError Message: \"{1}\""
@@ -66,7 +61,7 @@ def main():
                 )
 
     else:
-        print("ドメインを取得するサブドメインを標準入力で渡してください.", file=sys.stderr)
+        print("ドメインを取得するURLを標準入力で渡してください.", file=sys.stderr)
         sys.exit(1)
 
 
