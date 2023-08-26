@@ -19,6 +19,7 @@ def is_pipe():
         return True
     return False
 
+
 # mainの処理
 def main():
     # parserを生成

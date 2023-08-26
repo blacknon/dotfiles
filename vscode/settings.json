@@ -147,7 +147,8 @@
     },
     "editor.guides.indentation": false,
     "[python]": {
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.autopep8"
     },
     "python.autoComplete.extraPaths": [
         "/opt/homebrew/lib/python3.10/site-packages/",
@@ -159,4 +160,5 @@
     ],
     "git.openRepositoryInParentFolders": "never",
     "window.zoomLevel": -1,
+    "hediet.vscode-drawio.resizeImages": null,
 }
