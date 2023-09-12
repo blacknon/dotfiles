@@ -88,6 +88,28 @@ aigrep() {
   fi
 }
 
+# 標準入力で受けたCamelCase => snake_caseの変換を行う
+camel2snake() {
+  # OS別での使用コマンドの識別
+  case ${OSTYPE} in
+  darwin*) local sed="gsed" ;;
+  linux*) local sed="sed" ;;
+  esac
+
+  cat | ${sed} -E 's/(.)([A-Z])/\1_\2/g' | tr '[A-Z]' '[a-z]'
+}
+
+# 標準入力で受けたsnake_case => CamelCaseの変換を行う
+snake2camel() {
+  # OS別での使用コマンドの識別
+  case ${OSTYPE} in
+  darwin*) local sed="gsed" ;;
+  linux*) local sed="sed" ;;
+  esac
+
+  cat | ${sed} -r 's/.*/\L\0/g; s/_([a-z0-9])/\U\1/g;'
+}
+
 ## ==========
 # エンコード/デコード関係
 ## ==========
