@@ -191,6 +191,7 @@ PATH_LIST+=("${CARGO_HOME}/bin")             # Rust(Cargo)用PATH
 PATH_LIST+=("${XDG_CONFIG_HOME}/vendor/bin") # php(composer)用のPATH
 PATH_LIST+=("${GEM_HOME}/ruby/bin")          # Ruby gem用PATH
 PATH_LIST+=("${HOME}/.nodebrew/current/bin") # NodeJS用PATH
+PATH_LIST+=("${XDG_DATA_HOME}/npm/bin")      # npm用PATH
 PATH_LIST+=("${HOME}/.local/bin")            # Python(pip)用PATH
 PATH_LIST+=("${HOME}/.nimble/bin")           # Nim用PATH
 PATH_LIST+=("${HOME}/bin")                   # 自作スクリプト群の配置用ディレクトリPATH
