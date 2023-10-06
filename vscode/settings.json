@@ -97,6 +97,7 @@
     "python.linting.flake8Args": [
         "--ignore=E501"
     ],
+    "python.terminal.activateEnvironment": false,
     // Go
     "go.playground": {
         "openbrowser": true,

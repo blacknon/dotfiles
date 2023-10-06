@@ -113,7 +113,12 @@ export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node_repl_history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 
 # wget
-export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
+# WGETRCはローカルホスト以外では使用しない
+if [ -z "${XDG_CONFIG_HOME}" ]; then
+  if [ -z "${SSH_CLIENT}" ]; then
+    export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
+  fi
+fi
 
 # Gradle
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
