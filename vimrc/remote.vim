@@ -14,7 +14,7 @@ set backupdir=
 set noswapfile
 set nobackup
 set nowritebackup
-
+set completeopt=menuone,noinsert,noselect,longest
 
 " 自動補完
 " ====================
@@ -22,6 +22,6 @@ set nowritebackup
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
     " omni補完だとvim側にfunctionちゃんと入ってないといけないので、一旦コメントアウト
     " exec "imap " . k . " " . k . "<C-X><C-O>"
-    exec "imap " . k . " " . k . "<C-P>"
+    exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
 imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
