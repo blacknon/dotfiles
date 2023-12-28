@@ -162,4 +162,5 @@
     "git.openRepositoryInParentFolders": "never",
     "window.zoomLevel": -1,
     "hediet.vscode-drawio.resizeImages": null,
+    "gitlab.aiAssistedCodeSuggestions.enabled": false
 }
