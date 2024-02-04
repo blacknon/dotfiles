@@ -75,6 +75,7 @@
     "debug.console.fontSize": 14, // Debugコンソールの文字サイズ
     // Terminal
     // ===============
+    "terminal.integrated.stickyScroll.enabled": false, // Terminal上部に出てくる実行済コマンド. くそ邪魔なので無効化.
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.rendererType": "canvas",
     // OSX用設定
