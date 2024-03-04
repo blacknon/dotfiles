@@ -242,6 +242,7 @@ export LESS="-R" # lessでスクロールが効くようにする
 
 # bat
 export BAT_PAGER="less -RF" # batのpagerを設定
+export BAT_THEME="Coldark-Dark" # batのColor Theme
 
 # python encode
 export PYTHONIOENCODING='UTF-8'

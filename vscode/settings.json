@@ -87,6 +87,7 @@
     "git.ignoreMissingGitWarning": true,
     "git.enableSmartCommit": true,
     "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
     // 拡張機能
     // ===============
     "extensions.autoUpdate": true,
@@ -160,7 +161,6 @@
         "/opt/homebrew/lib/python3.10/site-packages/",
         "/opt/homebrew/lib/python3.11/site-packages/"
     ],
-    "git.openRepositoryInParentFolders": "never",
     "window.zoomLevel": -1,
     "hediet.vscode-drawio.resizeImages": null,
     "gitlab.aiAssistedCodeSuggestions.enabled": false
