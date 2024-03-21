@@ -91,6 +91,15 @@
     // 拡張機能
     // ===============
     "extensions.autoUpdate": true,
+    // Copilot
+    // Github Copilot の提案の表示を有効にするかどうか
+    "editor.inlineSuggest.enabled": true,
+    // Github Copilot を言語ごとに有効にするかどうか
+    "github.copilot.enable": false,
+    // 関数等の上に表示されるコマンドパレットのSuggest testを表示するかどうか
+    "github.copilot-labs.showTestGenerationLenses": true,
+    // 関数等の上に表示されるコマンドパレットのアイコンを表示するかどうか
+    "github.copilot-labs.showBrushesLenses": true,
     // 言語別設定
     // ===============
     // Python
