@@ -172,5 +172,6 @@
     ],
     "window.zoomLevel": -1,
     "hediet.vscode-drawio.resizeImages": null,
-    "gitlab.aiAssistedCodeSuggestions.enabled": false
+    "gitlab.aiAssistedCodeSuggestions.enabled": false,
+    "window.commandCenter": false
 }
