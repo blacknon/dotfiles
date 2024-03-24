@@ -290,6 +290,7 @@ docker_runin() {
   eval "${EXEC_BEFORE_DOCKER_IN}"
 
   # ~/.docker_historyをtouchしておく
+  mkdir -p "$(dirname ${DOCKER_HISTORY})"
   touch "${DOCKER_HISTORY}"
 
   # docker runをして接続する

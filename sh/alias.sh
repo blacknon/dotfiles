@@ -134,7 +134,7 @@ alias "${ALIAS_OPTION}" dig='dig +short ' 2>/dev/null || alias dig='dig +short '
 # その他主要ツールのalias
 # bat
 which bat 2>/dev/null >/dev/null
-[ $? -eq 0 ] && alias bat='bat -n' bcat='BAT_PAGER="cat" \bat -p'
+[ $? -eq 0 ] && alias bat='bat -n' bcat='BAT_PAGER="cat" \bat -p' batlog='bat --paging=never -l log'
 
 # hwatch
 which hwatch 2>/dev/null >/dev/null

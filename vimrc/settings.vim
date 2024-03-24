@@ -114,6 +114,6 @@ augroup END
 
 " その他
 " ====================
-set visualbell                                 " ビープ音を可視化s
+set visualbell                                 " ビープ音を可視化
 set nocompatible                               " vi互換の動作無効化
-set clipboard=unnamed,autoselect,unnamedplus   " 選択した箇所をクリップボードにコピー
+" set clipboard=unnamed,autoselect,unnamedplus   " 選択した箇所をクリップボードにコピー

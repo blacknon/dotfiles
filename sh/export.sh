@@ -113,7 +113,12 @@ export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node_repl_history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 
 # wget
-export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
+# WGETRCはローカルホスト以外では使用しない
+if [ -z "${XDG_CONFIG_HOME}" ]; then
+  if [ -z "${SSH_CLIENT}" ]; then
+    export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
+  fi
+fi
 
 # Gradle
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
@@ -191,6 +196,7 @@ PATH_LIST+=("${CARGO_HOME}/bin")             # Rust(Cargo)用PATH
 PATH_LIST+=("${XDG_CONFIG_HOME}/vendor/bin") # php(composer)用のPATH
 PATH_LIST+=("${GEM_HOME}/ruby/bin")          # Ruby gem用PATH
 PATH_LIST+=("${HOME}/.nodebrew/current/bin") # NodeJS用PATH
+PATH_LIST+=("${XDG_DATA_HOME}/npm/bin")      # npm用PATH
 PATH_LIST+=("${HOME}/.local/bin")            # Python(pip)用PATH
 PATH_LIST+=("${HOME}/.nimble/bin")           # Nim用PATH
 PATH_LIST+=("${HOME}/bin")                   # 自作スクリプト群の配置用ディレクトリPATH
@@ -236,6 +242,7 @@ export LESS="-R" # lessでスクロールが効くようにする
 
 # bat
 export BAT_PAGER="less -RF" # batのpagerを設定
+export BAT_THEME="Coldark-Dark" # batのColor Theme
 
 # python encode
 export PYTHONIOENCODING='UTF-8'
