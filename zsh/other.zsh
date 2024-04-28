@@ -224,11 +224,11 @@ bindkey '^R' __history_selection
 zle -N __ww
 bindkey '^D^D' __ww
 
-# Ctrl + D, Ctrl + D で、当日のWorkDirectoryに移動
+# Ctrl + D, Ctrl + P で、前の日のWorkDirectoryに移動
 zle -N __yw
 bindkey '^D^P' __yw
 
-# Ctrl + D, Ctrl + D で、当日のWorkDirectoryに移動
+# Ctrl + D, Ctrl + N で、次の日のWorkDirectoryに移動
 zle -N __tw
 bindkey '^D^N' __tw
 

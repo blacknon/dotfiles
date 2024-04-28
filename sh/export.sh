@@ -124,7 +124,13 @@ fi
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 
 # X Window System(x11)
-export XAUTHORITY="${XDG_CACHE_HOME}/Xauthority"
+case ${OSTYPE} in
+darwin*)
+  export XAUTHORITY="${HOME}/.Xauthority"
+  ;;
+linux*)
+  export XAUTHORITY="${XDG_CACHE_HOME}/Xauthority"
+esac
 export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
 
 # color code
