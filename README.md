@@ -45,23 +45,25 @@
 
 ### 実行ファイル
 
-| File                                                             | 概要                                                                             |
-|------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| [bin/cidr2iplist.py](bin/cidr2iplist.py)                         | 標準入力で受け付けたcidr(`192.168.0.0/24`)を展開してipアドレスのリストとして出力するスクリプト.           |
-| [bin/get_proxy](bin/get_proxy)                                   | pubproxy.comのapiからランダムにSocks5 proxyを取得するスクリプト                                  |
-| [bin/get_proxylist](bin/get_proxylist)                           | `www.proxy-list.download`からフリーのプロキシリストを取得してURI形式でリスト取得するスクリプト              |
-| [bin/get_shellfunction_table.sh](bin/get_shellfunction_table.sh) | シェル関数とその説明を`sh_function*`ファイルから取得してtableにするスクリプト                           |
-| [bin/hwatch_logviewer.py](bin/hwatch_logviewer.py)               | [hwatch](https://github.com/blacknon/hwatch)のlogをパースして出力するスクリプト                |
-| [bin/json2urlparam.py](bin/json2urlparam.py)                     | json文字列をPOSTできるURL EncodeしたQuery stringに変換するスクリプト                           |
-| [bin/mkworkbackup.sh](bin/mkworkbackup.sh)                       | ~/Today/backupに、雑にバックアップを作成するスクリプト. mkworkln.shから該当箇所だけ抜き出して動くようにしたもの. |
-| [bin/mkworkln.sh](bin/mkworkln.sh)                               | ~/Work整備のcron用スクリプト                                                           |
-| [bin/my-pj](bin/my-pj)                                           | 期間の決まっているプロジェクト用のディレクトリ生成スクリプト(~/Workとセット)                                 |
-| [bin/myconky.sh](bin/myconky.sh)                                 | dotfiles配下のconkyrcを利用したconkyの管理用スクリプト(Desktop Linux用)                    |
-| [bin/mydocker-setup](bin/mydocker-setup)                         | ローカルで使うDockerの取得用スクリプト                                                       |
-| [bin/rot.py](bin/rot.py)                                         | 文字列のROT対応用スクリプト(未作成)                                                    |
-| [bin/subdomain2domain.py](bin/subdomain2domain.py)               | 標準入力で受け付けたサブドメインからドメインを返すスクリプト.                                           |
-| [bin/update_ltmux](bin/update_ltmux)                             | ssh先に持っていくtmux設定付きfunctionの作成スクリプト                                        |
-| [bin/update_lvim](bin/update_lvim)                               | ssh先に持っていくvim設定付きfunction(`lvim`)の作成スクリプト                                 |
+| File                                                              | 概要                                                                                                                                                                                                                                             |
+| ---                                                               | ---                                                                                                                                                                                                                                                |
+| [bin/cidr2iplist.py](bin/cidr2iplist.py)                          |  標準入力で受け付けたcidr(`192.168.0.0/24`)を展開してipアドレスのリストとして出力するスクリプト.                                                                                                                |
+| [bin/get_proxy](bin/get_proxy)                                    |  pubproxy.comのapiからランダムにSocks5 proxyを取得するスクリプト                                                                                                                                                                 |
+| [bin/get_proxylist](bin/get_proxylist)                            |  `www.proxy-list.download`からフリーのプロキシリストを取得してURI形式でリスト取得するスクリプト                                                                                                                   |
+| [bin/get_shellfunction_table.sh](bin/get_shellfunction_table.sh)  |  シェル関数とその説明を`sh_function*`ファイルから取得してtableにするスクリプト                                                                                                                                        |
+| [bin/hwatch_logviewer.py](bin/hwatch_logviewer.py)                |  [hwatch](https://github.com/blacknon/hwatch)のlogをパースして出力するスクリプト                                                                                                                                                   |
+| [bin/json2urlparam.py](bin/json2urlparam.py)                      |  json文字列をPOSTできるURL EncodeしたQuery stringに変換するスクリプト                                                                                                                                                           |
+| [bin/mkworkbackup.sh](bin/mkworkbackup.sh)                        |  ~/Today/backupに、雑にバックアップを作成するスクリプト. mkworkln.shから該当箇所だけ抜き出して動くようにしたもの.                                                                                        |
+| [bin/mkworkln.sh](bin/mkworkln.sh)                                |  ~/Work整備のcron用スクリプト                                                                                                                                                                                                             |
+| [bin/my-pj](bin/my-pj)                                            |  期間の決まっているプロジェクト用のディレクトリ生成スクリプト(~/Workとセット)                                                                                                                                    |
+| [bin/myconky.sh](bin/myconky.sh)                                  |  dotfiles配下のconkyrcを利用したconkyの管理用スクリプト(Desktop Linux用)                                                                                                                                                         |
+| [bin/mydocker-setup](bin/mydocker-setup)                          |  ローカルで使うDockerの取得用スクリプト                                                                                                                                                                                            |
+| [bin/outexec_vimdiff.sh](bin/outexec_vimdiff.sh)                  |  [lssh](https://github.com/blacknon/lssh)のpshell(parallel shell)で実装されている"%outexec"コマンドで使用するためのスクリプト。 "${LSSH_PSHELL_OUT_{SERVER_NAME}}"に過去の実行結果が保存されているため、それらをvimdiffに食わせて差分を確認する。 |
+| [bin/rot.py](bin/rot.py)                                          |  文字列のROT対応用スクリプト(未作成)                                                                                                                                                                                                |
+| [bin/subdomain2domain.py](bin/subdomain2domain.py)                |  標準入力で受け付けたサブドメインからドメインを返すスクリプト.                                                                                                                                                       |
+| [bin/update_ltmux](bin/update_ltmux)                              |  ssh先に持っていくtmux設定付きfunctionの作成スクリプト                                                                                                                                                                          |
+| [bin/update_lvim](bin/update_lvim)                                |  ssh先に持っていくvim設定付きfunction(`lvim`)の作成スクリプト                                                                                                                                                                   |
+| [bin/url2domain.py](bin/url2domain.py)                            |  標準入力で受け付けたURLからドメインを返すスクリプト.                                                                                                                                                                      |
 
 ### シェル関数
 
