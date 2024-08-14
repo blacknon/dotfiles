@@ -65,3 +65,35 @@ function! __setExecPerm()
     let b:____executableflag = 1
   endif
 endfunction
+
+function! s:IsNetworkMount(path)
+    if has('mac')
+      " MacOSの場合、`df -T nonfs -P path`で行数チェックで識別
+      let l:cmd = 'df -T nonfs -P ' . a:path . ' | wc -l'
+      let l:lines = substitute(system(l:cmd), '\n', '', '')
+      if l:lines == '0'
+        return 1
+      else
+        return 0
+      endif
+
+    elseif has('unix')
+      " Linuxの場合、普通にPATHベースで識別
+      let l:cmd = 'df -P ' . a:path . " | awk -F'[ :] 'NR==2{print $1}'"
+      let l:line = substitute(system(l:cmd), '\n', '', '')
+      if l:line == "127.0.0.1"
+        return 1
+      else
+        return 0
+      endif
+
+    else
+        " その他のOSの場合は、ネットワークマウントとして扱わない
+        return 0
+    endif
+endfunction
+
+augroup NetworkBackup
+    autocmd!
+    autocmd BufWritePre * if s:IsNetworkMount(expand('%:p')) | set nobackup nowritebackup noswapfile | endif
+augroup END

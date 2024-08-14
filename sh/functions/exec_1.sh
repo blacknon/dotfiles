@@ -536,6 +536,8 @@ get_globalip() {
 get_open_ports() {
   # osに応じて実行する処理を切り替え
   # 公開ポート番号を取得するコマンドを実行してパース処理
+
+  # TODO: sudoはｆlagでつけるかどうするか判断させる
   case ${OSTYPE} in
   darwin*)
     netstat -anvp tcp |

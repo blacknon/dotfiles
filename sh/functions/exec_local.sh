@@ -91,6 +91,51 @@ tw() {
   fi
 }
 
+# mount_local
+mount_sshnfs() {
+  usage() {
+    echo "Usage: reverse_mount [-p port] [-s] mount_path"
+    return 1
+  }
+
+  # local変数を宣言(デフォルト値の2049も指定)
+  local is_sudo
+  local port="12049"
+  local path
+
+  # optionをパース
+  local opt
+  while getopts "p:s" opt; do
+    case $opt in
+    p) port="${OPTARG}" ;;
+    s) is_sudo="1" ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  # 引数がない場合はエラーにする
+  if [ $# -eq 0 ]; then
+    echo "Error: Arguments are required."
+    usage
+  fi
+
+  local mount="/sbin/mount"
+  local umount="/sbin/umount"
+
+  path="$1"
+
+  local mount_cmd="$mount -t nfs -o vers=3,proto=tcp,port=${port},mountport=${port} 127.0.0.1:/ ${path}"
+  local umount_cmd="while lsof -i :${port} >/dev/null; do sleep 0.1; done; umount ${path}"
+  if [ "${is_sudo}" -eq "1" ]; then
+    mount_cmd="sudo sh -c '${mount_cmd}'"
+    umount_cmd="sudo sh -c '${umount_cmd}'"
+  fi
+
+  eval ${mount_cmd}
+
+  nohup "${umount_cmd}" >/dev/null &
+}
+
 ## ==========
 # snippet用function(petコマンド関係)
 ## ==========
