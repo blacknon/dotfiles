@@ -16,7 +16,7 @@ reverse_mount() {
 
   # local変数を宣言(デフォルト値の2049も指定)
   local is_sudo
-  local port="2049"
+  local port=2049
   local path
 
   # optionをパース
