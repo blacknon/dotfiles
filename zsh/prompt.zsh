@@ -4,7 +4,6 @@
 # that can be found in the LICENSE file.
 
 # プロンプトの時刻をリアルタイムに更新する
-setopt prompt_subst
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
@@ -143,7 +142,7 @@ precmd_prompt() {
     local PAD_WIDTH="$(($COLUMNS - ($L_WIDTH + $R_WIDTH) % $COLUMNS))"
 
     # $TOP_LPROMPTおよび$TOP_RPROMPTに全角文字が含まれている場合、その文字数分PADからマイナスする
-    local ZENKAKU=$(print -P "${TOP_LPROMPT}${TOP_RPROMPT}"|$GREP -o -P '[^\x00-\x7F]'| wc -l | tr -d ' ')
+    local ZENKAKU=$(print -P "${TOP_LPROMPT}${TOP_RPROMPT}" | $GREP -o -P '[^\x00-\x7F]' | wc -l | tr -d ' ')
     if [ ${ZENKAKU} -ne 0 ];then
         local PAD_WIDTH=$(($PAD_WIDTH - $ZENKAKU))
     fi

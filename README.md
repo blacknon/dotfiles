@@ -30,6 +30,7 @@
 | [sh/functions/exec_pping.sh](sh/functions/exec_pping.sh)                          | インタラクティブシェルから実行する関数(ppingのみ)                        |
 | [sh/functions/exec_local.sh](sh/functions/exec_local.sh)                          | インタラクティブシェルから実行する関数(ローカルマシンでしか実行しないであろうもののみ)                        |
 | [sh/functions/exec_docker.sh](sh/functions/exec_docker.sh)                        | インタラクティブシェルから実行する関数(docker関係のみ)                        |
+| [sh/functions/exec_remote.sh](sh/functions/exec_remote.sh)                        | インタラクティブシェルから実行する関数(lssh reverse mount関係のみ)                        |
 | [sh/functions/iterm2.sh](sh/functions/iterm2.sh)                                  | iTerm2で利用する関数                                       |
 | [sh/functions/keybind.sh](sh/functions/keybind.sh)                                | Keybindで使用する関数                                      |
 | [sh/functions/replace.sh](sh/functions/replace.sh)                                | 既存のコマンドからaliasで置き換える関数                            |
@@ -75,9 +76,9 @@
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____get_escape()](./sh/functions/common.sh#L48-L54) | エスケープした文字を返す |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____1char2dotchar()](./sh/functions/common.sh#L33-L45) | 各文字を1文字だけドット(.)にした文字列の一覧を出力する(agrepで使用) |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____shift1chars()](./sh/functions/common.sh#L14-L30) | 各文字を1文字ずつずらした文字列を出力する(agrepで使用) |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ttmux()](./sh/functions/exec_1.sh#L604-L609) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [check_cert()](./sh/functions/exec_1.sh#L572-L576) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_open_ports()](./sh/functions/exec_1.sh#L536-L569) | 開いてるポートとそれに対応するプロセスのコマンドを一覧で表示する |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ttmux()](./sh/functions/exec_1.sh#L606-L611) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [check_cert()](./sh/functions/exec_1.sh#L574-L578) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_open_ports()](./sh/functions/exec_1.sh#L536-L571) | 開いてるポートとそれに対応するプロセスのコマンドを一覧で表示する |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_globalip()](./sh/functions/exec_1.sh#L531-L533) | `httpbin.org`に接続してグローバルIPを取得する |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_ip()](./sh/functions/exec_1.sh#L496-L527) | ipアドレスとinterfaceの組み合わせをシンプルなリストにして出力する |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [rarls()](./sh/functions/exec_1.sh#L468-L483) | rarファイル内のデータをlist表示するfunction。 |
@@ -112,15 +113,17 @@
 | [./sh/functions/exec_ddig.sh](./sh/functions/exec_ddig.sh) | [ddig()](./sh/functions/exec_ddig.sh#L19-L98) | #<br/>スペース区切りでリストを引数として与えると、その名前解決の結果をカンマ区切りで出力するdigのwrapper関数<br/>ex.)<br/>    ddig abc{1..10}.com @{8.8.8.8,1.1.1.1}<br/>    ddig MX TXT A abc{1..10}.com @{8.8.8.8,1.1.1.1} |
 | [./sh/functions/exec_docker.sh](./sh/functions/exec_docker.sh) | [docker_login()](./sh/functions/exec_docker.sh#L102-L161) | 起動中のdockerコンテナにログインするためのfunction。<br/>usage:<br/>    docker_login コンテナ名<br/>    docker_login -e コンテナ名 # 現在のfunctionを利用してログイン<br/>    docker_login -r コンテナ名 # rcファイルを利用してログイン |
 | [./sh/functions/exec_docker.sh](./sh/functions/exec_docker.sh) | [docker_runin()](./sh/functions/exec_docker.sh#L23-L93) | dockerコンテナを起動してログインするためのfunction。<br/>usage:<br/>    docker_runin コンテナ名<br/>    docker_runin -e コンテナ名 # 現在のfunctionを利用して起動・ログイン<br/>    docker_runin -r コンテナ名 # rcファイルを利用して起動・ログイン<br/>    docker_runin -v ローカルPATH:コンテナPATH コンテナ名 # マウント指定(-r/-eオプション併用可)<br/>NOTE: docker-machine環境下でvolume mountがうまくいかなくなった場合、とりあえずアップグレードすることで直る場合がある。まずはそれをやってみること。 |
-| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [mkinst()](./sh/functions/exec_local.sh#L132-L134) | make install を一気に行うためのfunction |
-| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [battery()](./sh/functions/exec_local.sh#L116-L125) | バッテリー残量を取得 |
-| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [pe()](./sh/functions/exec_local.sh#L105-L109) | petからsnippetを実行する(実行後はhistoryに登録) |
-| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [prev()](./sh/functions/exec_local.sh#L102-L99) | 直前に実行したコマンドをpetに登録する |
+| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [mkinst()](./sh/functions/exec_local.sh#L177-L179) | make install を一気に行うためのfunction |
+| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [battery()](./sh/functions/exec_local.sh#L161-L170) | バッテリー残量を取得 |
+| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [pe()](./sh/functions/exec_local.sh#L150-L154) | petからsnippetを実行する(実行後はhistoryに登録) |
+| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [prev()](./sh/functions/exec_local.sh#L144-L147) | 直前に実行したコマンドをpetに登録する |
+| [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [mount_sshnfs()](./sh/functions/exec_local.sh#L137-L95) | mount_local |
 | [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [tw()](./sh/functions/exec_local.sh#L74-L92) | 現在いるWorkディレクトリを識別し、その翌日のディレクトリへ移動する |
 | [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [yw()](./sh/functions/exec_local.sh#L53-L71) | 現在いるWorkディレクトリを識別し、その前日のディレクトリへ移動する |
 | [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [wd()](./sh/functions/exec_local.sh#L47-L50) | 本日のDownloadディレクトリへの遷移用function |
 | [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [ww()](./sh/functions/exec_local.sh#L16-L44) | Workディレクトリの作成・移動 |
 | [./sh/functions/exec_pping.sh](./sh/functions/exec_pping.sh) | [pping()](./sh/functions/exec_pping.sh#L15-L89) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
+| [./sh/functions/exec_remote.sh](./sh/functions/exec_remote.sh) | [reverse_mount()](./sh/functions/exec_remote.sh#L11-L50) |  |
 | [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgls()](./sh/functions/iterm2.sh#L208-L223) | imgls():<br/>  about:<br/>    iTerm2上で画像ファイルをls状に表示するfunction<br/>  origin:<br/>    <https://www.iterm2.com/utilities/imgls><br/>  require:<br/>    - php |
 | [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgview()](./sh/functions/iterm2.sh#L129-L197) | imgview():<br/>  about:<br/>    iTerm2上で画像ファイルを表示するfunction<br/>  origin:<br/>     <https://www.iterm2.com/utilities/imgcat> |
 | [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_imgls_list_file()](./sh/functions/iterm2.sh#L121-L92) | ____show_imgls_list_file():<br/>  about:<br/>    imglsの結果を出力するfunction |

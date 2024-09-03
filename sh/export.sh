@@ -243,8 +243,12 @@ export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 
 # その他
 # =======================================================
-# hwatch
-export HWATCH="--no-help-banner"
+# hwatch options
+export HWATCH='--no-help-banner'
+HWATCH+=' --border'
+HWATCH+=' --mouse'
+HWATCH+=' --line-number'
+HWATCH+=' --color'
 
 # less
 export LESS="-R" # lessでスクロールが効くようにする
