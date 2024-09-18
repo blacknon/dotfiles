@@ -246,6 +246,7 @@ export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 # hwatch options
 export HWATCH='--no-help-banner'
 HWATCH+=' --border'
+HWATCH+=' --with-scrollbar'
 HWATCH+=' --mouse'
 HWATCH+=' --line-number'
 HWATCH+=' --color'

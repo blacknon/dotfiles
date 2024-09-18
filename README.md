@@ -123,7 +123,7 @@
 | [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [wd()](./sh/functions/exec_local.sh#L47-L50) | 本日のDownloadディレクトリへの遷移用function |
 | [./sh/functions/exec_local.sh](./sh/functions/exec_local.sh) | [ww()](./sh/functions/exec_local.sh#L16-L44) | Workディレクトリの作成・移動 |
 | [./sh/functions/exec_pping.sh](./sh/functions/exec_pping.sh) | [pping()](./sh/functions/exec_pping.sh#L15-L89) | ex.)<br/>    pping target1 target2...<br/>parallel port ping |
-| [./sh/functions/exec_remote.sh](./sh/functions/exec_remote.sh) | [reverse_mount()](./sh/functions/exec_remote.sh#L11-L50) |  |
+| [./sh/functions/exec_remote.sh](./sh/functions/exec_remote.sh) | [reverse_mount()](./sh/functions/exec_remote.sh#L12-L51) | lsshのreverse nfs mountを使って、ローカルディレクトリをssh先でマウントさせるためのshell function. |
 | [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgls()](./sh/functions/iterm2.sh#L208-L223) | imgls():<br/>  about:<br/>    iTerm2上で画像ファイルをls状に表示するfunction<br/>  origin:<br/>    <https://www.iterm2.com/utilities/imgls><br/>  require:<br/>    - php |
 | [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [imgview()](./sh/functions/iterm2.sh#L129-L197) | imgview():<br/>  about:<br/>    iTerm2上で画像ファイルを表示するfunction<br/>  origin:<br/>     <https://www.iterm2.com/utilities/imgcat> |
 | [./sh/functions/iterm2.sh](./sh/functions/iterm2.sh) | [____show_imgls_list_file()](./sh/functions/iterm2.sh#L121-L92) | ____show_imgls_list_file():<br/>  about:<br/>    imglsの結果を出力するfunction |
