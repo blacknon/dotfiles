@@ -577,6 +577,22 @@ check_cert() {
   echo | openssl s_client -connect $DOMAIN:$PORT 2>/dev/null | openssl x509 -enddate
 }
 
+# 引数で受け付けたCIDRから、IPアドレスのリストを生成する関数
+gen_ip_list() {
+  local cidr="$1"
+
+  echo "${cidr}" | perl -aF[./] -E'
+    $x.=sprintf("%08b",$F[$_])for 0..3;
+    $y=$F[4];$z=32-$y;
+    $m=2**$z;
+    for($j=0;$j<$m;$j++){
+        $a=substr($x,0,$y).sprintf("%0".$z."b",$j);
+        $b[$j].=".".sprintf(oct("0b".substr($a,$_*8,8)))for 0..3;
+        $b[$j]=~s/^\.//g;
+        say $b[$j];}
+    print $b'
+}
+
 ## ==========
 # System情報取得関係
 ## ==========

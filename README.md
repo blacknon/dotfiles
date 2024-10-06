@@ -76,7 +76,8 @@
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____get_escape()](./sh/functions/common.sh#L48-L54) | エスケープした文字を返す |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____1char2dotchar()](./sh/functions/common.sh#L33-L45) | 各文字を1文字だけドット(.)にした文字列の一覧を出力する(agrepで使用) |
 | [./sh/functions/common.sh](./sh/functions/common.sh) | [____shift1chars()](./sh/functions/common.sh#L14-L30) | 各文字を1文字ずつずらした文字列を出力する(agrepで使用) |
-| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ttmux()](./sh/functions/exec_1.sh#L606-L611) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [ttmux()](./sh/functions/exec_1.sh#L622-L627) | tmux内で実行すると、ウィンドウを分割してスタートさせる |
+| [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [gen_ip_list()](./sh/functions/exec_1.sh#L581-L594) | 引数で受け付けたCIDRから、IPアドレスのリストを生成する関数 |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [check_cert()](./sh/functions/exec_1.sh#L574-L578) | OpenSSLでの、リモートの証明書の期限をチェックするための関数 |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_open_ports()](./sh/functions/exec_1.sh#L536-L571) | 開いてるポートとそれに対応するプロセスのコマンドを一覧で表示する |
 | [./sh/functions/exec_1.sh](./sh/functions/exec_1.sh) | [get_globalip()](./sh/functions/exec_1.sh#L531-L533) | `httpbin.org`に接続してグローバルIPを取得する |
