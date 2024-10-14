@@ -180,6 +180,9 @@ darwin*)
   PATH_LIST+=("/usr/local/opt/openssl@1.1/bin")
   PATH_LIST+=("/usr/local/opt/icu4c/bin")
 
+  # DYLD_LIBRARY_PATH
+  export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+
   # LIBRARY_PATH
   export LIBRARY_PATH="${LIBRARY_PATH}:/usr/local/opt/ncurses/lib/"
 
@@ -240,8 +243,13 @@ export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 
 # その他
 # =======================================================
-# hwatch
-export HWATCH="--no-help-banner"
+# hwatch options
+export HWATCH='--no-help-banner'
+HWATCH+=' --border'
+HWATCH+=' --with-scrollbar'
+HWATCH+=' --mouse'
+HWATCH+=' --line-number'
+HWATCH+=' --color'
 
 # less
 export LESS="-R" # lessでスクロールが効くようにする

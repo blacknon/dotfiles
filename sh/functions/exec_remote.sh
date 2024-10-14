@@ -8,6 +8,7 @@
 #     lsshを使って持って行くremote machineでしか実行しない想定のもののみを記述。
 ### -------------------------------------------------------------
 
+# lsshのreverse nfs mountを使って、ローカルディレクトリをssh先でマウントさせるためのshell function.
 reverse_mount() {
   usage() {
     echo "Usage: reverse_mount [-p port] [-s] mount_path"
@@ -16,7 +17,7 @@ reverse_mount() {
 
   # local変数を宣言(デフォルト値の2049も指定)
   local is_sudo
-  local port="2049"
+  local port=2049
   local path
 
   # optionをパース

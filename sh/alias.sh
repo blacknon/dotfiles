@@ -138,4 +138,4 @@ which bat 2>/dev/null >/dev/null
 
 # hwatch
 which hwatch 2>/dev/null >/dev/null
-[ $? -eq 0 ] && alias hwatch='hwatch -s '\''zsh -c "source ~/.zshrc; {COMMAND}"'\''  -l $HOME/Today/log/hwatch/hwatch_$(date +%Y%m%d_%H%M%S)_hwatch.log '
+[ $? -eq 0 ] && alias hwatch='hwatch -s '\''zsh -c "source ~/.zshrc; {COMMAND}"'\'' -l $HOME/Today/log/hwatch/hwatch_$(date +%Y%m%d_%H%M%S)_hwatch.log '

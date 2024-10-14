@@ -15,14 +15,3 @@ darwin*)
     fi
     ;;
 esac
-
-# もしMacOSでParalles Desktopを使っている場合、docker-machine-driver-parallelsを使うため
-# Docker実行マシンを切り替える
-case ${OSTYPE} in
-darwin*)
-    # Paralles Desktopを使っていて、かつdocker-machine-driver-parallelsが入ってる場合はdocker実行マシンを切り替える
-    if [ -d "/Applications/Parallels Desktop.app" ] && [ -f /usr/local/bin/docker-machine-driver-parallels ]; then
-        eval $(docker-machine env prl-dev)
-    fi
-    ;;
-esac

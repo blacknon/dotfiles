@@ -28,10 +28,12 @@ case "${OSTYPE}" in
 darwin*)
   date="gdate"
   find="gfind"
+  stat="gstat"
   ;;
 linux*)
   date="date"
   find="find"
+  stat="stat"
   ;;
 esac
 
@@ -83,8 +85,14 @@ mkdir -p "${WORKDIR}/log/"
 mkdir -p "${WORKDIR}/log/hwatch/"
 
 # today_memo.txtを生成する
+# TODO: 未作成の場合のみ、前日のtoday_memo.txtからコピーさせてくる or どっかにsymlink作っとく？？
 touch "${WORKDIR}/today_memo.txt"
-echo -e "today memo\n===" >> "${WORKDIR}/today_memo.txt"
+
+today_memo_size=$($stat --printf="%s" "${WORKDIR}/today_memo.txt")
+
+if [[ "0" -eq "${today_memo_size}" ]]; then
+  echo -e "today memo\n===" >> "${WORKDIR}/today_memo.txt"
+fi
 
 # MacOSの場合、以下の処理も行う
 #   - `${DOWNLOAD_DIR}/.localized`を作成
@@ -102,7 +110,7 @@ darwin*)
   i=0
   for e in "${PLIST_TEMPLETE[@]}"; do
     # テンプレートファイルを読んで変数相当の箇所を置換
-    #   - ${DOWNLOAD_DIR} ... ダウンロードディレクトリ
+    #   - ${DOWNLOAD_DIR} ... ダウンロードディレクトリf
     DATA=$(sed "s,\${DOWNLOAD_DIR},${DOWNLOAD_DIR},g" "${e}")
 
     echo "${DATA}"
