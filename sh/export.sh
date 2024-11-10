@@ -250,6 +250,7 @@ HWATCH+=' --with-scrollbar'
 HWATCH+=' --mouse'
 HWATCH+=' --line-number'
 HWATCH+=' --color'
+HWATCH+=' --enable-summary-char'
 
 # less
 export LESS="-R" # lessでスクロールが効くようにする
