@@ -124,6 +124,10 @@
     "rust-analyzer.rustfmt.enableRangeFormatting": true,
     // PHP
     "phpcs.standard": "PSR12",
+    // markdown
+    "markdownlint.config": {
+        "MD013": false
+    },
     // 拡張子別設定
     // ===============
     // c
