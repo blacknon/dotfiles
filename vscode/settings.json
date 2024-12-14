@@ -173,5 +173,7 @@
     "window.zoomLevel": -1,
     "hediet.vscode-drawio.resizeImages": null,
     "gitlab.aiAssistedCodeSuggestions.enabled": false,
-    "window.commandCenter": false
+    "window.commandCenter": false,
+    "workbench.statusBar.visible": false,
+    "window.customTitleBarVisibility": "windowed"
 }
