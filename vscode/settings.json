@@ -95,7 +95,10 @@
     // Github Copilot の提案の表示を有効にするかどうか
     "editor.inlineSuggest.enabled": true,
     // Github Copilot を言語ごとに有効にするかどうか
-    "github.copilot.enable": false,
+    "github.copilot.enable": {
+        "rs": true,
+        "*": true
+    },
     // 関数等の上に表示されるコマンドパレットのSuggest testを表示するかどうか
     "github.copilot-labs.showTestGenerationLenses": true,
     // 関数等の上に表示されるコマンドパレットのアイコンを表示するかどうか
@@ -178,6 +181,6 @@
     "hediet.vscode-drawio.resizeImages": null,
     "gitlab.aiAssistedCodeSuggestions.enabled": false,
     "window.commandCenter": false,
-    "workbench.statusBar.visible": false,
-    "window.customTitleBarVisibility": "windowed"
+    "window.customTitleBarVisibility": "windowed",
+    "files.autoSave": "afterDelay",
 }

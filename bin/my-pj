@@ -29,7 +29,8 @@ from pathlib import Path
 #   - {{ProjectEnd}}   ... プロジェクト終了日
 # TODO(blacknon): 作成したディレクトリ内で、指定したコマンドを(テンプレート変数を考慮して)実行する
 # TODO(blacknon): list --jsonの出力を配列にしないと、jqに食わせたりするときに扱いにくい
-
+# TODO(blacknon): --add "key:value"で、指定したキー+valueをjsonに追加するオプションの実装
+# TODO(blacknon): list --tableでテーブル出力する際、↑の追加キーをテーブルに含められるよう何かしらのオプションを実装していく
 
 # 変数
 # TODO(blacknon): config_file以外の変数をconfigに移動する

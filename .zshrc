@@ -21,6 +21,7 @@ FILES=(
     $ZSHRC_DIR/sh/functions/command_not_found_hundle.sh
     $ZSHRC_DIR/zsh/functions/function.zsh
     $ZSHRC_DIR/sh/functions/iterm2.sh
+    $ZSHRC_DIR/sh/functions/macos.sh
     $ZSHRC_DIR/sh/export.sh
     $ZSHRC_DIR/sh/alias.sh
     $ZSHRC_DIR/zsh/alias.zsh
@@ -32,6 +33,7 @@ FILES=(
     ~/_env/zshrc
     ~/.local/share/cargo/env
 )
+
 for i in ${FILES}; do
     if [ -f "$i" ]; then
         source "$i" || echo "not found: $i"
