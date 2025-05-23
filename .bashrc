@@ -43,3 +43,4 @@ for i in "${FILES[@]}"; do
     fi
 done
 . "/Users/uesugi/.local/share/cargo/env"
+. "/Users/blacknon/.local/share/cargo/env"
