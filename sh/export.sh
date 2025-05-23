@@ -273,5 +273,5 @@ fi
 
 # Docker socketの位置を変更
 if [ ! -e "/var/run/docker.sock" ]; then
-  export DOCKER_HOST=unix:///Users/$USER/.docker/run/docker.sock
+  export DOCKER_HOST="unix:///Users/$USER/.docker/run/docker.sock"
 fi
