@@ -1,48 +1,36 @@
 #compdef lscp
-
-_aftercolon() {
-    if compset -P 1 '*:'; then
-        _files "$expl[@]"
-    else
-        _files "$expl[@]"
-    fi
-}
-
 _lscp() {
     _arguments -s \
-        '(- *)'{-h,--help}'[Show help]' \
-        '(-p,--permission)'{-p,--permission}'[copy with permission flag]' \
-        '(-H --host)'{-H,--host}'[Connect servername]:_message' \
-        '(-f --file)'{-f,--file}'+[Config file path]:include file:_files' \
-        '*:: :->args' \
-        && ret=0
-    case $state in
-        (args)
-            case $words[1] in
-                (l:)
-                    _aftercolon && ret=0
-                    ;;
-                (local:)
-                    _aftercolon && ret=0
-                    ;;
-                (r:)
-                    # TODO
-                    ;;
-                (remote:)
-                    # TODO
-                    ;;
-            esac
-            ;;
-    esac
-
-    return ret
+        '(-H --host)'{-H,--host}'[Connect to server by name]:server:_hosts' \
+        '(-l --list)'{-l,--list}'[Print server list from config]' \
+        '(-F --file)'{-F,--file}'[Specify config file path]:config file:_files' \
+        '(-p --permission)'{-p,--permission}'[Copy file permission]' \
+        '(-h --help)'{-h,--help}'[Print this help]' \
+        '(-v --version)'{-v,--version}'[Print the version]' \
+        '*:copy_path:_lscp_path_completion'
 }
 
-__lscp_type () {
-    local -a _t
-    _t=(
-        {local,l}':local'
-        {remote,r}':remote'
-    )
-    _describe -t values "Type" _t
+_lscp_path_completion() {
+    local current_arg="${words[-1]}"
+    local -a file_list
+    local prefix="local:"
+
+    # 入力が `local:` で始まる場合
+    if [[ "$current_arg" == local:* ]]; then
+        local path="${current_arg#$prefix}"
+
+        # `path` 以下のファイルやディレクトリを取得してリストに格納
+        file_list=($(compgen -G "${path}*"))
+
+        # `local:` を追加して補完候補を生成
+        for file in "${file_list[@]}"; do
+            compadd -S '' "${prefix}${file}"
+        done
+    elif [[ "$current_arg" == remote:* ]]; then
+        # `remote:` の場合のプレースホルダー補完
+        compadd -S '' "remote:/path/to/remote1" "remote:/path/to/remote2"
+    else
+        # `local:` や `remote:` の指定がない場合は選択肢を補完
+        compadd -S '' "local:" "remote:"
+    fi
 }

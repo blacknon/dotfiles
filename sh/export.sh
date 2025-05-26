@@ -130,6 +130,7 @@ darwin*)
   ;;
 linux*)
   export XAUTHORITY="${XDG_CACHE_HOME}/Xauthority"
+  ;;
 esac
 export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
 
@@ -250,12 +251,13 @@ HWATCH+=' --with-scrollbar'
 HWATCH+=' --mouse'
 HWATCH+=' --line-number'
 HWATCH+=' --color'
+HWATCH+=' --enable-summary-char'
 
 # less
 export LESS="-R" # lessでスクロールが効くようにする
 
 # bat
-export BAT_PAGER="less -RF" # batのpagerを設定
+export BAT_PAGER="less -RF"     # batのpagerを設定
 export BAT_THEME="Coldark-Dark" # batのColor Theme
 
 # python encode
@@ -267,4 +269,9 @@ export EDITOR='vim'
 # ssh agent用のsockファイル
 if [ -z "${SSH_CLIENT}" ]; then
   export SSH_AUTH_SOCK="$XDG_CACHE_HOME/ssh/agent" # ssh-agentのSOCK用PATH
+fi
+
+# Docker socketの位置を変更
+if [ ! -e "/var/run/docker.sock" ]; then
+  export DOCKER_HOST="unix:///Users/$USER/.docker/run/docker.sock"
 fi
