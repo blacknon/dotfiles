@@ -221,6 +221,13 @@ darwin*)
   if [[ "$(uname -m)" == "arm64" ]]; then
     PATH_LIST+=("/opt/homebrew/bin")
   fi
+
+  # johnのスクリプトファイル群用ディレクトリが存在している場合、PATHに追加する
+  if [ -d "/opt/homebrew/Cellar/john-jumbo/" ]; then
+    local dir=$(ls -1d /opt/homebrew/Cellar/john-jumbo/*/share/john | head -n 1)
+    PATH_LIST+=($dir)
+  fi
+
   ;;
 esac
 
