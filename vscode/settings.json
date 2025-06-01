@@ -183,4 +183,5 @@
     "window.commandCenter": false,
     "window.customTitleBarVisibility": "windowed",
     "files.autoSave": "afterDelay",
+    "python.createEnvironment.trigger": "off",
 }
