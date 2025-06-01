@@ -46,7 +46,7 @@ esac
 
 # johnの有無を確認
 # johnのスクリプトファイル群用ディレクトリが存在している場合、PATHに追加する
-if [ ! -d "/opt/homebrew/Cellar/john-jumbo/" || ! -d "/usr/local/Cellar/john-jumbo/" ]; then
+if [ ! -d "/opt/homebrew/Cellar/john-jumbo/" ] && [ ! -d "/usr/local/Cellar/john-jumbo/" ]; then
     echo "john-jumboが入っていません"
     usage
     exit 1
