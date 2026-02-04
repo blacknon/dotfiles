@@ -6,6 +6,7 @@
 # User: Blacknon
 #
 # Description: ~/Work整備のcron用スクリプト
+#
 # Note:
 #     Workディレクトリを作成して、そのディレクトリへのシンボリックリンクとして~/Downloadを指定する。
 #     MacOSの場合はDockのDownloadディレクトリのPATHを書き換えてDockを再起動する処理を行う。

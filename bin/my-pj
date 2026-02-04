@@ -28,7 +28,9 @@ from pathlib import Path
 #   - {{ProjectStart}} ... プロジェクト開始日
 #   - {{ProjectEnd}}   ... プロジェクト終了日
 # TODO(blacknon): 作成したディレクトリ内で、指定したコマンドを(テンプレート変数を考慮して)実行する
-# TODO(blacknon): list --jsonの出力を配列にしないと、jqに食わせたりするときに扱いにくい
+# TODO(blacknon): list --jsonの出力を配列にしないと、jqに食わせたりするときに扱いにくいので
+#                 `[{"Name": "...", "Description": "..."}, {"Name": "...", "Description": "..."},...]`といった出力に変える。
+#                 このとき、出力の順番は元の順番を保持する。
 # TODO(blacknon): --add "key:value"で、指定したキー+valueをjsonに追加するオプションの実装
 # TODO(blacknon): list --tableでテーブル出力する際、↑の追加キーをテーブルに含められるよう何かしらのオプションを実装していく
 
@@ -40,6 +42,30 @@ project_dir = "~/Work/Project"
 
 
 # プロジェクトを作成する
+def _parse_start_date(date_str, today):
+    if date_str == "":
+        return today
+    try:
+        return parser.parse(date_str).date()
+    except parser.ParserError:
+        print('Error: 正常にパースできませんでした。入力し直してください。')
+        return None
+
+
+def _parse_end_date(date_str, start_date, start_date_str):
+    if date_str == "":
+        date_str = start_date_str
+    elif re.search('^[0-9]{1,3}$', date_str):
+        date_str = (
+            start_date + relativedelta(days=+int(date_str))
+        ).strftime("%Y-%m-%d")
+    try:
+        return parser.parse(date_str).date(), date_str
+    except parser.ParserError:
+        print('Error: 正常にパースできませんでした。入力し直してください。')
+        return None, None
+
+
 def command_create(args):
     conf_file = open(os.path.expanduser(config_file), 'r')
     conf_json = json.load(conf_file)
@@ -52,57 +78,55 @@ def command_create(args):
         # プロジェクトの開始日入力
         #   - 日付が空の場合、当日の日付を入れる
         while True:
-            try:
-                pj_start = input("プロジェクト開始日: ")
-            except KeyboardInterrupt:
-                sys.exit()
+            if args.start is not None:
+                pj_start = args.start
+            else:
+                try:
+                    pj_start = input("プロジェクト開始日: ")
+                except KeyboardInterrupt:
+                    sys.exit()
 
-            if pj_start == "":
-                pj_start = today.strftime("%Y-%m-%d")
-
-            # プロジェクト開始日の変換処理
-            try:
-                start_date = parser.parse(pj_start).date()
+            start_date = _parse_start_date(pj_start, today)
+            if start_date is not None:
+                pj_start = start_date.strftime("%Y-%m-%d")
                 break
-            except parser.ParserError:
-                print('Error: 正常にパースできませんでした。入力し直してください。')
-                continue
+            if args.start is not None:
+                sys.exit()
 
         # プロジェクトの終了日入力
         #   - 日付が空の場合、プロジェクト開始日の日付を入れる
         #   - 数字(3桁まで)が入力された場合、プロジェクト開始日に加算する
         while True:
-            try:
-                pj_end = input("プロジェクト終了日: ")
-            except KeyboardInterrupt:
-                sys.exit()
+            if args.end is not None:
+                pj_end = args.end
+            else:
+                try:
+                    pj_end = input("プロジェクト終了日: ")
+                except KeyboardInterrupt:
+                    sys.exit()
 
-            if pj_end == "":
-                pj_end = pj_start
-            elif re.search('^[0-9]{1,3}$', pj_end):
-                pj_end = (
-                    start_date + relativedelta(days=+int(pj_end))
-                ).strftime("%Y-%m-%d")
-
-            try:
-                end_date = parser.parse(pj_end).date()
+            end_date, pj_end = _parse_end_date(pj_end, start_date, pj_start)
+            if end_date is not None:
                 break
-            except parser.ParserError:
-                print('Error: 正常にパースできませんでした。入力し直してください。')
-                continue
-            except KeyboardInterrupt:
+            if args.end is not None:
                 sys.exit()
 
         # プロジェクトのテンプレートを選択
-        questions = [
-            inquirer.List(
-                'pj_type',
-                message="プロジェクトディレクトリのテンプレートを選択してください",
-                choices=conf_json['Templete'].keys(),
-            ),
-        ]
-        answers = inquirer.prompt(questions)
-        pj_type = answers['pj_type']
+        if args.template is not None:
+            pj_type = args.template
+            if pj_type not in conf_json['Templete']:
+                print('Error: --templateで指定されたテンプレートが存在しません。')
+                sys.exit()
+        else:
+            questions = [
+                inquirer.List(
+                    'pj_type',
+                    message="プロジェクトディレクトリのテンプレートを選択してください",
+                    choices=conf_json['Templete'].keys(),
+                ),
+            ]
+            answers = inquirer.prompt(questions)
+            pj_type = answers['pj_type']
 
         pj_dir = pj_type + '_' + \
             start_date.strftime('%Y%m%d') + '-' + \
@@ -116,13 +140,14 @@ def command_create(args):
         print("プロジェクトタイプ説明:", conf_json['Templete'][pj_type]['description'])
         print("ディレクトリPATH:", project_dir + "/" + pj_dir)
 
-        try:
-            ok = input("[Y/n]")
-        except KeyboardInterrupt:
-            sys.exit()
+        if not args.yes:
+            try:
+                ok = input("[Y/n]")
+            except KeyboardInterrupt:
+                sys.exit()
 
-        if ok not in ('y', 'Y', ''):
-            continue
+            if ok not in ('y', 'Y', ''):
+                continue
 
         # ディレクトリのfull pathを取得する
         templete_dir_path = os.path.expanduser(
@@ -258,6 +283,22 @@ def main():
     parser_create.add_argument(
         'project_name', action='store',
         type=str, help='プロジェクト名',
+    )
+    parser_create.add_argument(
+        '--start', type=str,
+        help='プロジェクト開始日(未指定時は対話入力)',
+    )
+    parser_create.add_argument(
+        '--end', type=str,
+        help='プロジェクト終了日(未指定時は対話入力)',
+    )
+    parser_create.add_argument(
+        '--template', type=str,
+        help='プロジェクトテンプレート(未指定時は対話選択)',
+    )
+    parser_create.add_argument(
+        '-y', '--yes', action='store_true',
+        help='確認プロンプトをスキップする',
     )
     parser_create.set_defaults(handler=command_create)
 
