@@ -184,4 +184,8 @@
     "window.customTitleBarVisibility": "windowed",
     "files.autoSave": "afterDelay",
     "python.createEnvironment.trigger": "off",
+    "flake8.args": [
+        "--max-line-length=120"
+    ],
+    "github.copilot.nextEditSuggestions.enabled": true,
 }
