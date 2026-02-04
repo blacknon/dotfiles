@@ -20,10 +20,10 @@
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~? 　、。",
     "editor.formatOnType": true, // 入力時に自動整形
     "editor.formatOnPaste": true, // ペースト時に自動整形
-    "editor.formatOnSave": true, // 保存時に自動整形
+    "editor.formatOnSave": true, // 保存時に自動s整形
     "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
     "editor.snippetSuggestions": "top", // スニペット候補を優先表示
-    "editor.fontFamily": "'UDEV Gothic JPDOC', 'Sarasa Mono J', 'Cascadia Mono', Consolas, 'Noto Sans Mono CJK JP', monospace", // 使用するフォント
+    "editor.fontFamily": "monospace", // 使用するフォント
     "editor.fontLigatures": false, // 合字を有効化
     "editor.renderLineHighlight": "all", // 選択行の行番号ハイライト
     "editor.renderWhitespace": "all", // ホワイトスペース（半角スペース等）の表示
@@ -82,6 +82,7 @@
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/opt/homebrew/bin/zsh",
     "terminal.integrated.macOptionIsMeta": true,
+    "terminal.integrated.fontFamily": "monospace",
     // git
     // ===============
     "git.ignoreMissingGitWarning": true,
