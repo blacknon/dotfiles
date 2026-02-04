@@ -30,6 +30,7 @@ from pathlib import Path
 # TODO(blacknon): 作成したディレクトリ内で、指定したコマンドを(テンプレート変数を考慮して)実行する
 # TODO(blacknon): --add "key:value"で、指定したキー+valueをjsonに追加するオプションの実装
 # TODO(blacknon): list --tableでテーブル出力する際、↑のTODOに書かれている追加キーをテーブルに含められるよう何かしらのオプションを実装していく
+# TODO(blacknon): symlinkサブコマンドで
 
 # 変数
 # TODO(blacknon): config_file以外の変数をconfigに移動する

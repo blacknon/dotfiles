@@ -12,37 +12,37 @@
 
 ## ディレクトリ・ファイル構成
 
-| PATH                                                                              | 概要                                                    |
-|-----------------------------------------------------------------------------------|--------------------------------------------------------|
-| [.zshrc](.zshrc)                                                                  | zsh用のrcファイル。小分けにしたファイル郡をsourceするだけ。                 |
-| [.bashrc](.bashrc)                                                                | bash用のrcファイル。小分けにしたファイル郡をsourceするだけ。                |
-| [.vimrc](.vimrc)                                                                  | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。      |
-| [.tmux.conf](.tmux.conf)                                                          | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。      |
-| [sh](sh)                                                                          | bash/zshで共通の設定・関数を格納するディレクトリ。                   |
-| [sh/alias.sh](sh/alias.sh)                                                        | aliasの設定ファイル                                          |
-| [sh/exportsh](sh/export.sh)                                                       | export周りの処理を記述しているファイル                             |
-| [sh/other.sh](sh/other.sh)                                                        | その他                                                    |
-| [sh/functions/command_not_found_hundle](sh/functions/command_not_found_hundle.sh) | aliasの設定ファイル                                          |
-| [sh/functions/common.sh](sh/functions/common.sh)                                  | shell関数内で利用している関数を記述しているファイル                   |
-| [sh/functions/exec_1.sh](sh/functions/exec_1.sh)                                  | インタラクティブシェルから実行する関数1(ssh先に持っていくもの)                |
-| [sh/functions/exec_2.sh](sh/functions/exec_2.sh)                                  | インタラクティブシェルから実行する関数2(ssh先に持っていかない・利用頻度の低いもの) |
-| [sh/functions/exec_ddig.sh](sh/functions/exec_ddig.sh)                            | インタラクティブシェルから実行する関数(ddigのみ)                         |
-| [sh/functions/exec_pping.sh](sh/functions/exec_pping.sh)                          | インタラクティブシェルから実行する関数(ppingのみ)                        |
-| [sh/functions/exec_local.sh](sh/functions/exec_local.sh)                          | インタラクティブシェルから実行する関数(ローカルマシンでしか実行しないであろうもののみ)                        |
-| [sh/functions/exec_docker.sh](sh/functions/exec_docker.sh)                        | インタラクティブシェルから実行する関数(docker関係のみ)                        |
-| [sh/functions/exec_remote.sh](sh/functions/exec_remote.sh)                        | インタラクティブシェルから実行する関数(lssh reverse mount関係のみ)                        |
-| [sh/functions/iterm2.sh](sh/functions/iterm2.sh)                                  | iTerm2で利用する関数                                       |
-| [sh/functions/keybind.sh](sh/functions/keybind.sh)                                | Keybindで使用する関数                                      |
-| [sh/functions/replace.sh](sh/functions/replace.sh)                                | 既存のコマンドからaliasで置き換える関数                            |
+| PATH                                                                              | 概要                                                                                   |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [.zshrc](.zshrc)                                                                  | zsh用のrcファイル。小分けにしたファイル郡をsourceするだけ。                            |
+| [.bashrc](.bashrc)                                                                | bash用のrcファイル。小分けにしたファイル郡をsourceするだけ。                           |
+| [.vimrc](.vimrc)                                                                  | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。        |
+| [.tmux.conf](.tmux.conf)                                                          | vimrcファイル。ssh先に持っていきやすくするため1ファイルにすべて設定を記述する。        |
+| [sh](sh)                                                                          | bash/zshで共通の設定・関数を格納するディレクトリ。                                     |
+| [sh/alias.sh](sh/alias.sh)                                                        | aliasの設定ファイル                                                                    |
+| [sh/exportsh](sh/export.sh)                                                       | export周りの処理を記述しているファイル                                                 |
+| [sh/other.sh](sh/other.sh)                                                        | その他                                                                                 |
+| [sh/functions/command_not_found_hundle](sh/functions/command_not_found_hundle.sh) | aliasの設定ファイル                                                                    |
+| [sh/functions/common.sh](sh/functions/common.sh)                                  | shell関数内で利用している関数を記述しているファイル                                    |
+| [sh/functions/exec_1.sh](sh/functions/exec_1.sh)                                  | インタラクティブシェルから実行する関数1(ssh先に持っていくもの)                         |
+| [sh/functions/exec_2.sh](sh/functions/exec_2.sh)                                  | インタラクティブシェルから実行する関数2(ssh先に持っていかない・利用頻度の低いもの)     |
+| [sh/functions/exec_ddig.sh](sh/functions/exec_ddig.sh)                            | インタラクティブシェルから実行する関数(ddigのみ)                                       |
+| [sh/functions/exec_pping.sh](sh/functions/exec_pping.sh)                          | インタラクティブシェルから実行する関数(ppingのみ)                                      |
+| [sh/functions/exec_local.sh](sh/functions/exec_local.sh)                          | インタラクティブシェルから実行する関数(ローカルマシンでしか実行しないであろうもののみ) |
+| [sh/functions/exec_docker.sh](sh/functions/exec_docker.sh)                        | インタラクティブシェルから実行する関数(docker関係のみ)                                 |
+| [sh/functions/exec_remote.sh](sh/functions/exec_remote.sh)                        | インタラクティブシェルから実行する関数(lssh reverse mount関係のみ)                     |
+| [sh/functions/iterm2.sh](sh/functions/iterm2.sh)                                  | iTerm2で利用する関数                                                                   |
+| [sh/functions/keybind.sh](sh/functions/keybind.sh)                                | Keybindで使用する関数                                                                  |
+| [sh/functions/replace.sh](sh/functions/replace.sh)                                | 既存のコマンドからaliasで置き換える関数                                                |
 
 ## 実行コマンド・関数
 
 ### AppleScript
 
-| File                                                                                     | 概要                                                                                                                                            |
-|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| File                                                                                     | 概要                                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [AppleScripts/music_rename.applescript](AppleScripts/music_rename.applescript)           | iTunesの選択中のタイトル名を、`~/Work/YYYYmm/YYYYmmdd/itunes.txt`のタイトルに変換していくスクリプト(`~/Work/YYYYmm/YYYYmmdd/itunes.txt`はShift-JISで記述する必要があるので注意) |
-| [AppleScripts/music_settracknum.applescript](AppleScripts/music_settracknum.applescript) | iTunesの選択中の曲にtrack numberを連番でセットしていくapple script.                                                                                         |
+| [AppleScripts/music_settracknum.applescript](AppleScripts/music_settracknum.applescript) | iTunesの選択中の曲にtrack numberを連番でセットしていくapple script.                                                                                                             |
 
 ### 実行ファイル
 
