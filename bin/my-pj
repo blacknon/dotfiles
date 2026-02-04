@@ -28,11 +28,8 @@ from pathlib import Path
 #   - {{ProjectStart}} ... プロジェクト開始日
 #   - {{ProjectEnd}}   ... プロジェクト終了日
 # TODO(blacknon): 作成したディレクトリ内で、指定したコマンドを(テンプレート変数を考慮して)実行する
-# TODO(blacknon): list --jsonの出力を配列にしないと、jqに食わせたりするときに扱いにくいので
-#                 `[{"Name": "...", "Description": "..."}, {"Name": "...", "Description": "..."},...]`といった出力に変える。
-#                 このとき、出力の順番は元の順番を保持する。
 # TODO(blacknon): --add "key:value"で、指定したキー+valueをjsonに追加するオプションの実装
-# TODO(blacknon): list --tableでテーブル出力する際、↑の追加キーをテーブルに含められるよう何かしらのオプションを実装していく
+# TODO(blacknon): list --tableでテーブル出力する際、↑のTODOに書かれている追加キーをテーブルに含められるよう何かしらのオプションを実装していく
 
 # 変数
 # TODO(blacknon): config_file以外の変数をconfigに移動する
@@ -221,8 +218,7 @@ def command_symlink(args):
 # プロジェクトの一覧を取得する
 # TODO(blacknon): archiveのファイルについても調査対象とする処理を追加する
 def command_list(args):
-    i = 0
-    output_json = {}
+    output_json = []
 
     if args.d is not None:
         # プロジェクト開始日の変換処理
@@ -254,15 +250,13 @@ def command_list(args):
                 continue
 
         if args.json:
-            output_json[i] = pj_json
+            output_json.append(pj_json)
         else:
             output_data = pj_start.strftime('%Y-%m-%d') + "〜" + \
                 pj_end.strftime('%Y-%m-%d') + ':' + '\t' + \
                 '[' + pj_name + ']' + '\t' + pj_desc + '\t' + str(p)
 
             print(output_data)
-
-        i = i + 1
 
     if args.json:
         json.dump(output_json, sys.stdout)
