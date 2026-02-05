@@ -24,15 +24,6 @@
 #     ```
 # =============================================
 
-# TODO(blacknon): 以下の機能を追加する
-#   - 所定のディレクトリに配置しているスクリプトを実行する処理
-#   - 実行は一番最後
-#   - ファイルで、かつ実行権限があるもののみが対象
-#   - 実行に失敗してもそのまま流していく
-#   - ディレクトリに複数ファイルがある場合、すべて実行する
-#   - ディレクトリはデフォルトで"~/Work/scripts"だが、-p DIRでオプション指定できるようにする
-
-
 # TODO(blacknon): 1時間単位で実行しても問題ないように作る(~/Work/YYYYMM/YYYYMMDDが存在しない場合にキックするようにすればいいかも？)
 case "${OSTYPE}" in
 darwin*)
@@ -47,7 +38,20 @@ linux*)
   ;;
 esac
 
-# 引数の取得(テンプレートファイルPATH)
+# 引数の取得
+SCRIPTS_DIR="${HOME}/Work/scripts"
+while getopts ":p:" opt; do
+  case "$opt" in
+  p)
+    SCRIPTS_DIR="${OPTARG}"
+    ;;
+  *)
+    ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+# テンプレートファイルPATH
 PLIST_TEMPLETE=("$@")
 
 # 現時点の`~/Today`ディレクトリ配下へ、バックアップファイルの配置
@@ -183,3 +187,14 @@ fi
 
 # Projectディレクトリ配下から、当日の範囲内のプロジェクトへのsymlinkを作成する
 $HOME/dotfiles/bin/my-pj symlink "${WORKDIR}"
+
+# scriptsディレクトリ配下の実行可能ファイルをすべて実行する
+if [[ -d "${SCRIPTS_DIR}" ]]; then
+  shopt -s nullglob
+  for script in "${SCRIPTS_DIR}"/*; do
+    if [[ -f "${script}" && -x "${script}" ]]; then
+      "${script}" || true
+    fi
+  done
+  shopt -u nullglob
+fi
