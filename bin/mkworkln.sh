@@ -38,6 +38,12 @@ linux*)
   ;;
 esac
 
+WORKDIR=$(${date} "+${HOME}/Work/%Y%m/%Y%m%d")
+TODAY_REAL=""
+if [[ -e "${HOME}/Today" ]]; then
+  TODAY_REAL="$(realpath "${HOME}/Today")"
+fi
+
 # 引数の取得
 SCRIPTS_DIR="${HOME}/Work/scripts"
 while getopts ":p:" opt; do
@@ -56,7 +62,7 @@ PLIST_TEMPLETE=("$@")
 
 # 現時点の`~/Today`ディレクトリ配下へ、バックアップファイルの配置
 backup_dir="$HOME/Today/backup"
-if [[ ! -d $backup_dir ]]; then
+if [[ "${TODAY_REAL}" != "${WORKDIR}" && ! -d $backup_dir ]]; then
   # バックアップ用ディレクトリを作成
   mkdir -p $HOME/Today/backup
 
@@ -88,7 +94,6 @@ linux*)
   DOWNLOAD="Download"
   ;;
 esac
-WORKDIR=$(${date} "+${HOME}/Work/%Y%m/%Y%m%d")
 DOWNLOAD_DIR="${WORKDIR}/${DOWNLOAD}/"
 
 # `~/Work/YYYYMM/YYYYMMDD/$DOWNLOAD_DIR`を作成する
