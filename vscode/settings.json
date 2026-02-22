@@ -20,10 +20,10 @@
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~? 　、。",
     "editor.formatOnType": true, // 入力時に自動整形
     "editor.formatOnPaste": true, // ペースト時に自動整形
-    "editor.formatOnSave": true, // 保存時に自動整形
+    "editor.formatOnSave": true, // 保存時に自動s整形
     "editor.multiCursorModifier": "ctrlCmd", // マウスでカーソル複数作成時のキー変更
     "editor.snippetSuggestions": "top", // スニペット候補を優先表示
-    "editor.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace", // 使用するフォント
+    "editor.fontFamily": "monospace", // 使用するフォント
     "editor.fontLigatures": false, // 合字を有効化
     "editor.renderLineHighlight": "all", // 選択行の行番号ハイライト
     "editor.renderWhitespace": "all", // ホワイトスペース（半角スペース等）の表示
@@ -76,12 +76,13 @@
     // Terminal
     // ===============
     "terminal.integrated.stickyScroll.enabled": false, // Terminal上部に出てくる実行済コマンド. くそ邪魔なので無効化.
-    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontSize": 15,
     "terminal.integrated.rendererType": "canvas",
     // OSX用設定
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/opt/homebrew/bin/zsh",
     "terminal.integrated.macOptionIsMeta": true,
+    "terminal.integrated.fontFamily": "monospace",
     // git
     // ===============
     "git.ignoreMissingGitWarning": true,
@@ -184,4 +185,8 @@
     "window.customTitleBarVisibility": "windowed",
     "files.autoSave": "afterDelay",
     "python.createEnvironment.trigger": "off",
+    "flake8.args": [
+        "--max-line-length=120"
+    ],
+    "github.copilot.nextEditSuggestions.enabled": true,
 }

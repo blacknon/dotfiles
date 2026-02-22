@@ -6,6 +6,7 @@
 # User: Blacknon
 #
 # Description: ~/Work整備のcron用スクリプト
+#
 # Note:
 #     Workディレクトリを作成して、そのディレクトリへのシンボリックリンクとして~/Downloadを指定する。
 #     MacOSの場合はDockのDownloadディレクトリのPATHを書き換えてDockを再起動する処理を行う。
@@ -37,12 +38,31 @@ linux*)
   ;;
 esac
 
-# 引数の取得(テンプレートファイルPATH)
+WORKDIR=$(${date} "+${HOME}/Work/%Y%m/%Y%m%d")
+TODAY_REAL=""
+if [[ -e "${HOME}/Today" ]]; then
+  TODAY_REAL="$(realpath "${HOME}/Today")"
+fi
+
+# 引数の取得
+SCRIPTS_DIR="${HOME}/Work/scripts"
+while getopts ":p:" opt; do
+  case "$opt" in
+  p)
+    SCRIPTS_DIR="${OPTARG}"
+    ;;
+  *)
+    ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+# テンプレートファイルPATH
 PLIST_TEMPLETE=("$@")
 
 # 現時点の`~/Today`ディレクトリ配下へ、バックアップファイルの配置
 backup_dir="$HOME/Today/backup"
-if [[ ! -d $backup_dir ]]; then
+if [[ "${TODAY_REAL}" != "${WORKDIR}" && ! -d $backup_dir ]]; then
   # バックアップ用ディレクトリを作成
   mkdir -p $HOME/Today/backup
 
@@ -74,7 +94,6 @@ linux*)
   DOWNLOAD="Download"
   ;;
 esac
-WORKDIR=$(${date} "+${HOME}/Work/%Y%m/%Y%m%d")
 DOWNLOAD_DIR="${WORKDIR}/${DOWNLOAD}/"
 
 # `~/Work/YYYYMM/YYYYMMDD/$DOWNLOAD_DIR`を作成する
@@ -84,14 +103,23 @@ mkdir -p "${DOWNLOAD_DIR}"
 mkdir -p "${WORKDIR}/log/"
 mkdir -p "${WORKDIR}/log/hwatch/"
 
-# today_memo.txtを生成する
-# TODO: 未作成の場合のみ、前日のtoday_memo.txtからコピーさせてくる or どっかにsymlink作っとく？？
-touch "${WORKDIR}/today_memo.txt"
+# today_memo.txtを生成する(前日のメモがあればコピー)
+today_memo_file="${WORKDIR}/today_memo.txt"
+prev_workdir=$(${date} "+${HOME}/Work/%Y%m/%Y%m%d" -d "-1 day")
+prev_today_memo_file="${prev_workdir}/today_memo.txt"
 
-today_memo_size=$($stat --printf="%s" "${WORKDIR}/today_memo.txt")
+if [[ ! -e "${today_memo_file}" ]]; then
+  if [[ -f "${prev_today_memo_file}" ]]; then
+    cp "${prev_today_memo_file}" "${today_memo_file}"
+  else
+    touch "${today_memo_file}"
+  fi
+fi
+
+today_memo_size=$($stat --printf="%s" "${today_memo_file}")
 
 if [[ "0" -eq "${today_memo_size}" ]]; then
-  echo -e "today memo\n===" >> "${WORKDIR}/today_memo.txt"
+  echo -e "today memo\n===" >> "${today_memo_file}"
 fi
 
 # MacOSの場合、以下の処理も行う
@@ -173,3 +201,14 @@ fi
 
 # Projectディレクトリ配下から、当日の範囲内のプロジェクトへのsymlinkを作成する
 $HOME/dotfiles/bin/my-pj symlink "${WORKDIR}"
+
+# scriptsディレクトリ配下の実行可能ファイルをすべて実行する
+if [[ -d "${SCRIPTS_DIR}" ]]; then
+  shopt -s nullglob
+  for script in "${SCRIPTS_DIR}"/*; do
+    if [[ -f "${script}" && -x "${script}" ]]; then
+      "${script}" || true
+    fi
+  done
+  shopt -u nullglob
+fi
