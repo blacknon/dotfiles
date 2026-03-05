@@ -76,13 +76,13 @@
     // Terminal
     // ===============
     "terminal.integrated.stickyScroll.enabled": false, // Terminal上部に出てくる実行済コマンド. くそ邪魔なので無効化.
-    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.fontSize": 13,
     "terminal.integrated.rendererType": "canvas",
     // OSX用設定
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/opt/homebrew/bin/zsh",
     "terminal.integrated.macOptionIsMeta": true,
-    "terminal.integrated.fontFamily": "monospace",
+    "terminal.integrated.fontFamily": "SourceHanCodeJP-Regular, Menlo, Monaco, 'Courier New', monospace",
     // git
     // ===============
     "git.ignoreMissingGitWarning": true,
