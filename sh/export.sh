@@ -224,7 +224,7 @@ darwin*)
 
   # johnのスクリプトファイル群用ディレクトリが存在している場合、PATHに追加する
   if [ -d "/opt/homebrew/Cellar/john-jumbo/" ]; then
-    local dir=$(ls -1d /opt/homebrew/Cellar/john-jumbo/*/share/john | head -n 1)
+    local dir=$(ls -1d /opt/homebrew/Cellar/john-jumbo/*/share/john | head -n 1) 2>/dev/null
     PATH_LIST+=($dir)
   fi
 

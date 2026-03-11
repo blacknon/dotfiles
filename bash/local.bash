@@ -30,6 +30,8 @@ function __accept-line() {
 }
 
 # \C-mのキーバインドを変更する
-bind -x '"\1299": __accept-line'
-bind '"\1298": accept-line'
-bind '"\C-m": "\1299\1298"'
+{
+  bind -x '"\1299": __accept-line'
+  bind '"\1298": accept-line'
+  bind '"\C-m": "\1299\1298"'
+} 2>/dev/null
