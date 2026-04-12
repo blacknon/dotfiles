@@ -148,9 +148,6 @@ darwin*)
 
     let i++
   done
-
-  # Dockの再起動を実施
-  killall Dock
   ;;
 esac
 
@@ -170,9 +167,6 @@ darwin*)
     rm -rf "${TARGET_DESKTOP_DIR}"
     ln -sF ~/Today "${TARGET_DESKTOP_DIR}"
   fi
-
-  # Finderを再起動して表示を更新する
-  killall Finder
   ;;
 esac
 
@@ -212,3 +206,13 @@ if [[ -d "${SCRIPTS_DIR}" ]]; then
   done
   shopt -u nullglob
 fi
+
+case "${OSTYPE}" in
+darwin*)
+  # Dockの再起動を実施
+  killall Dock
+
+  # Finderを再起動して表示を更新する
+  killall Finder
+esac
+
