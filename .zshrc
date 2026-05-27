@@ -36,6 +36,6 @@ FILES=(
 
 for i in ${FILES}; do
     if [ -f "$i" ]; then
-        source "$i" || echo "not found: $i"
+        source "$i" || echo "not found: $i" >2
     fi
 done

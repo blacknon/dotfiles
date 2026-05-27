@@ -92,9 +92,6 @@ export PYLINTHOME="${XDG_CACHE_HOME}/pylint"
 export GEM_HOME="${XDG_DATA_HOME}/gem"
 export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
 
-# GnuPG
-export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
-
 # Packer
 export PACKER_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/packer"
 export PACKER_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/packer"
@@ -194,6 +191,72 @@ darwin*)
   # CPPFLAGS
   export CPPFLAGS=" -I/usr/local/opt/ncurses/include"
   export CPPFLAGS=${CPPFLAGS}" -I/usr/local/opt/openssl@0.1/include"
+
+
+#
+[common]
+
+
+#
+[server.PasswordAuth_ServerName]
+addr = "192.168.100.101"
+port = "22"
+user = "test"
+pass = "Password"
+note = "Password Auth Server"
+
+
+#
+[server.KeyAuth_ServerName]
+addr = "192.168.100.102"
+port = "22"
+user = "test"
+key  = "/tmp/key.pem"
+note = "Key Auth Server"
+
+#
+[common]
+
+
+#
+[server.PasswordAuth_ServerName]
+addr = "192.168.100.101"
+port = "22"
+user = "test"
+pass = "Password"
+note = "Password Auth Server"
+
+
+#
+[server.KeyAuth_ServerName]
+addr = "192.168.100.102"
+port = "22"
+user = "test"
+key  = "/tmp/key.pem"
+note = "Key Auth Server"
+
+
+#
+[common]
+
+
+#
+[server.PasswordAuth_ServerName]
+addr = "192.168.100.101"
+port = "22"
+user = "test"
+pass = "Password"
+note = "Password Auth Server"
+
+
+#
+[server.KeyAuth_ServerName]
+addr = "192.168.100.102"
+port = "22"
+user = "test"
+key  = "/tmp/key.pem"
+note = "Key Auth Server"
+
   ;;
 linux*)
   # PATH
@@ -228,6 +291,8 @@ darwin*)
     PATH_LIST+=($dir)
   fi
 
+  # GnuPG
+  export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
   ;;
 esac
 
