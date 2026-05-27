@@ -70,7 +70,6 @@ fi
 # XDG Base Directoryの設定に伴うPATH指定処理
 # =======================================================
 # aws-cli
-export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
 export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 
 # azure-cli
@@ -180,6 +179,7 @@ darwin*)
   PATH_LIST+=("/usr/local/opt/mysql-client/bin")
   PATH_LIST+=("/usr/local/opt/openssl@1.1/bin")
   PATH_LIST+=("/usr/local/opt/icu4c/bin")
+  PATH_LIST+=("/opt/homebrew/share/google-cloud-sdk/bin/") # GCP
 
   # DYLD_LIBRARY_PATH
   export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"

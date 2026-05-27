@@ -32,9 +32,21 @@
     "editor.cursorBlinking": "smooth", // カーソルが滑らかに点滅するように
     "editor.cursorSmoothCaretAnimation": "on", // カーソルの点滅をアニメーション表示する
     "editor.bracketPairColorization.enabled": true, // 括弧の対応を色付ける
+    "editor.unicodeHighlight.invisibleCharacters": true, // 不可視文字検出用の、UNICODE文字ハイライト対応
+    "editor.unicodeHighlight.ambiguousCharacters": true, // 不可視文字検出用の、UNICODE文字ハイライト対応
+    "editor.unicodeHighlight.nonBasicASCII": false, // 不可視文字検出用の、UNICODE文字ハイライト対応
+    "editor.unicodeHighlight.includeComments": true, // 不可視文字検出用の、UNICODE文字ハイライト対応
+    "editor.unicodeHighlight.includeStrings": true, // 不可視文字検出用の、UNICODE文字ハイライト対応
+    "editor.unicodeHighlight.allowedLocales": {
+        "_os": false, // 不可視文字検出用の、UNICODE文字ハイライト対応
+        "_vscode": false // 不可視文字検出用の、UNICODE文字ハイライト対応
+    },
+    "editor.unicodeHighlight.allowedCharacters": {},
     // editor.minimap
     "editor.minimap.showSlider": "always", // ミニマップ表示領域をハイライト
     "editor.minimap.renderCharacters": false, // ミニマップの文字をブロック表示
+    // task
+    "task.allowAutomaticTasks": "off", // .vscode/tasks.json の自動実行を無効化
     // パンくずリスト表示
     // ===============
     "breadcrumbs.enabled": true, // ファイルのパンくずリストを表示する
@@ -189,4 +201,6 @@
         "--max-line-length=120"
     ],
     "github.copilot.nextEditSuggestions.enabled": true,
+    "explorer.confirmPasteNative": false,
+    "chat.disableAIFeatures": true,
 }
